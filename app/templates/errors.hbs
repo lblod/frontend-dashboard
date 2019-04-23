@@ -1,0 +1,19 @@
+{{#data-table content=model isLoading=isLoading noDataMessage="No logs found"
+     sort=sort page=page size=size class="container-flex--contain data-table" as |t|}}
+  {{#t.content as |c|}}
+    {{#c.header}}
+      {{th-sortable label='Log level' field='logLevel.label' currentSorting=sort}}
+      {{th-sortable label='Source' field='source' currentSorting=sort}}
+      {{th-sortable label='Message' field='message' currentSorting=sort}}
+      {{th-sortable label='Date' field='datetime' currentSorting=sort}}
+    {{/c.header}}
+    {{#c.body as |row|}}
+      <td>{{row.logLevel.label}}</td>
+      <td>{{row.source}}</td>
+      <td>{{row.message}}</td>
+      <td>{{row.datetime}}</td>
+    {{/c.body}}
+  {{/t.content}}
+{{/data-table}}
+
+{{outlet}}
