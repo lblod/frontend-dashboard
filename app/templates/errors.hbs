@@ -26,19 +26,16 @@
               {{log-level-select value=logLevelId onSelectionChange=(action (mut logLevelId)) class="ember-power-select--small"}}
             </div>
             <div class="col--4-12 col--6-12--m col--6-12--s">
-              <label class="label--subtle form__label">Source service</label>
-              {{source-service-select value=logSourceId onSelectionChange=(action (mut logSourceId)) class="ember-power-select--small"}}
+              <label class="label--subtle form__label">Log source</label>
+              {{log-source-select value=logSourceId onSelectionChange=(action (mut logSourceId)) class="ember-power-select--small"}}
             </div>
-            <!-- <div class="col--4-12 col--1-1--m col--1-1--s">
+            <div class="col--4-12 col--1-1--m col--1-1--s">
               <div class="grid">
                 <div class="col--1-1 col--6-12--m">
-                  {{sent-date-range fromValue=sentDateFrom toValue=sentDateTo}}
-                </div>
-                <div class="col--1-1 col--6-12--m">
-                  {{session-date-range fromValue=sessionDateFrom toValue=sessionDateTo}}
+                  {{log-date-range fromValue=logDateFrom toValue=logDateTo}}
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
 
         </div>

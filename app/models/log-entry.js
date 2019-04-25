@@ -6,7 +6,7 @@ export default DS.Model.extend({
   className: attr(),
   message: attr(),
   resource: attr(),
-  datetime: attr(),
+  datetime: attr('datetime'),
   logSource: belongsTo('log-source', { inverse: null }),
   logLevel: belongsTo('log-level', { inverse: null }),
   statusCode: belongsTo('status-code', { inverse: null })

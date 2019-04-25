@@ -10,7 +10,9 @@ export default Route.extend(DataTableRouteMixin, {
     sort: { refreshModel: true },
     // filter params
     logLevelId: { refreshModel: true },
-    logSourceId: { refreshModel: true }
+    logSourceId: { refreshModel: true },
+    logDateFrom: { refreshModel: true },
+    logDateTo: { refreshModel: true }
   },
 
   mergeQueryOptions(params) {
@@ -26,6 +28,12 @@ export default Route.extend(DataTableRouteMixin, {
 
     if (params.logSourceId)
       query['filter[log-source][id]'] = params.logSourceId;
+
+    if (params.logDateFrom)
+      query['filter[:gte:datetime]'] = params.logDateFrom;
+
+    if (params.logDateTo)
+      query['filter[:lte:datetime]'] = params.logDateTo;
 
     return query;
   }
