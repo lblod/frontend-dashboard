@@ -10,21 +10,22 @@ export default Route.extend(DataTableRouteMixin, {
     sort: { refreshModel: true },
     // filter params
     logLevelId: { refreshModel: true },
-    sourceId: { refreshModel: true }
+    logSourceId: { refreshModel: true }
   },
 
   mergeQueryOptions(params) {
     const query = {
       include: [
         'log-level',
+        'log-source'
       ].join(',')
     };
 
     if (params.logLevelId)
       query['filter[log-level][id]'] = params.logLevelId;
 
-    if (params.sourceId)
-      query['filter[source][id]'] = params.sourceId;
+    if (params.logSourceId)
+      query['filter[log-source][id]'] = params.logSourceId;
 
     return query;
   }

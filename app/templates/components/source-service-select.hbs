@@ -6,6 +6,6 @@
      selected=selected
      onchange=(action "changeSelected")
      allowClear=true
-     as |logEntry|}}
-  {{last-part-uri logEntry.source}}
+     as |logSource|}}
+  {{logSource.label}}
 {{/power-select}}

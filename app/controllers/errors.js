@@ -3,14 +3,14 @@ import { observer } from '@ember/object';
 
 
 export default Controller.extend({
-  filterChanged: observer('logLevelId', 'sourceId', function() {
+  filterChanged: observer('logLevelId', 'logSourceId', function() {
     this.set('page', 0);
   }),
 
   actions: {
     resetFilters() {
       ['logLevelId',
-       'sourceId'].forEach(filter => this.set(filter, null));
+       'logSourceId'].forEach(filter => this.set(filter, null));
     },
   }
 });

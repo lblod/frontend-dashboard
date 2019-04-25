@@ -27,7 +27,7 @@
             </div>
             <div class="col--4-12 col--6-12--m col--6-12--s">
               <label class="label--subtle form__label">Source service</label>
-              {{source-service-select value=sourceId onSelectionChange=(action (mut sourceId)) class="ember-power-select--small"}}
+              {{source-service-select value=logSourceId onSelectionChange=(action (mut logSourceId)) class="ember-power-select--small"}}
             </div>
             <!-- <div class="col--4-12 col--1-1--m col--1-1--s">
               <div class="grid">
@@ -48,14 +48,14 @@
         {{#t.content as |c|}}
           {{#c.header}}
             {{th-sortable label='Log level' field='logLevel.label' currentSorting=sort}}
-            {{th-sortable label='Source' field='source' currentSorting=sort}}
+            {{th-sortable label='Source' field='logSource.label' currentSorting=sort}}
             {{th-sortable label='Class name' field='className' currentSorting=sort}}
             {{th-sortable label='Message' field='message' currentSorting=sort}}
             {{th-sortable label='Date' field='datetime' currentSorting=sort}}
           {{/c.header}}
           {{#c.body as |row|}}
             <td>{{row.logLevel.label}}</td>
-            <td>{{last-part-uri row.source}}</td>
+            <td>{{row.logSource.label}}</td>
             <td>{{last-part-uri row.className}}</td>
             <td>{{row.message}}</td>
             <td>{{moment-format row.datetime 'D MMMM YYYY, HH:mm'}}</td>

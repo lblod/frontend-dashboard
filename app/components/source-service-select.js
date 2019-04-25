@@ -7,8 +7,8 @@ export default Component.extend({
 
   async init() {
     this._super(...arguments);
-    const options = this.store.query('log-entry', {
-      sort: 'source',
+    const options = this.store.query('log-source', {
+      sort: 'label',
     });
     this.set('options', options);
   },
@@ -16,7 +16,7 @@ export default Component.extend({
   async didReceiveAttrs() {
     this._super(...arguments);
     if (this.value && !this.selected) {
-      const logEntry = this.store.findRecord('log-entry', this.value);
+      const logEntry = this.store.findRecord('log-source', this.value);
       this.set('selected', logEntry);
     } else if (!this.value) {
       this.set('selected', null);
@@ -29,9 +29,9 @@ export default Component.extend({
 
   search: task(function* (term) {
     yield timeout(600);
-    return this.store.query('log-entry', {
-      sort: 'source',
-      filter: { source: term }
+    return this.store.query('log-source', {
+      sort: 'label',
+      filter: { label: term }
     });
   }),
 

@@ -4,10 +4,10 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default DS.Model.extend({
   className: attr(),
-  source: attr(),
   message: attr(),
   resource: attr(),
   datetime: attr(),
+  logSource: belongsTo('log-source', { inverse: null }),
   logLevel: belongsTo('log-level', { inverse: null }),
   statusCode: belongsTo('status-code', { inverse: null })
 });
