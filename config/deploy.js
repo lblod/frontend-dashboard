@@ -2,24 +2,31 @@
 'use strict';
 
 module.exports = function(deployTarget) {
+  //see https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data/issues/52
+  process.env.GIT_DISCOVERY_ACROSS_FILESYSTEM=1;
   let ENV = {
-    build: {}
-    // include other plugin configuration that applies to all deploy targets here
+    build: {
+      environment: 'production'
+    },
+    'ssh-index': { // copy and deploy index.html
+      username: 'root',
+      host: 'rpio-dev.s.redpencil.io',
+      port: 22,
+      remoteDir: '/data/app-dashboard-dev/dashboard-app',
+      allowOverwrite: true,
+      agent: process.env.SSH_AUTH_SOCK
+    },
+    'rsync': { // copy assets
+      host: 'root@rpio-dev.s.redpencil.io',
+      port: 22,
+      dest: '/data/app-dashboard-dev/dashboard-app',
+      delete: false,
+      arg:['--verbose']
+    }
   };
 
-  if (deployTarget === 'development') {
-    ENV.build.environment = 'development';
-    // configure other plugins for development deploy target here
-  }
-
-  if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
-    // configure other plugins for staging deploy target here
-  }
-
   if (deployTarget === 'production') {
-    ENV.build.environment = 'production';
-    // configure other plugins for production deploy target here
+
   }
 
   // Note: if you need to build some configuration asynchronously, you can return
