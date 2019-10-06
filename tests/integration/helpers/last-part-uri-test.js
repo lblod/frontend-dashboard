@@ -12,6 +12,6 @@ module('Integration | Helper | last-part-uri', function(hooks) {
 
     await render(hbs`{{last-part-uri inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.dom(this.element).hasText('1234');
   });
 });
