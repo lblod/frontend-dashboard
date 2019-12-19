@@ -1,0 +1,16 @@
+.oscar-custom-table table {
+  border-collapse: collapse;
+}
+  
+.oscar-custom-table table, .oscar-custom-table th, .oscar-custom-table td {
+    border: 1px solid black;
+}
+
+.oscar-custom-table {
+  max-width: 80%;
+  font-size: 12px;
+}
+
+.oscar-custom-table td {
+  padding: 10px;
+}

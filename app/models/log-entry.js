@@ -9,5 +9,6 @@ export default DS.Model.extend({
   datetime: attr('datetime'),
   logSource: belongsTo('log-source', { inverse: null }),
   logLevel: belongsTo('log-level', { inverse: null }),
-  statusCode: belongsTo('status-code', { inverse: null })
+  statusCode: belongsTo('status-code', { inverse: null }),
+  reportContent: belongsTo('report-content')
 });

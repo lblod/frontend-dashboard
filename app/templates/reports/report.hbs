@@ -1,0 +1,12 @@
+<div class="col--12-12">
+  <h2>This is the individual report page</h2>
+  <p>The report id is {{model.id}}</p>
+  <div style='display: flex;'>
+    {{#each model.reportContent.aggregate as |aggregate| }}
+      <div style='margin: 10px;'> 
+        <p>{{aggregate.logLevel.label}}: {{aggregate.count}}</p>
+      </div>
+    {{/each}}
+  </div>
+  {{outlet}}
+</div>

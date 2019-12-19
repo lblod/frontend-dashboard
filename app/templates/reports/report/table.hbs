@@ -1,0 +1,27 @@
+<h3>This is the report table</h3>
+<div class="oscar-custom-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Log level</th>
+        <th>Source</th>
+        <th>Class name</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Specific information</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model.entries as |entry|}}
+        <tr>
+          <td>{{entry.logLevel.label}}</td>
+          <td>{{entry.logSource.label}}</td>
+          <td>{{entry.className}}</td>
+          <td>{{entry.message}}</td>
+          <td>{{entry.datetime}}</td>
+          <td>{{entry.specificInformation}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

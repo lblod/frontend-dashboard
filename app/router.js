@@ -8,6 +8,11 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('errors');
+  this.route('reports', function() {
+    this.route('report', { path: ':id' }, function() {
+      this.route('table');
+    });
+  });
 });
 
 export default Router;
