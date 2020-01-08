@@ -1,6 +1,9 @@
 <div class="col--12-12">
   <h2>This is the individual report page</h2>
   <p>The report id is {{model.id}}</p>
+  {{#if (and model.period.start model.period.end)}}
+    <p>The report goes from {{moment-format model.period.start 'D MMMM YYYY, HH:mm'}} to {{moment-format model.period.end 'D MMMM YYYY, HH:mm'}}</p>
+  {{/if}}
   <div style='display: flex;'>
     {{#each model.reportContent.aggregate as |aggregate| }}
       <div style='margin: 10px;'> 
