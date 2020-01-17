@@ -1,0 +1,23 @@
+{{outlet}}
+<DataTable
+  @content={{this.model}}
+  @isLoading={{this.isLoadingModel}}
+  @filter={{this.filter}}
+  @sort={{this.sort}}
+  @page={{this.page}}
+  @size={{this.size}}
+  as |t|
+>
+  <t.content as |c|>
+    <c.header>
+      <ThSortable @field='title' @currentSorting={{this.sort}} @label='Title' />
+      <ThSortable @field='description' @currentSorting={{this.sort}} @label='Description' />
+      <ThSortable @field='created' @currentSorting={{this.sort}} @label='Created' />
+    </c.header>
+    <c.body as |row|>
+      <td>{{row.title}}</td>
+      <td>{{row.description}}</td>
+      <td>{{row.created}}</td>
+    </c.body>
+  </t.content>
+</DataTable>
