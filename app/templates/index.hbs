@@ -13,11 +13,13 @@
       <ThSortable @field='title' @currentSorting={{this.sort}} @label='Title' />
       <ThSortable @field='description' @currentSorting={{this.sort}} @label='Description' />
       <ThSortable @field='created' @currentSorting={{this.sort}} @label='Created' />
+      <ThSortable @field='file' @currentSorting={{this.sort}} @label='File' />
     </c.header>
     <c.body as |row|>
       <td>{{row.title}}</td>
       <td>{{row.description}}</td>
       <td>{{row.created}}</td>
+      <td><a href='/files/{{row.file.id}}/download' download="file">Download</a></td>
     </c.body>
   </t.content>
 </DataTable>
