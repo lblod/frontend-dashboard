@@ -20,6 +20,7 @@
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
     "@glimmer/component": "^1.0.0",
+    "@lblod/ember-acmidm-login": "^1.0.0",
     "@lblod/ember-mock-login": "^0.4.7",
     "@lblod/ember-vo-webuniversum": "^0.22.6",
     "babel-eslint": "^10.0.3",
