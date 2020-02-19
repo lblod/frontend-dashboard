@@ -1,11 +1,10 @@
-import DS from 'ember-data';
-const { Model, attr, belongsTo } = DS;
+import Model, { attr, belongsTo } from '@ember-data/model'
 
-export default Model.extend({
-  filename: attr('string'),
-  format: attr('string'),
-  size: attr('number'),
-  extension: attr('string'),
-  created: attr('datetime'),
-  download: belongsTo('file')
-});
+export default class FileModel extends Model {
+  @attr('string') filename;
+  @attr('string') format;
+  @attr('number') size;
+  @attr('string') extension;
+  @attr('datetime') created;
+  @belongsTo('file') download;
+}

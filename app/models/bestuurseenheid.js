@@ -1,7 +1,6 @@
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model'
 
-export default Model.extend({
-  naam: attr('string'),
-  alternatieveNaam: attr(),
-});
+export default class BestuurseenheidModel extends Model {
+  @attr('string') naam;
+  @attr('string') alternatieveNaam;
+}

@@ -1,17 +1,17 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
-const { Model, attr, hasMany } = DS;
+import Model, { attr, hasMany } from '@ember-data/model'
 
-export default Model.extend({
-  voornaam: attr('string'),
-  achternaam: attr('string'),
-  rijksregisterNummer: attr('string'),
-  accounts: hasMany('account'),
-  bestuurseenheden: hasMany('bestuurseenheid'),
-  group: computed('bestuurseenheden', function () {
+export default class Gebruiker extends Model {
+  @attr('string') voornaam;
+  @attr('string') achternaam;
+  @attr('string') rijksregisterNummer;
+  @hasMany('account') accounts;
+  @hasMany('bestuurseenheid') bestuurseenheden;
+
+  get group() {
     return this.get('bestuurseenheden.firstObject');
-  }), // used for mock login
-  fullName: computed('voornaam', 'achternaam', function() {
+  }
+  get fullName() {
     return `${this.voornaam} ${this.achternaam}`.trim();
-  })
-});
+  }
+}

@@ -1,9 +1,8 @@
-import DS from 'ember-data';
-const { Model, attr, belongsTo } = DS;
+import Model, { attr, belongsTo } from '@ember-data/model'
 
-export default Model.extend({
-  title: attr('string'),
-  description: attr('string'),
-  created: attr('date'),
-  file: belongsTo('file')
-});
+export default class ReportModel extends Model {
+  @attr('string') title;
+  @attr('string') description;
+  @attr('date') created;
+  @belongsTo('file') file;
+}
