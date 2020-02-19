@@ -20,16 +20,6 @@ export default Route.extend(ApplicationRouteMixin, {
     this._super(...arguments);
     this._loadCurrentSession();
   },
-
-  sessionInvalidated() {
-    const logoutUrl = ENV['torii']['providers']['acmidm-oauth2']['logoutUrl'];
-    if (logoutUrl.startsWith('http')) {
-      window.location.replace(logoutUrl);
-    }
-    else {
-      warn('Incorrect logout URL configured', { id: 'session-invalidation-failure' });
-    }
-  },
   _loadCurrentSession() {
     return this.currentSession.load().catch((e) => {
       warn(e, { id: 'session-load-failure' });
