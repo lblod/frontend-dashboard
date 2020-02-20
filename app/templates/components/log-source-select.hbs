@@ -1,0 +1,11 @@
+{{#power-select
+     placeholder="Acmidm login service, ..."
+     search=(perform search)
+     searchPlaceholder="Type to search..."
+     options=options
+     selected=selected
+     onChange=(action "changeSelected")
+     allowClear=true
+     as |logSource|}}
+  {{logSource.label}}
+{{/power-select}}

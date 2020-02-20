@@ -5,8 +5,8 @@ import DataTableRouteMixin from 'ember-data-table/mixins/route';
 export default class IndexRoute extends Route.extend(AuthenticatedRouteMixin, DataTableRouteMixin) {
   modelName = 'report'
   queryParams = {
-    page: {
-      refreshModel: true
-    }
+    page: { refreshModel: true },
+    size: { refreshModel: true },
+    sort: { refreshModel: true },
   }
 }

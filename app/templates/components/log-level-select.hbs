@@ -1,0 +1,11 @@
+{{#power-select
+     placeholder="INFO, WARN, ERROR"
+     search=(perform search)
+     searchPlaceholder="Type to search..."
+     options=options
+     selected=selected
+     onChange=(action "changeSelected")
+     allowClear=true
+     as |logLevel|}}
+  {{logLevel.label}}
+{{/power-select}}
