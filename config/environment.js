@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'frontend-loket-report',
+    modulePrefix: 'frontend-dashboard',
     environment,
     rootURL: '/',
     locationType: 'auto',
