@@ -2,10 +2,13 @@
   "name": "frontend-loket-report",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for frontend-loket-report goes here",
-  "repository": "",
+  "description": "Ember frontend of the LBLOD dashboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lblod/frontend-dashboard.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "redpencil.io",
   "directories": {
     "doc": "doc",
     "test": "tests"
