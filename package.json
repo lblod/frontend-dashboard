@@ -53,13 +53,13 @@
     "ember-data": "~3.15.0",
     "ember-data-table": "^1.2.2",
     "ember-export-application-global": "^2.0.1",
-    "ember-fetch": "^7.0.0",
+    "ember-fetch": "^8.0.5",
     "ember-load-initializers": "^2.1.1",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-power-select": "^3.0.6",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^7.0.0",
-    "ember-simple-auth": "^2.1.1",
+    "ember-simple-auth": "^3.1.0",
     "ember-source": "~3.15.0",
     "eslint-plugin-ember": "^7.7.1",
     "eslint-plugin-node": "^10.0.0",
@@ -75,5 +75,8 @@
   },
   "dependencies": {
     "ember-moment": "^8.0.0"
+  },
+  "resolutions": {
+    "whatwg-fetch": "3.3.1"
   }
 }
