@@ -38,27 +38,34 @@
 
         </div>
       </div>
-      {{#data-table content=model isLoading=isLoading noDataMessage="No logs found"
-          sort=sort page=page size=size class="container-flex--contain data-table" as |t|}}
-        {{#t.content as |c|}}
-          {{#c.header}}
-            {{th-sortable label='Log level' field='logLevel.label' currentSorting=sort}}
-            {{th-sortable label='Source' field='logSource.label' currentSorting=sort}}
-            {{th-sortable label='Class name' field='className' currentSorting=sort}}
-            {{th-sortable label='Message' field='message' currentSorting=sort}}
-            {{th-sortable label='Date' field='datetime' currentSorting=sort}}
-            {{th-sortable label='Specific information' field='specificInformation' currentSorting=sort}}
-          {{/c.header}}
-          {{#c.body as |row|}}
+        <AuDataTable
+            @content={{this.model}}
+            @isLoading={{this.isLoading}}
+            @noDataMessage="No logs found"
+            @sort={{this.sort}}
+            @page={{this.page}}
+            @size={{this.size}}
+            as |t|
+          >
+        <t.content as |c|>
+          <c.header>
+            <AuDataTableThSortable @label='Log level' @field='logLevel.label' @currentSorting={{this.sort}}/>
+            <AuDataTableThSortable @label='Source' @field='logSource.label' @currentSorting={{this.sort}}/>
+            <AuDataTableThSortable @label='Class name' @field='className' @currentSorting={{this.sort}}/>
+            <AuDataTableThSortable @label='Message' @field='message' @currentSorting={{this.sort}}/>
+            <AuDataTableThSortable @label='Date' @field='datetime' @currentSorting={{this.sort}}/>
+            <AuDataTableThSortable @label='Specific information' @field='specificInformation' @currentSorting={{this.sort}}/>
+          </c.header>
+          <c.body as |row|>
             <td>{{row.logLevel.label}}</td>
             <td>{{row.logSource.label}}</td>
             <td>{{last-part-uri row.className}}</td>
             <td>{{row.message}}</td>
             <td>{{moment-format row.datetime 'D MMMM YYYY, HH:mm'}}</td>
             <td>{{row.specificInformation}}</td>
-          {{/c.body}}
-        {{/t.content}}
-      {{/data-table}}
+          </c.body>
+        </t.content>
+      </AuDataTable>
     </div>
   </div>
   {{outlet}}
