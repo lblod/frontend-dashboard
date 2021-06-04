@@ -2,10 +2,10 @@ import Route from '@ember/routing/route';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin,DataTableRouteMixin, {
-  modelName: 'log-entry',
+export default class ErrorsRoute extends Route.extend(AuthenticatedRouteMixin, DataTableRouteMixin) {
+  modelName = 'log-entry';
 
-  queryParams: {
+  queryParams = {
     page: { refreshModel: true },
     size: { refreshModel: true },
     sort: { refreshModel: true },
@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin,DataTableRouteMixin, {
     logSourceId: { refreshModel: true },
     logDateFrom: { refreshModel: true },
     logDateTo: { refreshModel: true }
-  },
+  };
 
   mergeQueryOptions(params) {
     const query = {
@@ -38,4 +38,4 @@ export default Route.extend(AuthenticatedRouteMixin,DataTableRouteMixin, {
 
     return query;
   }
-});
+}
