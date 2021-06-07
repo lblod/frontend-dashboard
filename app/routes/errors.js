@@ -6,10 +6,6 @@ export default class ErrorsRoute extends Route.extend(AuthenticatedRouteMixin, D
   modelName = 'log-entry';
 
   queryParams = {
-    page: { refreshModel: true },
-    size: { refreshModel: true },
-    sort: { refreshModel: true },
-    // filter params
     logLevelId: { refreshModel: true },
     logSourceId: { refreshModel: true },
     logDateFrom: { refreshModel: true },
@@ -37,5 +33,13 @@ export default class ErrorsRoute extends Route.extend(AuthenticatedRouteMixin, D
       query['filter[:lte:datetime]'] = params.logDateTo;
 
     return query;
+  }
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+    controller.set('logLevelId', model.query["filter[log-level][id]"])
+    controller.set('logSourceId', model.query["filter[log-source][id]"])
+    controller.set('logDateFrom', model.query["filter[:gte:datetime]"])
+    controller.set('logDateTo', model.query["filter[:lte:datetime]"])
   }
 }
