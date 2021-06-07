@@ -21,7 +21,7 @@ export default class LogLevelSelectComponent extends Component {
   async setAttributes() {
     if (this.args.value && !this.selected) {
       this.selected = await this.store.findRecord('log-level', this.args.value);
-    } else if (!this.value) {
+    } else if (!this.args.value) {
       this.selected = null;
     }
   }
