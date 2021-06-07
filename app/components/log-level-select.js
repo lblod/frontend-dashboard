@@ -1,44 +1,42 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
-export default Component.extend({
-  store: service(),
+export default class LogLevelSelectComponent extends Component {
+  @service store;
 
-  async init() {
-    this._super(...arguments);
-    const options = this.store.query('log-level', {
+  @tracked selected = null;
+  @tracked options;
+
+  constructor(){
+    super(...arguments);
+    this.options = this.store.query('log-level', {
       sort: 'label',
     });
-    this.set('options', options);
-  },
+    this.setAttributes()
+  }
 
-  async didReceiveAttrs() {
-    this._super(...arguments);
-    if (this.value && !this.selected) {
-      const logLevel = this.store.findRecord('log-level', this.value);
-      this.set('selected', logLevel);
+  async setAttributes() {
+    if (this.args.value && !this.selected) {
+      this.selected = await this.store.findRecord('log-level', this.args.value);
     } else if (!this.value) {
-      this.set('selected', null);
+      this.selected = null;
     }
-  },
+  }
 
-  selected: null,
-  value: null, // id of selected record
-  onSelectionChange: null,
-
-  search: task(function* (term) {
+  @task *search (term) {
     yield timeout(600);
     return this.store.query('log-level', {
       sort: 'label',
       filter: { label: term }
     });
-  }),
-
-  actions: {
-    changeSelected(selected) {
-      this.set('selected', selected);
-      this.onSelectionChange(selected && selected.id);
-    }
   }
-});
+
+  @action
+    changeSelected(selected) {
+      this.selected = selected;
+      this.args.onChange("logLevelId", selected && selected.id)
+    }
+}
