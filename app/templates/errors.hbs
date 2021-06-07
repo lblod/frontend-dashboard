@@ -1,72 +1,48 @@
-<div class="grid grid--collapse">
-  <div class="col--12-12">
-    <div class="container-flex--contain">
-      <div class="u-border--fat--bottom u-hide-on-print">
-        <div class="u-padding--round--small">
-          <div class="grid">
-            <div class="col--4-12 col--1-1--s">
-              <h1 class="h2 u-spacer--right--small u-display-inline-block">Log errors</h1>
-            </div>
+<AuToolbar @border="bottom" @size="large">
+  <AuToolbarGroup class="au-c-toolbar_space-between">
+    <AuHeading @skin="2">Job Details</AuHeading>
+    <AuButton @skin="secondary" {{on 'click' this.resetFilter}}>
+      <i class="vi vi-cross vi-u-link button__icon" aria-hidden="true"></i> Reset all filters
+    </AuButton>
+  </AuToolbarGroup>
+  <AuToolbarGroup class="au-c-toolbar__group--row">
+    <ul class="au-o-grid">
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <label class="label--subtle form__label">Log level</label>
+        <LogLevelSelect @onChange={{this.updateParam}} @value={{this.logLevelId}}
+          class="ember-power-select--small"/>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <label class="label--subtle form__label">Log source</label>
+        <LogLevelSelect @value={{this.logSourceId}}
+          class="ember-power-select--small" />
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
+        <LogDateRange @fromValue={{this.logDateFrom}} @toValue={{this.logDateTo}} @onChangeFromValue={{action (mut
+          logDateFrom)}} @onChangeToValue={{action (mut logDateTo)}} />
+      </li>
+    </ul>
+  </AuToolbarGroup>
+</AuToolbar>
 
-            <div class="col--8-12 col--1-1--s u-align-right--tablet-portrait-up">
-              {{#wu-button-group}}
-                {{#wu-button onClick=(action "resetFilters") size="small" isDark=true isLink=true isNarrow=true class="u-spacer--bottom--none"}}
-                  <i class="vi vi-cross vi-u-link button__icon" aria-hidden="true"></i> Reset all filters
-                {{/wu-button}}
-              {{/wu-button-group}}
-            </div>
-
-          </div>
-
-          <div class="grid">
-            <div class="col--4-12 col--6-12--m col--6-12--s">
-              <label class="label--subtle form__label">Log level</label>
-              {{log-level-select value=logLevelId onSelectionChange=(action (mut logLevelId)) class="ember-power-select--small"}}
-            </div>
-            <div class="col--4-12 col--6-12--m col--6-12--s">
-              <label class="label--subtle form__label">Log source</label>
-              {{log-source-select value=logSourceId onSelectionChange=(action (mut logSourceId)) class="ember-power-select--small"}}
-            </div>
-            <div class="col--4-12 col--1-1--m col--1-1--s">
-              <div class="grid">
-                <div class="col--1-1 col--6-12--m">
-                  {{log-date-range fromValue=logDateFrom toValue=logDateTo onChangeFromValue=(action (mut logDateFrom)) onChangeToValue=(action (mut logDateTo))}}
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-        <AuDataTable
-            @content={{this.model}}
-            @isLoading={{this.isLoading}}
-            @noDataMessage="No logs found"
-            @sort={{this.sort}}
-            @page={{this.page}}
-            @size={{this.size}}
-            as |t|
-          >
-        <t.content as |c|>
-          <c.header>
-            <AuDataTableThSortable @label='Log level' @field='logLevel.label' @currentSorting={{this.sort}}/>
-            <AuDataTableThSortable @label='Source' @field='logSource.label' @currentSorting={{this.sort}}/>
-            <AuDataTableThSortable @label='Class name' @field='className' @currentSorting={{this.sort}}/>
-            <AuDataTableThSortable @label='Message' @field='message' @currentSorting={{this.sort}}/>
-            <AuDataTableThSortable @label='Date' @field='datetime' @currentSorting={{this.sort}}/>
-            <AuDataTableThSortable @label='Specific information' @field='specificInformation' @currentSorting={{this.sort}}/>
-          </c.header>
-          <c.body as |row|>
-            <td>{{row.logLevel.label}}</td>
-            <td>{{row.logSource.label}}</td>
-            <td>{{last-part-uri row.className}}</td>
-            <td>{{row.message}}</td>
-            <td>{{moment-format row.datetime 'D MMMM YYYY, HH:mm'}}</td>
-            <td>{{row.specificInformation}}</td>
-          </c.body>
-        </t.content>
-      </AuDataTable>
-    </div>
-  </div>
-  {{outlet}}
-</div>
+<AuDataTable @content={{this.model}} @isLoading={{this.isLoading}} @noDataMessage="No logs found" @sort={{this.sort}}
+  @page={{this.page}} @size={{this.size}} as |t|>
+  <t.content as |c|>
+    <c.header>
+      <AuDataTableThSortable @label='Log level' @field='logLevel.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label='Source' @field='logSource.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label='Class name' @field='className' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label='Message' @field='message' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label='Date' @field='datetime' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label='Specific information' @field='specificInformation' @currentSorting={{this.sort}} />
+    </c.header>
+    <c.body as |row|>
+      <td>{{row.logLevel.label}}</td>
+      <td>{{row.logSource.label}}</td>
+      <td>{{last-part-uri row.className}}</td>
+      <td>{{row.message}}</td>
+      <td>{{moment-format row.datetime 'D MMMM YYYY, HH:mm'}}</td>
+      <td>{{row.specificInformation}}</td>
+    </c.body>
+  </t.content>
+</AuDataTable>
