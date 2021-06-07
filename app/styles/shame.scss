@@ -7,3 +7,22 @@
 .nav-link {
   margin-right: 20px;
 }
+
+.au-c-toolbar_space-between{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.au-c-toolbar__group--row {
+  display: block;
+  width: 100%;
+
+  & + & {
+    margin-top: $au-unit;
+  }
+}
+
+.au-word-wrap {
+  word-wrap: break-word;
+}
