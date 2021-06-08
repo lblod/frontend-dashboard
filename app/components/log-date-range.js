@@ -26,12 +26,12 @@ export default class LogDateRangeComponent extends Component {
 
   @action
     updateToValue(value){
-      this.args.onChange('logDateTo', value && value.toISOString())
+      this.args.onChange('logDateTo', value && value.toISOString());
     }
 
   @action
     updateFromValue(value){
-      this.args.onChange('logDateFrom', value && value.toISOString())
+      this.args.onChange('logDateFrom', value && value.toISOString());
     }
   }
 

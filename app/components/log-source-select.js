@@ -36,6 +36,6 @@ export default class LogSourceSelectComponent extends Component {
 
   @action
     changeSelected(selected) {
-      this.args.onChange("logSourceId", selected && selected.id)
+      this.args.onChange("logSourceId", selected && selected.id);
     }
 }

@@ -36,6 +36,6 @@ export default class LogLevelSelectComponent extends Component {
 
   @action
     changeSelected(selected) {
-      this.args.onChange("logLevelId", selected && selected.id)
+      this.args.onChange("logLevelId", selected && selected.id);
     }
 }
