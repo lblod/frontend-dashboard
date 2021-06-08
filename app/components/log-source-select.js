@@ -1,13 +1,13 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { task, timeout } from 'ember-concurrency';;
+import { task, timeout } from 'ember-concurrency';
 
 export default class LogSourceSelectComponent extends Component {
   @service store;
 
-  @tracked selected = null;
   @tracked options;
 
   constructor(){
@@ -15,16 +15,16 @@ export default class LogSourceSelectComponent extends Component {
     this.options = this.store.query('log-source', {
       sort: 'label',
     });
-    this.setAttributes()
   }
 
-  async setAttributes() {
-    if (this.args.value && !this.selected) {
-      this.selected = await this.store.findRecord('log-source', this.args.value);
-    } else if (!this.args.value) {
-      this.selected = null;
+  @computed('args.value')
+    get selected(){
+      if (this.args.value) {
+        return this.store.findRecord('log-source', this.args.value);
+      } else {
+        return [];
+      }
     }
-  }
 
   @task *search (term) {
     yield timeout(600);
@@ -36,7 +36,6 @@ export default class LogSourceSelectComponent extends Component {
 
   @action
     changeSelected(selected) {
-      this.selected = selected;
-      this.args.onChange("logLevelId", selected && selected.id)
+      this.args.onChange("logSourceId", selected && selected.id)
     }
 }
