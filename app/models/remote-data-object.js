@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo }  from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class RemoteDataObjectModel extends Model {
   @attr('string') uri;
@@ -17,14 +17,14 @@ export default class RemoteDataObjectModel extends Model {
     'http://lblod.data.gift/file-download-statuses/succes': 'success', //TODO: find typo in backed
     'http://lblod.data.gift/file-download-statuses/collected': 'collected',
     'http://lblod.data.gift/file-download-statuses/failure': 'failure',
-    'http://lblod.data.gift/file-download-statuses/ongoing': 'ongoing'
+    'http://lblod.data.gift/file-download-statuses/ongoing': 'ongoing',
   };
 
   get downloadLink() {
     return `/files/${this.id}/download`;
   }
 
-  get shortStatus(){
+  get shortStatus() {
     return this.statusesMap[this.status];
   }
 }
