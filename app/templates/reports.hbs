@@ -1,37 +1,27 @@
-<div class="grid grid--collapse">
-  <div class="col--12-12">
-    <div class="container-flex--contain">
-      <div class="u-border--fat--bottom">
-        <div class="u-padding--round--small">
-          <h1 class="h2 u-spacer--right--small u-display-inline-block">Reports</h1>
-        </div>
-        <div>
-          <DataTable
-            @content={{this.model}}
-            @isLoading={{this.isLoadingModel}}
-            @filter={{this.filter}}
-            @sort={{this.sort}}
-            @page={{this.page}}
-            @size={{this.size}}
-            as |t|
-          >
-            <t.content as |c|>
-              <c.header>
-                <ThSortable @field='title' @currentSorting={{this.sort}} @label='Title' />
-                <ThSortable @field='description' @currentSorting={{this.sort}} @label='Description' />
-                <ThSortable @field='created' @currentSorting={{this.sort}} @label='Created' />
-                <ThSortable @field='file' @currentSorting={{this.sort}} @label='File' />
-              </c.header>
-              <c.body as |row|>
-                <td>{{row.title}}</td>
-                <td>{{row.description}}</td>
-                <td>{{row.created}}</td>
-                <td><a href='/files/{{row.file.id}}/download' download="file">Download</a></td>
-              </c.body>
-            </t.content>
-          </DataTable>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<AuToolbar @border="bottom" @size="large">
+    <AuHeading @skin="2">Reports</AuHeading>
+</AuToolbar>
+
+<AuDataTable
+  @content={{this.model}}
+  @isLoading={{this.isLoadingModel}}
+  @filter={{this.filter}}
+  @sort={{this.sort}}
+  @page={{this.page}}
+  @size={{this.size}}
+  as |t| >
+  <t.content as |c|>
+    <c.header>
+      <AuDataTableThSortable @field='title' @currentSorting={{this.sort}} @label='Title' />
+      <AuDataTableThSortable @field='description' @currentSorting={{this.sort}} @label='Description' />
+      <AuDataTableThSortable @field='created' @currentSorting={{this.sort}} @label='Created' />
+      <AuDataTableThSortable @field='file' @currentSorting={{this.sort}} @label='File' />
+    </c.header>
+    <c.body as |row|>
+      <td>{{row.title}}</td>
+      <td>{{row.description}}</td>
+      <td>{{row.created}}</td>
+      <td><a href='/files/{{row.file.id}}/download' download="file">Download</a></td>
+    </c.body>
+  </t.content>
+</AuDataTable>

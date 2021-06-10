@@ -1,13 +1,11 @@
-import DS from 'ember-data';
-import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import Model, { attr, belongsTo } from '@ember-data/model'
 
-export default DS.Model.extend({
-  className: attr(),
-  message: attr(),
-  specificInformation: attr(),
-  datetime: attr(),
-  logSource: belongsTo('log-source', { inverse: null }),
-  logLevel: belongsTo('log-level', { inverse: null }),
-  statusCode: belongsTo('status-code', { inverse: null })
-});
+export default class LogEntryModel extends Model {
+  @attr() className;
+  @attr() message;
+  @attr() specificInformation;
+  @attr() datetime;
+  @belongsTo('log-source', { inverse: null }) logSource;
+  @belongsTo('log-level', { inverse: null }) logLevel;
+  @belongsTo('status-code', { inverse: null }) statusCode;
+}

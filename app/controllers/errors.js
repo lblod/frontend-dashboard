@@ -1,20 +1,28 @@
 import Controller from '@ember/controller';
-import { observer } from '@ember/object';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import DefaultQueryParamsMixin from 'ember-data-table/mixins/default-query-params';
 
-export default Controller.extend(DefaultQueryParamsMixin, {
-  sort: '-datetime',
+export default class ErrorsController extends Controller.extend(DefaultQueryParamsMixin) {
+  sort = '-datetime';
+  page = 0;
+  size = 15;
+  queryParams = ['logLevelId', 'logSourceId', 'logDateFrom', 'logDateTo'];
 
-  filterChanged: observer('logLevelId', 'logSourceId', 'logDateFrom', 'logDateTo', function() {
-    this.set('page', 0);
-  }),
+  @tracked logLevelId = null;
+  @tracked logSourceId = null;
+  @tracked logDateFrom = null;
+  @tracked logDateTo = null;
 
-  actions: {
-    resetFilters() {
-      ['logLevelId',
-       'logSourceId',
-       'logDateFrom',
-       'logDateTo'].forEach(filter => this.set(filter, null));
+  @action
+    updateParam(name, value){
+      this[name] = value;
     }
-  }
-});
+
+  @action
+    resetFilter(){
+      this.queryParams.forEach(param => {
+        this[param] = null;
+      });
+    }
+}

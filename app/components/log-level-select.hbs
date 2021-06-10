@@ -1,0 +1,10 @@
+<PowerSelect
+  @placeholder="INFO, WARN, ERROR"
+  @search={{perform this.search}}
+  @options={{this.options}}
+  @selected={{this.selected}}
+  @onChange={{this.changeSelected}}
+  @allowClear={{true}}
+  as |logLevel|>
+  {{logLevel.label}}
+</PowerSelect>

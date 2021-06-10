@@ -1,0 +1,10 @@
+<PowerSelect
+  @placeholder="Acmidm login service, ..."
+  @search={{perform this.search}}
+  @options={{this.options}}
+  @selected={{this.selected}}
+  @onChange={{this.changeSelected}}
+  @allowClear={{true}}
+  as |logSource|>
+  {{logSource.label}}
+</PowerSelect>

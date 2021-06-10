@@ -1,6 +1,5 @@
-import DS from 'ember-data';
-import attr from 'ember-data/attr';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  code: attr()
-});
+export default class StatusCodeModel extends Model {
+  @attr() code;
+}

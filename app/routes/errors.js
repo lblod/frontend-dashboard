@@ -1,20 +1,15 @@
 import Route from '@ember/routing/route';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin,DataTableRouteMixin, {
-  modelName: 'log-entry',
+export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
+  modelName = 'log-entry';
 
-  queryParams: {
-    page: { refreshModel: true },
-    size: { refreshModel: true },
-    sort: { refreshModel: true },
-    // filter params
+  queryParams = {
     logLevelId: { refreshModel: true },
     logSourceId: { refreshModel: true },
     logDateFrom: { refreshModel: true },
     logDateTo: { refreshModel: true }
-  },
+  };
 
   mergeQueryOptions(params) {
     const query = {
@@ -38,4 +33,12 @@ export default Route.extend(AuthenticatedRouteMixin,DataTableRouteMixin, {
 
     return query;
   }
-});
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+    controller.set('logLevelId', model.query["filter[log-level][id]"]);
+    controller.set('logSourceId', model.query["filter[log-source][id]"]);
+    controller.set('logDateFrom', model.query["filter[:gte:datetime]"]);
+    controller.set('logDateTo', model.query["filter[:lte:datetime]"]);
+  }
+}

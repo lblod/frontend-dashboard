@@ -1,54 +1,39 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import moment from 'moment';
 import { computed } from '@ember/object';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  classNames: ['js-accordion', 'js-accordion--open'],
-  label: 'Periode verstuurd',
+export default class LogDateRangeComponent extends Component {
 
-  fromValue: null,  // ISO string
-  toValue: null,  // ISO string
-
-  fromDate: computed('fromValue', function() {
-    try {
-      return new Date(Date.parse(this.fromValue));
-    } catch(e) {
-      return null;
+  @computed('args.{fromValue,toValue}')
+    get isFilterEnabled(){
+      return this.args.fromValue || this.args.toValue;
     }
-  }),
 
-  toDate: computed('toValue', function() {
-    try {
-      return new Date(Date.parse(this.toValue));
-    } catch(e) {
-      return null;
-    }
-  }),
-
-  isFilterEnabled: computed('fromValue', 'toValue', function() {
-    return this.fromValue || this.toValue;
-  }),
-
-  actions: {
+  @action
     resetFilter() {
-      this.onChangeFromValue(null);
-      this.onChangeToValue(null);
-    },
+      this.updateToValue(null);
+      this.updateFromValue(null);
+    }
 
+  @action
     initRangeFilter() {
       const yesterday = moment().subtract(1, 'day').startOf('day');
       const today = moment().endOf('day');
-      this.onChangeFromValue(yesterday.toDate().toISOString());
-      this.onChangeToValue(today.toDate().toISOString());
-    },
+      this.updateFromValue(yesterday.toDate());
+      this.updateToValue(today.toDate());
+    }
 
-    updateDate(varName, date) {
-      const dateString = date.toISOString();
-      if (varName == 'fromDate') {
-        this.onChangeFromValue(dateString);
-      } else {
-        this.onChangeToValue(dateString);
-      }
+  @action
+    updateToValue(value){
+      this.args.onChange('logDateTo', value && value.toISOString());
+    }
+
+  @action
+    updateFromValue(value){
+      this.args.onChange('logDateFrom', value && value.toISOString());
     }
   }
-});
+
+
+

@@ -1,7 +1,6 @@
-import DS from 'ember-data';
-import attr from 'ember-data/attr';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  priority: attr(),
-  label: attr()
-})
+export default class LogLevelModel extends Model {
+  @attr() priority;
+  @attr() label;
+}
