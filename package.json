@@ -26,13 +26,14 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@appuniversum/appuniversum": "0.0.16",
-    "@appuniversum/ember-appuniversum": "^0.4.4",
+    "@appuniversum/appuniversum": "^0.0.15",
+    "@appuniversum/ember-appuniversum": "^0.4.3",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.1.4",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
     "@lblod/ember-acmidm-login": "^1.0.0",
+    "@lblod/ember-jobs-dashboard-engine": "^0.1.5",
     "@lblod/ember-mock-login": "^0.4.7",
     "@lblod/ember-vo-webuniversum": "^0.22.6",
     "babel-eslint": "^10.1.0",
@@ -59,10 +60,12 @@
     "ember-concurrency": "^1.1.4",
     "ember-data": "~3.24.0",
     "ember-data-table": "^1.2.2",
+    "ember-engines": "^0.8.14",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.5",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^8.0.0",
     "ember-page-title": "^6.0.3",
     "ember-power-select": "^4.1.0",
     "ember-qunit": "^5.1.1",
@@ -87,11 +90,5 @@
   },
   "ember": {
     "edition": "octane"
-  },
-  "dependencies": {
-    "ember-moment": "^8.0.0"
-  },
-  "resolutions": {
-    "whatwg-fetch": "3.3.1"
   }
 }

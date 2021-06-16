@@ -7,6 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
+  this.mount('@lblod/ember-jobs-dashboard-engine', { path: "jobs" });
   this.route('mock-login');
   this.route('login');
   this.route('errors');

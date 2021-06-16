@@ -8,6 +8,16 @@ export default class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;
   Resolver = Resolver;
+
+  engines = {
+    "@lblod/ember-jobs-dashboard-engine": {
+      dependencies: {
+        services: [
+          'store'
+        ]
+      }
+    }
+  }
 }
 
 loadInitializers(App, config.modulePrefix);

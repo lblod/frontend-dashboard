@@ -54,7 +54,10 @@ inflector.irregular('inzending-voor-toezicht-form-version', 'inzending-voor-toez
 inflector.irregular('file-address', 'file-addresses');
 inflector.irregular('submission', 'submissions');
 inflector.irregular('report', 'reports');
-inflector.irregular('log-entry', 'log-entries')
-inflector.irregular('log-level', 'log-levels')
+inflector.irregular('log-entry', 'log-entries');
+inflector.irregular('log-level', 'log-levels');
+inflector.irregular('job', 'jobs');
+inflector.irregular('task', 'tasks');
+inflector.irregular('remote-data-object', 'remote-data-objects');
 // Meet Ember Inspector's expectation of an export
 export default {};
