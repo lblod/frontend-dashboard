@@ -8,6 +8,7 @@ export default class ErrorsController extends Controller.extend(DefaultQueryPara
   page = 0;
   size = 15;
   queryParams = ['logLevelId', 'logSourceId', 'logDateFrom', 'logDateTo'];
+  isLoading = false;
 
   @tracked logLevelId = null;
   @tracked logSourceId = null;

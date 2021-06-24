@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
+import { action } from '@ember/object';
 
 export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
   modelName = 'log-entry';
@@ -10,6 +11,16 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
     logDateFrom: { refreshModel: true },
     logDateTo: { refreshModel: true }
   };
+
+  @action
+  loading(transition, route) {
+    let controller = this.controllerFor('errors');
+    controller.set('isLoading', true);
+
+    transition.finally(function() {
+      controller.set('isLoading', false);
+    });
+  }
 
   mergeQueryOptions(params) {
     const query = {
