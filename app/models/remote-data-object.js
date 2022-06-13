@@ -12,7 +12,8 @@ export default class RemoteDataObjectModel extends Model {
 
   //TODO: move this later to a propery modeled skos:Conceptscheme
   statusesMap = {
-    'http://lblod.data.gift/file-download-statuses/ready-to-be-cached': 'ready-to-be-cached',
+    'http://lblod.data.gift/file-download-statuses/ready-to-be-cached':
+      'ready-to-be-cached',
     'http://lblod.data.gift/file-download-statuses/success': 'success',
     'http://lblod.data.gift/file-download-statuses/succes': 'success', //TODO: find typo in backed
     'http://lblod.data.gift/file-download-statuses/collected': 'collected',

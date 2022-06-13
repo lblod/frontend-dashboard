@@ -7,5 +7,4 @@ export default class ApplicationRoute extends Route {
   beforeModel(transition) {
     this.session.requireAuthentication(transition, 'login');
   }
-
 }

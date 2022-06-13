@@ -11,24 +11,23 @@ export default class MockLoginRoute extends Route {
 
   queryParams = {
     page: {
-      refreshModel: true
-    }
-  }
+      refreshModel: true,
+    },
+  };
 
   model(params) {
     const filter = { provider: 'https://github.com/lblod/mock-login-service' };
-    if (params.gemeente)
-      filter.gebruiker = { 'achternaam': params.gemeente};
+    if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
     return this.store.query('account', {
       include: 'gebruiker.bestuurseenheden',
       filter: {
         provider: 'https://github.com/lblod/mock-login-service',
         gebruiker: {
-          achternaam: 'Agentschap Binnenlands Bestuur'
-        }
+          achternaam: 'Agentschap Binnenlands Bestuur',
+        },
       },
       page: { size: 10, number: params.page },
-      sort: 'gebruiker.achternaam'
+      sort: 'gebruiker.achternaam',
     });
   }
 }

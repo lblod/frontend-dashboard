@@ -3,7 +3,9 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import DefaultQueryParamsMixin from 'ember-data-table/mixins/default-query-params';
 
-export default class ErrorsController extends Controller.extend(DefaultQueryParamsMixin) {
+export default class ErrorsController extends Controller.extend(
+  DefaultQueryParamsMixin
+) {
   sort = '-datetime';
   page = 0;
   size = 15;
@@ -16,14 +18,14 @@ export default class ErrorsController extends Controller.extend(DefaultQueryPara
   @tracked logDateTo = null;
 
   @action
-    updateParam(name, value){
-      this[name] = value;
-    }
+  updateParam(name, value) {
+    this[name] = value;
+  }
 
   @action
-    resetFilter(){
-      this.queryParams.forEach(param => {
-        this[param] = null;
-      });
-    }
+  resetFilter() {
+    this.queryParams.forEach((param) => {
+      this[param] = null;
+    });
+  }
 }
