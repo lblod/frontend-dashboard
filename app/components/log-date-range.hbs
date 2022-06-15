@@ -2,7 +2,7 @@
   <label class="label--subtle form__label">Periode verstuurd</label>
   <div class="flex-row">
   <AuButtonGroup @inline={{true}}>
-    <AuButton @skin="secondary" class="{{if (not this.isFilterEnabled) 'is-active'}}" {{on 'click' this.resetFilter}}>
+    <AuButton @skin="secondary" class="{{unless this.isFilterEnabled 'is-active'}}" {{on 'click' this.resetFilter}}>
       All logs
     </AuButton>
     <AuButton @skin="secondary" class="{{if this.isFilterEnabled 'is-active'}}" {{on 'click' this.initRangeFilter}}>
