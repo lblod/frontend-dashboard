@@ -3,11 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class MockLoginRoute extends Route {
   @service store;
-  @service() session;
-
-  beforeModel() {
-    this.session.prohibitAuthentication('index');
-  }
+  @service session;
 
   queryParams = {
     page: {
@@ -15,19 +11,33 @@ export default class MockLoginRoute extends Route {
     },
   };
 
+  beforeModel() {
+    this.session.prohibitAuthentication('index');
+  }
+
   model(params) {
+  
     const filter = { provider: 'https://github.com/lblod/mock-login-service' };
     if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
     return this.store.query('account', {
       include: 'gebruiker.bestuurseenheden',
-      filter: {
-        provider: 'https://github.com/lblod/mock-login-service',
-        gebruiker: {
-          achternaam: 'Agentschap Binnenlands Bestuur',
-        },
-      },
+      filter: filter,
       page: { size: 10, number: params.page },
       sort: 'gebruiker.achternaam',
     });
+
+    //const filter = { provider: 'https://github.com/lblod/mock-login-service' };
+    //if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
+    //return this.store.query('account', {
+    //  include: 'gebruiker.bestuurseenheden',
+    //  filter: {
+    //    provider: 'https://github.com/lblod/mock-login-service',
+    //    gebruiker: {
+    //      achternaam: 'Agentschap Binnenlands Bestuur',
+    //    },
+    //  },
+    //  page: { size: 10, number: params.page },
+    //  sort: 'gebruiker.achternaam',
+    //});
   }
 }
