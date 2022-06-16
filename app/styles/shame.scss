@@ -1,4 +1,3 @@
-
 .nav-container {
   margin: 20px;
   margin-bottom: 10px;
@@ -64,3 +63,10 @@
   }
 }
 
+.log-range-datepicker-small {
+  display: flex;
+}
+
+.log-range-datepicker-small .au-c-datepicker {
+  width: 10em;
+}

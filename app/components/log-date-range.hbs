@@ -1,32 +1,59 @@
-<div class="js-accordion js-accordion--open">
-  <label class="label--subtle form__label">Periode verstuurd</label>
-  <div class="flex-row">
-  <AuButtonGroup @inline={{true}}>
-    <AuButton @skin="secondary" class="{{unless this.isFilterEnabled 'is-active'}}" {{on 'click' this.resetFilter}}>
+{{#let (unique-id) as | logRangeEnable |}}
+  <AuLabel
+    for={{logRangeEnable}}>
+    Period sent
+  </AuLabel>
+  <AuButtonGroup
+    id={{logRangeEnable}}
+    @inline={{true}}>
+    <AuButton
+      @skin="secondary"
+      class="{{unless this.isFilterEnabled 'is-active'}}"
+      {{on 'click' this.resetFilter}}>
       All logs
     </AuButton>
-    <AuButton @skin="secondary" class="{{if this.isFilterEnabled 'is-active'}}" {{on 'click' this.initRangeFilter}}>
+    <AuButton
+      @skin="secondary"
+      class="{{if this.isFilterEnabled 'is-active'}}"
+      {{on 'click' this.initRangeFilter}}>
       Specific period
     </AuButton>
   </AuButtonGroup>
+{{/let}}
 
-  {{#if this.isFilterEnabled}}
-    <div class="au-u-margin-left">
+{{#if this.isFilterEnabled}}
+<div class="log-range-datepicker-small au-u-margin-top-small">
+  <AuFormRow @alignment="pre">
+    {{#let (unique-id) as | dateFromId |}}
+      <AuLabel
+        for={{dateFromId}}>
+        from
+      </AuLabel>
       <AuDatePicker
-        @label="From"
+        id={{dateFromId}}
         @value={{@fromValue}}
         @min="2000-01-01"
         @max="2050-01-01"
         @onChange={{this.updateFromValue}}>
       </AuDatePicker>
+    {{/let}}
+  </AuFormRow>
+  <AuFormRow
+    @alignment="pre"
+    class="au-u-margin-left-small">
+    {{#let (unique-id) as | dateToId |}}
+      <AuLabel
+        for={{dateToId}}>
+        to
+      </AuLabel>
       <AuDatePicker
-        @label="To"
+        id={{dateToId}}
         @value={{@toValue}}
         @min="2000-01-01"
         @max="2050-01-01"
         @onChange={{this.updateToValue}}>
       </AuDatePicker>
-    </div>
-  {{/if}}
-  </div>
+    {{/let}}
+  </AuFormRow>
 </div>
+{{/if}}
