@@ -1,9 +1,13 @@
 <AuApp>
   <AuMainHeader @brandLink="https://www.vlaanderen.be/nl" @homeRoute="index" @appTitle="Dashboard" @contactRoute="">
     {{#if this.session.isAuthenticated}}
-      <AcmidmLogout @tagName="button" class="au-c-button au-c-button--tertiary" role="menuitem">
-        <AuIcon @icon="logout" @alignment="left" />Log out
-      </AcmidmLogout>
+      <AuButton
+        @skin="link"
+        @icon="logout"
+        @iconAlignment="left"
+        {{on "click" this.invalidateSession}}>
+        Log out
+      </AuButton>
     {{/if}}
   </AuMainHeader>
   {{#if this.session.isAuthenticated}}
