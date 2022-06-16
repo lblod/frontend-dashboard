@@ -17,6 +17,15 @@ export default class ErrorsController extends Controller.extend(
   @tracked logDateFrom = null;
   @tracked logDateTo = null;
 
+  get isFiltering() {
+    return !!(
+      this.logLevelId ||
+      this.logSourceId ||
+      this.logDateFrom ||
+      this.logDateTo
+    );
+  }
+
   @action
   updateParam(name, value) {
     this[name] = value;

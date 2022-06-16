@@ -5,12 +5,14 @@
     <AuHeading @skin="2">Job Details</AuHeading>
   </Group>
   <Group>
-    <AuButton
-      @icon="undo"
-      @iconAlignment="left"
-      {{on 'click' this.resetFilter}}>
-      Reset all filters
-    </AuButton>
+    {{#if this.isFiltering}}
+      <AuButton
+        @icon="undo"
+        @iconAlignment="left"
+        {{on 'click' this.resetFilter}}>
+        Reset all filters
+      </AuButton>
+    {{/if}}
   </Group>
 </AuToolbar>
 <AuToolbar
