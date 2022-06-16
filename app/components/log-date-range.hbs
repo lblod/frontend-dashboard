@@ -12,18 +12,20 @@
 
   {{#if this.isFilterEnabled}}
     <div class="au-u-margin-left">
-      <WuDateRange
-        @onChangeFromValue={{this.updateFromValue}}
-        @onChangeToValue={{this.updateToValue}}
-        @fromValue={{@fromValue}}
-        @toValue={{@toValue}}
-        @fromPlaceholder="01.01.2019"
-        @fromMinDate="01.01.2019"
-        @fromMaxDate="01.01.2050"
-        @toPlaceholder="31.01.2019"
-        @toMinDate="01.01.2019"
-        @toMaxDate="01.01.2050"
-      />
+      <AuDatePicker
+        @label="From"
+        @value={{@fromValue}}
+        @min="2000-01-01"
+        @max="2050-01-01"
+        @onChange={{this.updateFromValue}}>
+      </AuDatePicker>
+      <AuDatePicker
+        @label="To"
+        @value={{@toValue}}
+        @min="2000-01-01"
+        @max="2050-01-01"
+        @onChange={{this.updateToValue}}>
+      </AuDatePicker>
     </div>
   {{/if}}
   </div>

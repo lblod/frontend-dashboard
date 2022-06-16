@@ -25,6 +25,9 @@
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test"
   },
+  "dependencies": {
+    "date-fns": "^2.28.0"
+  },
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "^1.2.1",
     "@ember/legacy-built-in-components": "^0.4.1",
