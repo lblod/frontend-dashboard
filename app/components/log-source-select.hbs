@@ -1,10 +1,19 @@
-<PowerSelect
-  @placeholder="Acmidm login service, ..."
-  @search={{perform this.search}}
-  @options={{this.options}}
-  @selected={{this.selected}}
-  @onChange={{this.changeSelected}}
-  @allowClear={{true}}
-  as |logSource|>
-  {{logSource.label}}
-</PowerSelect>
+<AuFormRow @alignment="default" ...attributes>
+  {{#let (unique-id) as  | logSource |}}
+    <AuLabel
+      for={{logSource}}>
+      Log source
+    </AuLabel>
+    <PowerSelect
+      id={{logSource}}
+      @placeholder="Acmidm login service, ..."
+      @search={{perform this.search}}
+      @options={{this.options}}
+      @selected={{this.selected}}
+      @onChange={{this.changeSelected}}
+      @allowClear={{true}}
+      as |logSource|>
+      {{logSource.label}}
+    </PowerSelect>
+  {{/let}}
+</AuFormRow>

@@ -1,59 +1,61 @@
-{{#let (unique-id) as | logRangeEnable |}}
-  <AuLabel
-    for={{logRangeEnable}}>
-    Period sent
-  </AuLabel>
-  <AuButtonGroup
-    id={{logRangeEnable}}
-    @inline={{true}}>
-    <AuButton
-      @skin="secondary"
-      class="{{unless this.isFilterEnabled 'is-active'}}"
-      {{on 'click' this.resetFilter}}>
-      All logs
-    </AuButton>
-    <AuButton
-      @skin="secondary"
-      class="{{if this.isFilterEnabled 'is-active'}}"
-      {{on 'click' this.initRangeFilter}}>
-      Specific period
-    </AuButton>
-  </AuButtonGroup>
-{{/let}}
+<AuFormRow @alignment="default" ...attributes>
+  {{#let (unique-id) as | logRangeEnable |}}
+    <AuLabel
+      for={{logRangeEnable}}>
+      Period sent
+    </AuLabel>
+    <AuButtonGroup
+      id={{logRangeEnable}}
+      @inline={{true}}>
+      <AuButton
+        @skin="secondary"
+        class="{{unless this.isFilterEnabled 'is-active'}}"
+        {{on 'click' this.resetFilter}}>
+        All logs
+      </AuButton>
+      <AuButton
+        @skin="secondary"
+        class="{{if this.isFilterEnabled 'is-active'}}"
+        {{on 'click' this.initRangeFilter}}>
+        Specific period
+      </AuButton>
+    </AuButtonGroup>
+  {{/let}}
 
-{{#if this.isFilterEnabled}}
-<div class="log-range-datepicker-small au-u-margin-top-small">
-  <AuFormRow @alignment="pre">
-    {{#let (unique-id) as | dateFromId |}}
-      <AuLabel
-        for={{dateFromId}}>
-        from
-      </AuLabel>
-      <AuDatePicker
-        id={{dateFromId}}
-        @value={{@fromValue}}
-        @min="2000-01-01"
-        @max="2050-01-01"
-        @onChange={{this.updateFromValue}}>
-      </AuDatePicker>
-    {{/let}}
-  </AuFormRow>
-  <AuFormRow
-    @alignment="pre"
-    class="au-u-margin-left-small">
-    {{#let (unique-id) as | dateToId |}}
-      <AuLabel
-        for={{dateToId}}>
-        to
-      </AuLabel>
-      <AuDatePicker
-        id={{dateToId}}
-        @value={{@toValue}}
-        @min="2000-01-01"
-        @max="2050-01-01"
-        @onChange={{this.updateToValue}}>
-      </AuDatePicker>
-    {{/let}}
-  </AuFormRow>
-</div>
-{{/if}}
+  {{#if this.isFilterEnabled}}
+    <div class="log-range-datepicker-small au-u-margin-top-small">
+      <AuFormRow @alignment="pre">
+        {{#let (unique-id) as | dateFromId |}}
+          <AuLabel
+            for={{dateFromId}}>
+            from
+          </AuLabel>
+          <AuDatePicker
+            id={{dateFromId}}
+            @value={{@fromValue}}
+            @min="2000-01-01"
+            @max="2050-01-01"
+            @onChange={{this.updateFromValue}}>
+          </AuDatePicker>
+        {{/let}}
+      </AuFormRow>
+      <AuFormRow
+        @alignment="pre"
+        class="au-u-margin-left-small">
+        {{#let (unique-id) as | dateToId |}}
+          <AuLabel
+            for={{dateToId}}>
+            to
+          </AuLabel>
+          <AuDatePicker
+            id={{dateToId}}
+            @value={{@toValue}}
+            @min="2000-01-01"
+            @max="2050-01-01"
+            @onChange={{this.updateToValue}}>
+          </AuDatePicker>
+        {{/let}}
+      </AuFormRow>
+    </div>
+  {{/if}}
+</AuFormRow>
