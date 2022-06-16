@@ -24,7 +24,8 @@
 
   {{#if this.isFilterEnabled}}
     <div class="log-range-datepicker-small au-u-margin-top-small">
-      <AuFormRow @alignment="pre">
+      <AuFormRow @alignment="pre"
+        class="au-u-margin-right-small au-u-margin-bottom-small">
         {{#let (unique-id) as | dateFromId |}}
           <AuLabel
             for={{dateFromId}}>
@@ -40,8 +41,8 @@
         {{/let}}
       </AuFormRow>
       <AuFormRow
-        @alignment="pre"
-        class="au-u-margin-left-small">
+        class="au-u-margin-right-small au-u-margin-bottom-small"
+        @alignment="pre">
         {{#let (unique-id) as | dateToId |}}
           <AuLabel
             for={{dateToId}}>

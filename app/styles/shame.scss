@@ -63,10 +63,15 @@
   }
 }
 
-.log-range-datepicker-small {
-  display: flex;
+.dashboard-flex-wrap {
+  flex-wrap: wrap;
 }
 
-.log-range-datepicker-small .au-c-datepicker {
-  width: 10em;
+.log-range-datepicker-small {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.log-range-datepicker-small .au-c-form-row {
+  width: 15em;
 }
