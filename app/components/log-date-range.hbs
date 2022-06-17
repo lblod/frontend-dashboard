@@ -2,7 +2,7 @@
   {{#let (unique-id) as | logRangeEnable |}}
     <AuLabel
       for={{logRangeEnable}}>
-      Period sent
+      {{t "dashboard.errors.filter.period"}}
     </AuLabel>
     <AuButtonGroup
       id={{logRangeEnable}}
@@ -11,13 +11,13 @@
         @skin="secondary"
         class="{{unless this.isFilterEnabled 'is-active'}}"
         {{on 'click' this.resetFilter}}>
-        All logs
+        {{t "dashboard.errors.filter.all"}}
       </AuButton>
       <AuButton
         @skin="secondary"
         class="{{if this.isFilterEnabled 'is-active'}}"
         {{on 'click' this.initRangeFilter}}>
-        Specific period
+        {{t "dashboard.errors.filter.specific"}}
       </AuButton>
     </AuButtonGroup>
   {{/let}}
@@ -29,7 +29,7 @@
         {{#let (unique-id) as | dateFromId |}}
           <AuLabel
             for={{dateFromId}}>
-            from
+            {{t "dashboard.errors.filter.from"}}
           </AuLabel>
           <AuDatePicker
             id={{dateFromId}}
@@ -46,7 +46,7 @@
         {{#let (unique-id) as | dateToId |}}
           <AuLabel
             for={{dateToId}}>
-            to
+            {{t "dashboard.errors.filter.to"}}
           </AuLabel>
           <AuDatePicker
             id={{dateToId}}

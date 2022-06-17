@@ -2,7 +2,9 @@
   @size="large"
   as | Group |>
   <Group>
-    <AuHeading @skin="2">Job Details</AuHeading>
+    <AuHeading @skin="2">
+      {{t "dashboard.errors.title"}}
+    </AuHeading>
   </Group>
   <Group>
     {{#if this.isFiltering}}
@@ -10,7 +12,7 @@
         @icon="undo"
         @iconAlignment="left"
         {{on 'click' this.resetFilter}}>
-        Reset all filters
+        {{t "dashboard.resetfilters"}}
       </AuButton>
     {{/if}}
   </Group>
@@ -37,16 +39,23 @@
   </Group>
 </AuToolbar>
 
-<AuDataTable @content={{this.model}} @isLoading={{this.isLoading}} @noDataMessage="No logs found" @sort={{this.sort}}
+{{#let (t "dashboard.errors.fields.loglevel")
+       (t "dashboard.errors.fields.source")
+       (t "dashboard.errors.fields.classname")
+       (t "dashboard.errors.fields.message")
+       (t "dashboard.errors.fields.date")
+       (t "dashboard.errors.fields.info")
+  as |ll so cn me da in|}}
+<AuDataTable @content={{this.model}} @isLoading={{this.isLoading}} @noDataMessage={{t "dashboard.errors.no-data"}} @sort={{this.sort}}
   @page={{this.page}} @size={{this.size}} as |t|>
   <t.content as |c|>
     <c.header>
-      <AuDataTableThSortable @label='Log level' @field='logLevel.label' @currentSorting={{this.sort}} />
-      <AuDataTableThSortable @label='Source' @field='logSource.label' @currentSorting={{this.sort}} />
-      <AuDataTableThSortable @label='Class name' @field='className' @currentSorting={{this.sort}} />
-      <AuDataTableThSortable @label='Message' @field='message' @currentSorting={{this.sort}} />
-      <AuDataTableThSortable @label='Date' @field='datetime' @currentSorting={{this.sort}} />
-      <AuDataTableThSortable @label='Specific information' @field='specificInformation' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{ll}} @field='logLevel.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{so}} @field='logSource.label' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{cn}} @field='className' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{me}} @field='message' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{da}} @field='datetime' @currentSorting={{this.sort}} />
+      <AuDataTableThSortable @label={{in}} @field='specificInformation' @currentSorting={{this.sort}} />
     </c.header>
     <c.body as |row|>
       <td>{{row.logLevel.label}}</td>
@@ -58,3 +67,4 @@
     </c.body>
   </t.content>
 </AuDataTable>
+{{/let}}
