@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import ENV from 'frontend-dashboard/config/environment';
 
 export default class MockLoginRoute extends Route {
   @service store;
@@ -17,6 +18,8 @@ export default class MockLoginRoute extends Route {
 
   model(params) {
     const filter = { provider: 'https://github.com/lblod/mock-login-service' };
+    if (ENV['mock-login'].gebruikerfilter !== '{{GEBRUIKER_FILTER}}')
+      filter.gebruiker = ENV['mock-login'].gebruikerfilter;
     if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
     return this.store.query('account', {
       include: 'gebruiker.bestuurseenheden',
@@ -24,19 +27,5 @@ export default class MockLoginRoute extends Route {
       page: { size: 10, number: params.page },
       sort: 'gebruiker.achternaam',
     });
-
-    //const filter = { provider: 'https://github.com/lblod/mock-login-service' };
-    //if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
-    //return this.store.query('account', {
-    //  include: 'gebruiker.bestuurseenheden',
-    //  filter: {
-    //    provider: 'https://github.com/lblod/mock-login-service',
-    //    gebruiker: {
-    //      achternaam: 'Agentschap Binnenlands Bestuur',
-    //    },
-    //  },
-    //  page: { size: 10, number: params.page },
-    //  sort: 'gebruiker.achternaam',
-    //});
   }
 }
