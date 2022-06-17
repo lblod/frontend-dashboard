@@ -1,9 +1,11 @@
 import Route from '@ember/routing/route';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
   modelName = 'log-entry';
+  @tracked isLoading = false;
 
   queryParams = {
     logLevelId: { refreshModel: true },
@@ -13,13 +15,18 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
   };
 
   @action
-  loading(transition, route) {
-    let controller = this.controllerFor('errors');
-    controller.set('isLoading', true);
+  loading(transition /*, route*/) {
+    //This used to be on the controller, but accessing a controller shouldn't be done outside the setupController method.
+    //Just using this.isLoading does not work, because `this` is undefined. Weird because `this.controllerFor` works.
+    //Using `this.set()` should not be done according to the template linter.
+    //So what should we do then??? At least this does not give any errors:
+    const me = this;
+    me.set('isLoading', true);
 
     transition.finally(function () {
-      controller.set('isLoading', false);
+      me.set('isLoading', false);
     });
+    return true;
   }
 
   mergeQueryOptions(params) {
