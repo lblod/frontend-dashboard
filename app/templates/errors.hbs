@@ -62,7 +62,7 @@
       <td>{{row.logSource.label}}</td>
       <td>{{last-part-uri row.className}}</td>
       <td>{{row.message}}</td>
-      <td>{{moment-format row.datetime 'D MMMM YYYY, HH:mm'}}</td>
+      <td>{{format-plain-date row.datetime 'd MMMM yyyy, HH:mm'}}</td>
       <td>{{row.specificInformation}}</td>
     </c.body>
   </t.content>
