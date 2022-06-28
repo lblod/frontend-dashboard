@@ -6,6 +6,7 @@
   </Group>
 </AuToolbar>
 
+
 {{#let (t "dashboard.reports.fields.title")
        (t "dashboard.reports.fields.description")
        (t "dashboard.reports.fields.created")
@@ -18,8 +19,8 @@
     @sort={{this.sort}}
     @page={{this.page}}
     @size={{this.size}}
-    as |t| >
-    <t.content as |c|>
+    as |table|>
+    <table.content as |c|>
       <c.header>
         <AuDataTableThSortable @label={{ti}} @field='title' @currentSorting={{this.sort}}/>
         <AuDataTableThSortable @label={{de}} @field='description' @currentSorting={{this.sort}}/>
@@ -40,6 +41,6 @@
           </AuLinkExternal>
         </td>
       </c.body>
-    </t.content>
+    </table.content>
   </AuDataTable>
 {{/let}}
