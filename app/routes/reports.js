@@ -6,7 +6,7 @@ export default class IndexRoute extends Route.extend(DataTableRouteMixin) {
   @service session;
 
   beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'login');
+    this.session.requireAuthentication(transition, 'index');
   }
 
   modelName = 'report';

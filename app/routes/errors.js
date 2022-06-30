@@ -17,7 +17,7 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
   };
 
   beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'login');
+    this.session.requireAuthentication(transition, 'index');
   }
 
   @action

@@ -21,6 +21,9 @@ module.exports = function (environment) {
       // { achternaam: 'Agentschap Binnenlands Bestuur', }
       gebruikerfilter: '{{GEBRUIKER_FILTER}}',
     },
+    routes: {
+      login: '{{LOGIN_ROUTE}}',
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
