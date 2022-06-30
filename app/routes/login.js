@@ -5,8 +5,13 @@ export default class LoginRoute extends Route {
   @service session;
   @service router;
 
+  queryParams = {
+    page: {
+      refreshModel: true,
+    },
+  };
+
   beforeModel() {
     this.session.prohibitAuthentication('index');
-    this.router.transitionTo('mock-login');
   }
 }
