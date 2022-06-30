@@ -10,8 +10,4 @@ export default class LoginRoute extends Route {
       refreshModel: true,
     },
   };
-
-  beforeModel() {
-    this.session.prohibitAuthentication('index');
-  }
 }
