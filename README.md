@@ -54,6 +54,20 @@ To include in a semantic.works stack, include the following in docker-compose.ym
     restart: always
 ```
 
+In order to be able to log in with mu-login in the dashboard, you should include the mu-login-service in your docker-compose.yml:
+```
+  login:
+    image: semtech/mu-login-service:2.9.1
+    links:
+      - database:database
+```
+dispatcher.ex should contain the following rule in order to get ember-mu-login working:
+```
+match "/sessions/*path", %{ accept: %{json: true} } do
+    Proxy.forward conn, path, "http://login/sessions/"
+end
+```
+
 ## Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)
