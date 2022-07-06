@@ -10,14 +10,12 @@ export default class App extends Application {
   Resolver = Resolver;
 
   engines = {
-    "@lblod/ember-jobs-dashboard-engine": {
+    '@lblod/ember-jobs-dashboard-engine': {
       dependencies: {
-        services: [
-          'store'
-        ]
-      }
-    }
-  }
+        services: ['store'],
+      },
+    },
+  };
 }
 
 loadInitializers(App, config.modulePrefix);

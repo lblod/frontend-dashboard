@@ -1,34 +1,48 @@
-<AuMainHeader  @homeRoute="index" @appTitle="Loket Dashboard">
-  <li class="au-c-list-horizontal__item">
+<AuApp>
+<AuMainHeader @brandLink="https://www.vlaanderen.be/nl" @homeRoute="index" @appTitle={{t "dashboard.title"}} @contactRoute="">
     {{#if this.session.isAuthenticated}}
-      <AcmidmLogout @tagName="button" class="au-c-button au-c-button--tertiary" role="menuitem">
-        <AuIcon @icon="logout" @alignment="left" />Afmelden
-      </AcmidmLogout>
+      <AuButton
+        @skin="link"
+        @icon="logout"
+        @iconAlignment="left"
+        {{on "click" this.invalidateSession}}>
+        {{t "dashboard.logout"}}
+      </AuButton>
     {{/if}}
-  </li>
-</AuMainHeader>
-
-{{#if this.session.isAuthenticated}}
-<main id="main" class="au-c-main-container">
-  <div class="au-c-main-container__content">
-    <div class="au-c-body-container">
-      <div class="nav-container">
-        <LinkTo @route='reports' class="nav-link">
-          Reports
-        </LinkTo>
-        <LinkTo @route='errors' class="nav-link">
-          Errors
-        </LinkTo>
-        <LinkTo @route='@lblod/ember-jobs-dashboard-engine.index' class="nav-link">
-          Jobs
-        </LinkTo>
-      </div>
-      <div id="content" class="au-c-body-container">
-        {{outlet}}
-      </div>
-    </div>
-  </div>
-</main>
-{{else}}
-  {{outlet}}
-{{/if}}
+  </AuMainHeader>
+  {{#if this.session.isAuthenticated}}
+    <AuMainContainer as |m|>
+      <m.sidebar>
+        <div class="au-c-sidebar">
+          <div class="au-c-sidebar__content">
+            <nav>
+              <ul class="au-c-list-navigation">
+                <li class="au-c-list-navigation__item">
+                  <AuNavigationLink @route="reports">
+                    <AuIcon @icon="documents" @alignment="left" />
+                    {{t "dashboard.nav.reports"}}
+                  </AuNavigationLink>
+                  <AuNavigationLink @route="errors">
+                    <AuIcon @icon="alert-triangle" @alignment="left" />
+                    {{t "dashboard.nav.errors"}}
+                  </AuNavigationLink>
+                  <AuNavigationLink @route={{"@lblod/ember-jobs-dashboard-engine.index"}}>
+                    <AuIcon @icon="gear" @alignment="left" />
+                    {{t "dashboard.nav.jobs"}}
+                  </AuNavigationLink>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </m.sidebar>
+      <m.content @scroll={{true}}>
+        <div class="au-d-component-block au-d-component-block--overflow">
+          {{outlet}}
+        </div>
+      </m.content>
+    </AuMainContainer>
+  {{else}}
+    {{outlet}}
+  {{/if}}
+</AuApp>

@@ -6,13 +6,13 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
-  this.mount('@lblod/ember-jobs-dashboard-engine', { path: "jobs" });
+Router.map(function () {
+  this.mount('@lblod/ember-jobs-dashboard-engine', { path: 'jobs' });
   this.route('mock-login');
   this.route('login');
   this.route('errors');
   this.route('route-not-found', {
-    path: '/*wildcard'
+    path: '/*wildcard',
   });
   this.route('reports');
 });

@@ -1,39 +1,35 @@
 import Component from '@glimmer/component';
-import moment from 'moment';
-import { computed } from '@ember/object';
+import { sub, formatISO } from 'date-fns';
 import { action } from '@ember/object';
 
 export default class LogDateRangeComponent extends Component {
-
-  @computed('args.{fromValue,toValue}')
-    get isFilterEnabled(){
-      return this.args.fromValue || this.args.toValue;
-    }
-
-  @action
-    resetFilter() {
-      this.updateToValue(null);
-      this.updateFromValue(null);
-    }
-
-  @action
-    initRangeFilter() {
-      const yesterday = moment().subtract(1, 'day').startOf('day');
-      const today = moment().endOf('day');
-      this.updateFromValue(yesterday.toDate());
-      this.updateToValue(today.toDate());
-    }
-
-  @action
-    updateToValue(value){
-      this.args.onChange('logDateTo', value && value.toISOString());
-    }
-
-  @action
-    updateFromValue(value){
-      this.args.onChange('logDateFrom', value && value.toISOString());
-    }
+  get isFilterEnabled() {
+    return this.args.fromValue || this.args.toValue;
   }
 
+  @action
+  resetFilter() {
+    this.updateToValue(null);
+    this.updateFromValue(null);
+  }
 
+  @action
+  initRangeFilter() {
+    const yesterday = sub(new Date(), {
+      days: 1,
+    });
+    const today = new Date();
+    this.updateFromValue(formatISO(yesterday, { representation: 'date' }));
+    this.updateToValue(formatISO(today, { representation: 'date' }));
+  }
 
+  @action
+  updateToValue(value) {
+    this.args.onChange('logDateTo', value);
+  }
+
+  @action
+  updateFromValue(value) {
+    this.args.onChange('logDateFrom', value);
+  }
+}

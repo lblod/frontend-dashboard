@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
@@ -10,32 +9,31 @@ export default class LogLevelSelectComponent extends Component {
 
   @tracked options;
 
-  constructor(){
+  constructor() {
     super(...arguments);
     this.options = this.store.query('log-level', {
       sort: 'label',
     });
   }
 
-  @computed('args.value')
-    get selected(){
-      if (this.args.value) {
-        return this.store.findRecord('log-level', this.args.value);
-      } else {
-        return [];
-      }
+  get selected() {
+    if (this.args.value) {
+      return this.store.findRecord('log-level', this.args.value);
+    } else {
+      return [];
     }
+  }
 
-  @task *search (term) {
+  @task *search(term) {
     yield timeout(600);
     return this.store.query('log-level', {
       sort: 'label',
-      filter: { label: term }
+      filter: { label: term },
     });
   }
 
   @action
-    changeSelected(selected) {
-      this.args.onChange("logLevelId", selected && selected.id);
-    }
+  changeSelected(selected) {
+    this.args.onChange('logLevelId', selected && selected.id);
+  }
 }

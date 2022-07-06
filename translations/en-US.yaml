@@ -1,0 +1,5 @@
+mock-login:
+  choose: "Choose a governing body to login."
+  searchlabel: "Search governing body"
+  placeholder: "Aalst, Berchem, …"
+

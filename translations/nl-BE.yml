@@ -1,0 +1,4 @@
+mock-login:
+  choose: "Kies een bestuurseenheid om mee in te loggen."
+  searchlabel: "Bestuurseenheid zoeken"
+  placeholder: "Aalst, Berchem, …"
