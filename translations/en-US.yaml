@@ -2,4 +2,7 @@ mock-login:
   choose: "Choose a governing body to login."
   searchlabel: "Search governing body"
   placeholder: "Aalst, Berchem, …"
-
+login:
+  username: Username
+  password: Password
+  submit: Log In

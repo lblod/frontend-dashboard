@@ -20,6 +20,7 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'ember/no-mixins': 'warn',
     semi: [2, 'always'],
   },
   overrides: [
