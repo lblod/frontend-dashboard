@@ -24,7 +24,7 @@ steps:
 - name: build-dry-run
   image: plugins/docker
   settings:
-    repo: lblod/frontend-gelinkt-notuleren
+    repo: ${DRONE_REPO}
     dry_run: true
     purge: true
 trigger:
@@ -38,7 +38,7 @@ steps:
 - name: push-latest-build
   image: plugins/docker
   settings:
-    repo: lblod/frontend-gelinkt-notuleren
+    repo: ${DRONE_REPO}
     username:
       from_secret: docker_username
     password:
@@ -47,27 +47,6 @@ steps:
 trigger:
   branch:
     - master
-  event:
-    exclude:
-    - pull_request
----
-kind: pipeline
-type: docker
-name: push-futurenow-build
-steps:
-- name: push-latest-build
-  image: plugins/docker
-  settings:
-    repo: lblod/frontend-gelinkt-notuleren
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    purge: true
-    tags: futurenow
-trigger:
-  branch:
-    - futurenow
   event:
     exclude:
     - pull_request
@@ -85,7 +64,7 @@ steps:
 - name: push-tagged-build
   image: plugins/docker
   settings:
-    repo: lblod/frontend-gelinkt-notuleren
+    repo: ${DRONE_REPO}
     tags: ${DRONE_TAG##v}
     username:
       from_secret: docker_username
