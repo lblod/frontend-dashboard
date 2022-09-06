@@ -1,12 +1,12 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class FileModel extends Model {
-  @attr('string') uri;
-  @attr('string') filename;
-  @attr('string') format;
+  @attr uri;
+  @attr name;
+  @attr format;
   @attr('number') size;
-  @attr('string') extension;
-  @attr('datetime') created;
+  @attr extension;
+  @attr('date') created;
   @belongsTo('remote-data-object') remoteDataObject;
   @belongsTo('data-container') dataContainer;
 

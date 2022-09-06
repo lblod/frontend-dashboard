@@ -1,12 +1,12 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default class JobModel extends Model {
-  @attr('string') uri;
-  @attr('string') status;
+  @attr uri;
+  @attr status;
   @attr('date') created;
   @attr('date') modified;
-  @attr('string') creator;
-  @attr('string') operation;
+  @attr creator;
+  @attr operation;
 
   @belongsTo('job-error') error;
   @hasMany('task') tasks;
