@@ -1,3 +1,13 @@
+
+## 1.5.1 (2022-09-22)
+
+#### :bug: Bug Fix
+* [#9](https://github.com/lblod/frontend-dashboard/pull/9) Include Webpack as a devDependency ([@benjay10](https://github.com/benjay10))
+
+#### Committers: 1
+- Ben ([@benjay10](https://github.com/benjay10))
+
+
 ## 1.4.0 (2022-07-08)
 
 #### :rocket: Enhancement
