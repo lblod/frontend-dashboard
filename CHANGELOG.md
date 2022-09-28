@@ -1,4 +1,14 @@
 
+
+## 1.5.2 (2022-09-28)
+
+#### :bug: Bug Fix
+* [#13](https://github.com/lblod/frontend-dashboard/pull/13) Fix mock-login pagination ([@benjay10](https://github.com/benjay10))
+
+#### Committers: 1
+- Ben ([@benjay10](https://github.com/benjay10))
+
+
 ## 1.5.1 (2022-09-22)
 
 #### :bug: Bug Fix
