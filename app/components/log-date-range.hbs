@@ -36,7 +36,9 @@
             @value={{@fromValue}}
             @min="2000-01-01"
             @max="2050-01-01"
-            @onChange={{this.updateFromValue}}>
+            @onChange={{this.updateFromValue}}
+            @localization={{this.datepickerLocalization}}
+          >
           </AuDatePicker>
         {{/let}}
       </AuFormRow>
