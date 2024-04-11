@@ -27,6 +27,9 @@ module.exports = function (defaults) {
     babel: {
       sourceMaps: 'inline',
     },
+    '@appuniversum/ember-appuniversum': {
+      dutchDatePickerLocalization: true,
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
