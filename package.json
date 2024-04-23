@@ -36,7 +36,6 @@
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@lblod/ember-acmidm-login": "^1.0.0",
     "@lblod/ember-jobs-dashboard-engine": "^0.5.0",
     "@lblod/ember-mock-login": "^0.7.0",
     "babel-eslint": "^10.1.0",
