@@ -8,6 +8,7 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
   modelName = 'log-entry';
   @tracked isLoading = false;
   @service session;
+  @service store;
 
   queryParams = {
     logLevelId: { refreshModel: true },

@@ -30,6 +30,9 @@ module.exports = function (defaults) {
     '@appuniversum/ember-appuniversum': {
       dutchDatePickerLocalization: true,
     },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
