@@ -6,7 +6,6 @@
         src="/assets/images/loket-header-1600.jpg"
         srcset="/assets/images/loket-header-320.jpg 320w, /assets/images/loket-header-1024.jpg 1024w, /assets/images/loket-header-1600.jpg 1600w"
         alt=""
-        role="presentation"
       >
     </AuContentHeader>
 
@@ -16,7 +15,7 @@
         <p class="au-u-margin-top-small au-u-margin-bottom">
           {{#let (unique-id) as |id|}}
             <AuLabel for={{id}}>{{t "mock-login.searchlabel"}}</AuLabel>
-            <input class="au-c-input au-c-input--block js-js-input-pattern-bound" id={{id}} placeholder={{t "mock-login.placeholder"}} value={{this.gemeente}} autofocus oninput={{perform this.updateSearch value='target.value'}}>
+            <input class="au-c-input au-c-input--block js-js-input-pattern-bound" id={{id}} placeholder={{t "mock-login.placeholder"}} value={{this.gemeente}} oninput={{perform this.updateSearch value='target.value'}}>
           {{/let}}
         </p>
 
