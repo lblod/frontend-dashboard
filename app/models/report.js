@@ -4,5 +4,5 @@ export default class ReportModel extends Model {
   @attr('string') title;
   @attr('string') description;
   @attr('date') created;
-  @belongsTo('file') file;
+  @belongsTo('file', { async: true, inverse: null }) file;
 }
