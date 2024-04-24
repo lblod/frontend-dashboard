@@ -11,7 +11,8 @@
     <AuInput
       type="text"
       id="nickname"
-      @value={{this.nickname}}
+      value={{this.nickname}}
+      {{on "input" this.handleNicknameInput}}
     />
   </div>
   <div>
@@ -19,9 +20,10 @@
       {{t 'login.password'}}
     </AuLabel>
     <AuInput
-      @type="password"
+      type="password"
       id="password"
-      @value={{this.password}}
+      value={{this.password}}
+      {{on "input" this.handlePasswordInput}}
     />
   </div>
   <br>

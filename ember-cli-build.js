@@ -28,6 +28,7 @@ module.exports = function (defaults) {
       sourceMaps: 'inline',
     },
     '@appuniversum/ember-appuniversum': {
+      disableWormholeElement: true,
       dutchDatePickerLocalization: true,
     },
     'ember-simple-auth': {
