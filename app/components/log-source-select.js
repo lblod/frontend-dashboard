@@ -11,9 +11,7 @@ export default class LogSourceSelectComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.options = this.store.query('log-source', {
-      sort: 'label',
-    });
+    this.loadOptions.perform();
   }
 
   get selected() {
@@ -23,6 +21,12 @@ export default class LogSourceSelectComponent extends Component {
       return [];
     }
   }
+
+  loadOptions = task(async () => {
+    this.options = await this.store.query('log-source', {
+      sort: 'label',
+    });
+  });
 
   @task *search(term) {
     yield timeout(600);
