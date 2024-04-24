@@ -8,8 +8,8 @@ export default class JobModel extends Model {
   @attr creator;
   @attr operation;
 
-  @belongsTo('job-error') error;
-  @hasMany('task') tasks;
+  @belongsTo('job-error', { async: true, inverse: null }) error;
+  @hasMany('task', { async: true, inverse: 'job' }) tasks;
 
   //TODO: move this later to a propery modeled skos:Conceptscheme from backend
   statusesMap = {

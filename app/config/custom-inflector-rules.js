@@ -68,5 +68,3 @@ inflector.irregular('log-level', 'log-levels');
 inflector.irregular('job', 'jobs');
 inflector.irregular('task', 'tasks');
 inflector.irregular('remote-data-object', 'remote-data-objects');
-// Meet Ember Inspector's expectation of an export
-export default {};

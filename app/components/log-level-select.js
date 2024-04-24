@@ -11,9 +11,8 @@ export default class LogLevelSelectComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.options = this.store.query('log-level', {
-      sort: 'label',
-    });
+
+    this.loadOptions.perform();
   }
 
   get selected() {
@@ -23,6 +22,12 @@ export default class LogLevelSelectComponent extends Component {
       return [];
     }
   }
+
+  loadOptions = task(async () => {
+    this.options = await this.store.query('log-level', {
+      sort: 'label',
+    });
+  });
 
   @task *search(term) {
     yield timeout(600);

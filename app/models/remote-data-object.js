@@ -8,7 +8,7 @@ export default class RemoteDataObjectModel extends Model {
   @attr status;
   @attr requestHeader;
   @attr creator;
-  @belongsTo('file') file;
+  @belongsTo('file', { async: true, inverse: 'remoteDataObject' }) file;
 
   //TODO: move this later to a propery modeled skos:Conceptscheme
   statusesMap = {

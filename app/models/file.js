@@ -4,11 +4,12 @@ export default class FileModel extends Model {
   @attr uri;
   @attr name;
   @attr format;
-  @attr('number') size;
+  @attr size;
   @attr extension;
   @attr('date') created;
-  @belongsTo('remote-data-object') remoteDataObject;
-  @belongsTo('data-container') dataContainer;
+  @belongsTo('remote-data-object', { async: true, inverse: 'file' })
+  remoteDataObject;
+  @belongsTo('data-container', { async: true, inverse: 'files' }) dataContainer;
 
   get humanReadableSize() {
     //ripped from https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
