@@ -4,19 +4,19 @@ type: docker
 name: verify
 steps:
 - name: install
-  image: danlynn/ember-cli:3.28.5-node_16.13
+  image: danlynn/ember-cli:5.8.0-node_20.12
   commands:
   - npm ci
 - name: lint
-  image: danlynn/ember-cli:3.28.5-node_16.13
+  image: danlynn/ember-cli:5.8.0-node_20.12
   commands:
   - npm run lint
 - name: dependency-lint
-  image: danlynn/ember-cli:3.28.5-node_16.13
+  image: danlynn/ember-cli:5.8.0-node_20.12
   commands:
   - ember dependency-lint
 - name: test
-  image: danlynn/ember-cli:3.28.5-node_16.13
+  image: danlynn/ember-cli:5.8.0-node_20.12
   commands:
   - npm run test:ember
 - name: build-dry-run
