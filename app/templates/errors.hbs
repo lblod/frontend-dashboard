@@ -57,13 +57,13 @@
       <AuDataTableThSortable @label={{da}} @field='datetime' @currentSorting={{this.sort}} />
       <AuDataTableThSortable @label={{in}} @field='specificInformation' @currentSorting={{this.sort}} />
     </c.header>
-    <c.body as |row|>
-      <td>{{row.logLevel.label}}</td>
-      <td>{{row.logSource.label}}</td>
-      <td>{{last-part-uri row.className}}</td>
-      <td>{{row.message}}</td>
-      <td>{{format-plain-date row.datetime 'd MMMM yyyy, HH:mm'}}</td>
-      <td>{{row.specificInformation}}</td>
+    <c.body as |logEntry|>
+      <td>{{logEntry.logLevel.label}}</td>
+      <td>{{logEntry.logSource.label}}</td>
+      <td>{{last-part-uri logEntry.className}}</td>
+      <td>{{logEntry.message}}</td>
+      <td>{{format-plain-date logEntry.datetime 'd MMMM yyyy, HH:mm'}}</td>
+      <td>{{logEntry.specificInformation}}</td>
     </c.body>
   </t.content>
 </AuDataTable>
