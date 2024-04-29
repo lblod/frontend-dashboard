@@ -2,22 +2,8 @@
    # Dashboard
    ================================== */
 
-/**
- * A design system for Flanders GOV applications
- */
-
-/**
- * CONTENTS
- * ---
- * EMBER-APPUNIVERSUM: The component library
- * PROJECT: Project specific styles
- * PLUGINS: RDFA editor custom styles
- * UTILITIES: Project utility styles
- * SHAME: Temporary hacks and quickfixes
- */
-
 // EMBER-APPUNIVERSUM
-@import "ember-appuniversum";
+@import "@appuniversum/ember-appuniversum/styles";
 
 // TEMPORARY HACKS AND QUICKFIXES
 @import 'shame';
