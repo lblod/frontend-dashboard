@@ -1,6 +1,7 @@
 title: "Dashboard"
 logout: "Log out"
 resetfilters: "Reset all filters"
+loading: "Loading"
 nav:
   reports: "Reports"
   errors: "Errors"
