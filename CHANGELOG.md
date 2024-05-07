@@ -1,5 +1,18 @@
 
 
+## 1.7.0 (2024-05-07)
+
+#### :rocket: Enhancement
+* [#34](https://github.com/lblod/frontend-dashboard/pull/34) Appuniversum v3 update ([@Windvis](https://github.com/Windvis))
+* [#33](https://github.com/lblod/frontend-dashboard/pull/33) Update to `@lblod/ember-jobs-dashboard-engine` v0.6.0 ([@Windvis](https://github.com/Windvis))
+* [#32](https://github.com/lblod/frontend-dashboard/pull/32) Appuniversum v2 update ([@Windvis](https://github.com/Windvis))
+
+#### :house: Internal
+* [#31](https://github.com/lblod/frontend-dashboard/pull/31) Resolve EmberData v4 deprecations ([@Windvis](https://github.com/Windvis))
+* [#28](https://github.com/lblod/frontend-dashboard/pull/28) Ember v4.12 update ([@Windvis](https://github.com/Windvis))
+* [#27](https://github.com/lblod/frontend-dashboard/pull/27) Resolve deprecations ([@Windvis](https://github.com/Windvis))
+
+
 ## 1.5.2 (2022-09-28)
 
 #### :bug: Bug Fix
