@@ -21,7 +21,9 @@
 
         <MockLogin as |login|>
           {{#if this.queryStore.isRunning}}
-            <AuLoader @padding="small" />
+            <AuLoader class="au-o-region">
+              {{t "mock-login.loading"}}
+            </AuLoader>
           {{else}}
             {{#if this.login.errorMessage}}
               <AuAlert @icon="alert-triangle" @title={{this.login.errorMessage}} @skin="warning" />
