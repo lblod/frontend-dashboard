@@ -7,6 +7,9 @@ login:
   username: Gebruikersnaam
   password: Wachtwoord
   submit: Inloggen
+acmidm-login:
+  redirecting: Aan het doorverwijzen
+  logging-in: Aan het aanmelden
 jobs:
   general:
     reset-filters: "Filters verwijderen"
@@ -94,4 +97,3 @@ jobs:
     data:
       nodata: "Geen grafen gevonden"
       uri: "URI"
-

@@ -21,6 +21,13 @@ module.exports = function (environment) {
     routes: {
       login: '{{LOGIN_ROUTE}}',
     },
+    acmidm: {
+      clientId: '{{ACMIDM_CLIENT_ID}}',
+      baseUrl: '{{ACMIDM_BASE_URL}}',
+      redirectUrl: '{{ACMIDM_REDIRECT_URL}}',
+      logoutUrl: '{{ACMIDM_LOGOUT_URL}}',
+      scope: '{{ACMIDM_SCOPE}}',
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

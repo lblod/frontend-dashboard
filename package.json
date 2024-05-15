@@ -41,6 +41,7 @@
     "@embroider/webpack": "^4.1.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
+    "@lblod/ember-acmidm-login": "^2.1.0",
     "@lblod/ember-mock-login": "^0.10.0",
     "@warp-drive/build-config": "^0.0.2",
     "broccoli-asset-rev": "^3.0.0",
