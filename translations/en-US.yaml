@@ -7,3 +7,6 @@ login:
   username: Username
   password: Password
   submit: Log In
+acmidm-login:
+  redirecting: Redirecting
+  logging-in: Logging in

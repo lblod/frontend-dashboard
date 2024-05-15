@@ -21,6 +21,16 @@ module.exports = function (environment) {
     routes: {
       login: '{{LOGIN_ROUTE}}',
     },
+    acmidm: {
+      clientId: '{{OAUTH_CLIENT_ID}}',
+      baseUrl: '{{OAUTH_BASE_URL}}',
+      redirectUrl: '{{OAUTH_REDIRECT_URL}}',
+      logoutUrl: '{{OAUTH_LOGOUT_URL}}',
+      scope: '{{OAUTH_SCOPE}}',
+    },
+    'ember-simple-auth': {
+      routeAfterAuthentication: 'app',
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
