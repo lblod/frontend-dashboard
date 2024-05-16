@@ -1,7 +1,7 @@
 <AuModalContainer />
 
 <AuApp>
-<AuMainHeader @brandLink="https://www.vlaanderen.be/nl" @homeRoute="index" @appTitle={{t "dashboard.title"}} @contactRoute="">
+<AuMainHeader @brandLink="https://www.vlaanderen.be/nl" @homeRoute="app" @appTitle={{t "dashboard.title"}} @contactRoute="">
     {{#if this.session.isAuthenticated}}
       <AuButton
         @skin="link"
@@ -20,15 +20,15 @@
             <nav>
               <ul class="au-c-list-navigation">
                 <li class="au-c-list-navigation__item">
-                  <AuNavigationLink @route="reports">
+                  <AuNavigationLink @route="app.reports">
                     <AuIcon @icon="documents" @alignment="left" />
                     {{t "dashboard.nav.reports"}}
                   </AuNavigationLink>
-                  <AuNavigationLink @route="errors">
+                  <AuNavigationLink @route="app.errors">
                     <AuIcon @icon="alert-triangle" @alignment="left" />
                     {{t "dashboard.nav.errors"}}
                   </AuNavigationLink>
-                  <AuNavigationLink @route={{"@lblod/ember-jobs-dashboard-engine.index"}}>
+                  <AuNavigationLink @route="app.@lblod/ember-jobs-dashboard-engine.index">
                     <AuIcon @icon="gear" @alignment="left" />
                     {{t "dashboard.nav.jobs"}}
                   </AuNavigationLink>

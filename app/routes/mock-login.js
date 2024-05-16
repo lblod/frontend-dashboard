@@ -13,7 +13,7 @@ export default class MockLoginRoute extends Route {
   };
 
   beforeModel() {
-    this.session.prohibitAuthentication('index');
+    this.session.prohibitAuthentication('app');
   }
 
   model(params) {

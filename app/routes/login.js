@@ -6,7 +6,7 @@ export default class LoginRoute extends Route {
   @service router;
 
   beforeModel() {
-    this.session.prohibitAuthentication('index');
+    this.session.prohibitAuthentication('app');
   }
 
   queryParams = {

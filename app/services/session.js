@@ -16,6 +16,10 @@ export default class SessionService extends BaseSessionService {
     super.invalidate(...arguments);
   }
 
+  // handleAuthentication() {
+  //   super.handleAuthentication('app');
+  // }
+
   handleInvalidation(logoutUrl) {
     if (this.wasAcmIdmSession) {
       logoutUrl = ENV.acmidm.logoutUrl;

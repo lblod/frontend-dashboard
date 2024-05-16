@@ -8,7 +8,7 @@ export default class AcmidmLoginRoute extends Route {
   @service router;
 
   beforeModel() {
-    if (this.session.prohibitAuthentication('index')) {
+    if (this.session.prohibitAuthentication('app')) {
       if (isValidAcmidmConfig(ENV.acmidm)) {
         // We do the transition in the `routeDidChange` event because it is the only place I've found where the browser history has been correctly updated.
         // The Route hooks run too soon, which means the previous history entry would be replaced instead.

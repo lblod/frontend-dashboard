@@ -5,7 +5,7 @@ export default class AcmidmCallbackRoute extends Route {
   @service session;
 
   beforeModel() {
-    this.session.prohibitAuthentication('index');
+    this.session.prohibitAuthentication('app');
   }
 
   async model({ code }) {

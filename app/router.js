@@ -7,15 +7,18 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.mount('@lblod/ember-jobs-dashboard-engine', { path: 'jobs' });
-  this.route('mock-login');
+  this.route('app', { path: '/' }, function () {
+    this.route('reports');
+    this.route('errors');
+    this.mount('@lblod/ember-jobs-dashboard-engine', { path: 'jobs' });
+  });
+
   this.route('login');
-  this.route('errors');
+  this.route('mock-login');
+  this.route('acmidm-login');
+  this.route('acmidm-callback', { path: '/authorization/callback' });
+
   this.route('route-not-found', {
     path: '/*wildcard',
   });
-  this.route('reports');
-
-  this.route('acmidm-login');
-  this.route('acmidm-callback', { path: '/authorization/callback' });
 });
