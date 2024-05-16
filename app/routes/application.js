@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import ENV from 'frontend-dashboard/config/environment';
 
 export default class ApplicationRoute extends Route {
+  @service currentSession;
   @service session;
 
   async beforeModel(transition) {
@@ -17,6 +18,12 @@ export default class ApplicationRoute extends Route {
           ? ENV['routes'].login
           : 'login';
       this.session.requireAuthentication(transition, loginRoute);
+    }
+
+    try {
+      await this.currentSession.load();
+    } catch (error) {
+      this.session.invalidate();
     }
   }
 }

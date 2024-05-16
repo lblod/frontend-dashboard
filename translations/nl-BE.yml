@@ -10,3 +10,10 @@ login:
 acmidm-login:
   redirecting: Aan het doorverwijzen
   logging-in: Aan het aanmelden
+impersonate:
+  title: Simuleer een gebruiker
+impersonation-menu:
+  dropdown-title: Simulatie menu
+  start: Simuleer een gebruiker
+  stop: Simulatie stopzetten
+  switch: Simuleer een andere gebruiker

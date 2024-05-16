@@ -1,17 +1,40 @@
 <AuModalContainer />
 
 <AuApp>
-<AuMainHeader @brandLink="https://www.vlaanderen.be/nl" @homeRoute="index" @appTitle={{t "dashboard.title"}} @contactRoute="">
-    {{#if this.session.isAuthenticated}}
-      <AuButton
-        @skin="link"
-        @icon="logout"
-        @iconAlignment="left"
-        {{on "click" this.invalidateSession}}>
-        {{t "dashboard.logout"}}
-      </AuButton>
+  <AuMainHeader
+    @brandLink={{unless
+      this.session.isAuthenticated
+      "https://www.vlaanderen.be/nl"
+    }}
+    @homeRoute="index"
+    @appTitle={{t "dashboard.title"}}
+  >
+    {{#if this.currentSession.isAdmin}}
+      <li class="au-c-list-horizontal__item">
+        <ImpersonationMenu />
+      </li>
     {{/if}}
+    <li class="au-c-list-horizontal__item">
+      {{#if this.session.isAuthenticated}}
+        <AuDropdown
+          @title={{this.userInfo}}
+          @buttonLabel="Account settings"
+          @alignment="right"
+          role="menu"
+        >
+          <AuButton
+            @icon="logout"
+            @skin="link"
+            role="menuitem"
+            {{on "click" this.invalidateSession}}
+          >
+            {{t "dashboard.logout"}}
+          </AuButton>
+        </AuDropdown>
+      {{/if}}
+    </li>
   </AuMainHeader>
+
   {{#if this.session.isAuthenticated}}
     <AuMainContainer as |m|>
       <m.sidebar>
