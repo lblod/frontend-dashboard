@@ -15,4 +15,7 @@ Router.map(function () {
     path: '/*wildcard',
   });
   this.route('reports');
+
+  this.route('acmidm-login');
+  this.route('acmidm-callback', { path: '/authorization/callback' });
 });

@@ -7,3 +7,6 @@ login:
   username: Gebruikersnaam
   password: Wachtwoord
   submit: Inloggen
+acmidm-login:
+  redirecting: Aan het doorverwijzen
+  logging-in: Aan het aanmelden
