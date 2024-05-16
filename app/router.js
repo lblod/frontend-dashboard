@@ -11,6 +11,8 @@ Router.map(function () {
   this.route('mock-login');
   this.route('login');
   this.route('errors');
+  this.route('impersonate');
+
   this.route('route-not-found', {
     path: '/*wildcard',
   });
