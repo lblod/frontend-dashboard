@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('login');
   this.route('acmidm-login');
   this.route('acmidm-callback', { path: '/authorization/callback' });
+  this.route('impersonate');
 
   this.route('reports');
   this.route('errors');
@@ -24,6 +25,7 @@ Router.map(function () {
       this.route('input-containers-harvesting-collections');
     });
   });
+
   this.route('route-not-found', {
     path: '/*wildcard',
   });

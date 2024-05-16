@@ -28,6 +28,7 @@ module.exports = function (environment) {
       logoutUrl: '{{ACMIDM_LOGOUT_URL}}',
       scope: '{{ACMIDM_SCOPE}}',
     },
+    adminRole: '{{ADMIN_ROLE}}',
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

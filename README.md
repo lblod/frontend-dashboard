@@ -105,6 +105,11 @@ It also requires some extra environment variables in the frontend:
       EMBER_ACMIDM_SCOPE: "openid rrn vo profile"
 ```
 
+## User impersonations
+The dashboard makes it possible for admin users to impersonate different user accounts so things can be verified without having to change accounts.
+
+To enable this you need to configure the `EMBER_ADMIN_ROLE` environment variable and set up the impersonation service in your backend app.
+
 ## Further Reading / Useful Links
 
 - [ember.js](https://emberjs.com/)
