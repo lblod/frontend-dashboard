@@ -28,7 +28,10 @@
                     <AuIcon @icon="alert-triangle" @alignment="left" />
                     {{t "dashboard.nav.errors"}}
                   </AuNavigationLink>
-                  <AuNavigationLink @route={{"@lblod/ember-jobs-dashboard-engine.index"}}>
+                  <AuNavigationLink
+                    @route="@lblod/ember-jobs-dashboard-engine.index"
+                    {{!template-lint-disable no-potential-path-strings}}
+                  >
                     <AuIcon @icon="gear" @alignment="left" />
                     {{t "dashboard.nav.jobs"}}
                   </AuNavigationLink>
