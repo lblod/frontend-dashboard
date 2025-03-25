@@ -47,6 +47,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@lblod/ember-jobs-dashboard-engine": "^0.6.0",
     "@lblod/ember-mock-login": "^0.10.0",
+    "@warp-drive/build-config": "^0.0.2",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.2.2",
     "date-fns": "^2.28.0",
