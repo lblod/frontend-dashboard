@@ -1,12 +1,8 @@
 import Route from '@ember/routing/route';
-import DataTableRouteMixin from 'ember-data-table/mixins/route';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
-  modelName = 'log-entry';
-  @tracked isLoading = false;
+export default class ErrorsRoute extends Route {
   @service session;
   @service store;
 
@@ -15,30 +11,24 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
     logSourceId: { refreshModel: true },
     logDateFrom: { refreshModel: true },
     logDateTo: { refreshModel: true },
+    filter: { refreshModel: true },
+    page: { refreshModel: true },
+    size: { refreshModel: true },
+    sort: { refreshModel: true },
   };
 
   beforeModel(transition) {
     this.session.requireAuthentication(transition, 'index');
   }
 
-  @action
-  loading(transition /*, route*/) {
-    //This used to be on the controller, but accessing a controller shouldn't be done outside the setupController method.
-    //Just using this.isLoading does not work, because `this` is undefined. Weird because `this.controllerFor` works.
-    //Using `this.set()` should not be done according to the template linter.
-    //So what should we do then??? At least this does not give any errors:
-    const me = this;
-    me.set('isLoading', true);
-
-    transition.finally(function () {
-      me.set('isLoading', false);
-    });
-    return true;
-  }
-
-  mergeQueryOptions(params) {
+  model(params) {
     const query = {
       include: ['log-level', 'log-source'].join(','),
+      sort: params.sort,
+      page: {
+        number: params.page,
+        size: params.size,
+      },
     };
 
     if (params.logLevelId) query['filter[log-level][id]'] = params.logLevelId;
@@ -50,14 +40,21 @@ export default class ErrorsRoute extends Route.extend(DataTableRouteMixin) {
 
     if (params.logDateTo) query['filter[:lte:datetime]'] = params.logDateTo;
 
-    return query;
+    return this.store.query('log-entry', query);
   }
 
-  setupController(controller, model) {
-    super.setupController(...arguments);
-    controller.set('logLevelId', model.query['filter[log-level][id]']);
-    controller.set('logSourceId', model.query['filter[log-source][id]']);
-    controller.set('logDateFrom', model.query['filter[:gte:datetime]']);
-    controller.set('logDateTo', model.query['filter[:lte:datetime]']);
+  @action
+  loading(transition) {
+    if (!transition.from || transition.from.name !== this.routeName) {
+      // We want the default loading screen if it's the initial page load or when we come from a different route
+      return true;
+    }
+
+    // eslint-disable-next-line ember/no-controller-access-in-routes
+    const controller = this.controller;
+    controller.isLoading = true;
+    transition.promise.finally(function () {
+      controller.isLoading = false;
+    });
   }
 }
