@@ -13,7 +13,7 @@ export default class ReportsRoute extends Route {
   };
 
   beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'index');
+    this.session.requireAuthentication(transition);
   }
 
   model(params) {
