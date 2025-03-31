@@ -1,7 +1,6 @@
-import { helper } from '@ember/component/helper';
 import { format } from 'date-fns';
 
-export default helper(function formatPlainDate([datetime, formatString]) {
+export default function formatPlainDate(datetime, formatString) {
   if (!(datetime instanceof Date)) return '';
 
   try {
@@ -10,4 +9,4 @@ export default helper(function formatPlainDate([datetime, formatString]) {
     console.error(e);
     return '';
   }
-});
+}
