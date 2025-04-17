@@ -30,7 +30,7 @@
       <c.body as |row|>
         <td>{{row.title}}</td>
         <td>{{row.description}}</td>
-        <td>{{row.created}}</td>
+        <td>{{format-datetime row.created}}</td>
         <td>
           <AuLinkExternal
             href='/files/{{row.file.id}}/download'

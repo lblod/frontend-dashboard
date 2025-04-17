@@ -36,11 +36,11 @@
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
         <AuLabel>{{t "jobs.tasks.created"}}</AuLabel>
-         {{format-date this.model.created 'dd/MM/yyyy HH:mm:ss'}}
+         {{format-datetime this.model.created}}
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
         <AuLabel>{{t "jobs.tasks.modified"}}</AuLabel>
-        {{format-date this.model.modified 'dd/MM/yyyy HH:mm:ss'}}
+        {{format-datetime this.model.modified}}
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
         <AuLabel>{{t "jobs.tasks.status"}}</AuLabel>
