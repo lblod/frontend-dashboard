@@ -10,6 +10,13 @@ login:
 acmidm-login:
   redirecting: Redirecting
   logging-in: Logging in
+impersonate:
+  title: Impersonate an account
+impersonation-menu:
+  dropdown-title: Impersonation menu
+  start: Impersonate an account
+  stop: Stop the imersonation
+  switch: Impersonate a different account
 jobs:
   general:
     reset-filters: "Reset all filters"
