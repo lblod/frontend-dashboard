@@ -1,5 +1,18 @@
 
 
+## 1.8.0 (2025-04-17)
+
+#### :rocket: Enhancement
+* [#36](https://github.com/lblod/frontend-dashboard/pull/36) [DL-5958] Allow admin users to impersonate other accounts ([@Windvis](https://github.com/Windvis))
+* [#35](https://github.com/lblod/frontend-dashboard/pull/35) [DL-5913] Add ACM/IDM support ([@Windvis](https://github.com/Windvis))
+* [#46](https://github.com/lblod/frontend-dashboard/pull/46) Enable Embroider ([@Windvis](https://github.com/Windvis))
+
+#### :house: Internal
+* [#47](https://github.com/lblod/frontend-dashboard/pull/47) Code improvements ([@Windvis](https://github.com/Windvis))
+* [#45](https://github.com/lblod/frontend-dashboard/pull/45) Inline jobs dashboard engine ([@Windvis](https://github.com/Windvis))
+* [#44](https://github.com/lblod/frontend-dashboard/pull/44) [DL-5957] Update to Ember v5.12 LTS ([@Windvis](https://github.com/Windvis))
+
+
 ## 1.7.0 (2024-05-07)
 
 #### :rocket: Enhancement
