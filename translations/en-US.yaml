@@ -15,7 +15,7 @@ impersonate:
 impersonation-menu:
   dropdown-title: Impersonation menu
   start: Impersonate an account
-  stop: Stop the imersonation
+  stop: Stop the impersonation
   switch: Impersonate a different account
 jobs:
   general:
