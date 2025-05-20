@@ -1,5 +1,12 @@
 
 
+## 1.9.0 (2025-05-20)
+
+#### :rocket: Enhancement
+* [#53](https://github.com/lblod/frontend-dashboard/pull/53) Make it possible to disable certain parts of the app ([@Windvis](https://github.com/Windvis))
+
+
+
 ## 1.8.0 (2025-04-17)
 
 #### :rocket: Enhancement
