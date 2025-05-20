@@ -37,30 +37,38 @@
 
   {{#if this.session.isAuthenticated}}
     <AuMainContainer as |m|>
-      <m.sidebar>
-        <div class="au-c-sidebar">
-          <div class="au-c-sidebar__content">
-            <nav>
-              <ul class="au-c-list-navigation">
-                <li class="au-c-list-navigation__item">
-                  <AuNavigationLink @route="reports">
-                    <AuIcon @icon="documents" @alignment="left" />
-                    {{t "dashboard.nav.reports"}}
-                  </AuNavigationLink>
-                  <AuNavigationLink @route="errors">
-                    <AuIcon @icon="alert-triangle" @alignment="left" />
-                    {{t "dashboard.nav.errors"}}
-                  </AuNavigationLink>
-                  <AuNavigationLink @route="jobs">
-                    <AuIcon @icon="gear" @alignment="left" />
-                    {{t "dashboard.nav.jobs"}}
-                  </AuNavigationLink>
-                </li>
-              </ul>
-            </nav>
+      {{#if this.showSidebar}}
+        <m.sidebar>
+          <div class="au-c-sidebar">
+            <div class="au-c-sidebar__content">
+              <nav>
+                <ul class="au-c-list-navigation">
+                  <li class="au-c-list-navigation__item">
+                    {{#if (this.isReportsRouteEnabled)}}
+                      <AuNavigationLink @route="reports">
+                        <AuIcon @icon="documents" @alignment="left" />
+                        {{t "dashboard.nav.reports"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                    {{#if (this.isErrorsRouteEnabled)}}
+                      <AuNavigationLink @route="errors">
+                        <AuIcon @icon="alert-triangle" @alignment="left" />
+                        {{t "dashboard.nav.errors"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                    {{#if (this.isJobsRouteEnabled)}}
+                      <AuNavigationLink @route="jobs">
+                        <AuIcon @icon="gear" @alignment="left" />
+                        {{t "dashboard.nav.jobs"}}
+                      </AuNavigationLink>
+                    {{/if}}
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
-      </m.sidebar>
+        </m.sidebar>
+      {{/if}}
       <m.content @scroll={{true}}>
         <div class="au-d-component-block au-d-component-block--overflow">
           {{outlet}}

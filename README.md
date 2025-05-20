@@ -1,49 +1,6 @@
 # frontend-dashboard
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
-
-## Prerequisites
-
-You will need the following things properly installed on your computer.
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (with npm)
-- [Ember CLI](https://cli.emberjs.com/release/)
-- [Google Chrome](https://google.com/chrome/)
-
-## Installation
-
-- `git clone <repository-url>` this repository
-- `cd frontend-dashboard`
-- `npm install`
-
-## Running / Development
-
-- `npm run start`
-- Visit your app at [http://localhost:4200](http://localhost:4200).
-- Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-- `npm run test`
-- `npm run test:ember -- --server`
-
-### Linting
-
-- `npm run lint`
-- `npm run lint:fix`
-
-### Building
-
-- `npm exec ember build` (development)
-- `npm run build` (production)
-
-### Deploying
+### Getting started
 
 To include in a semantic.works stack, include the following in docker-compose.yml:
 ```
@@ -54,6 +11,21 @@ To include in a semantic.works stack, include the following in docker-compose.ym
     restart: always
 ```
 
+### Disable features
+The dashboard has support for displaying reports, errors and jobs and these features are enabled by default. However, some projects only want to use _some_ of the features.
+
+For those apps we also support disabling them by configuring the corresponding environment variable.
+
+```yml
+  dashboard:
+    #...
+    environment:
+      EMBER_DISABLE_REPORTS: "true"
+      EMBER_DISABLE_ERRORS: "true"
+      EMBER_DISABLE_JOBS: "true"
+```
+
+> Note: At least one feature needs to stay enabled, otherwise an error will be thrown
 
 ### Authentication methods
 
@@ -109,11 +81,3 @@ It also requires some extra environment variables in the frontend:
 The dashboard makes it possible for admin users to impersonate different user accounts so things can be verified without having to change accounts.
 
 To enable this you need to configure the `EMBER_ADMIN_ROLE` environment variable and set up the impersonation service in your backend app.
-
-## Further Reading / Useful Links
-
-- [ember.js](https://emberjs.com/)
-- [ember-cli](https://cli.emberjs.com/release/)
-- Development Browser Extensions
-  - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
