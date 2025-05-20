@@ -1,11 +1,21 @@
 import Controller from '@ember/controller';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
+import {
+  areMultipleRoutesEnabled,
+  isErrorsRouteEnabled,
+  isJobsRouteEnabled,
+  isReportsRouteEnabled,
+} from '../utils/feature';
 
 export default class ApplicationController extends Controller {
   @service currentSession;
   @service impersonation;
   @service session;
+
+  isReportsRouteEnabled = isReportsRouteEnabled;
+  isErrorsRouteEnabled = isErrorsRouteEnabled;
+  isJobsRouteEnabled = isJobsRouteEnabled;
 
   get userInfo() {
     if (!this.currentSession.isLoaded) {
@@ -48,6 +58,10 @@ export default class ApplicationController extends Controller {
     }
 
     return userInfo;
+  }
+
+  get showSidebar() {
+    return areMultipleRoutesEnabled();
   }
 
   @action

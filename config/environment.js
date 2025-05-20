@@ -20,6 +20,9 @@ module.exports = function (environment) {
     },
     routes: {
       login: '{{LOGIN_ROUTE}}',
+      disableReports: '{{DISABLE_REPORTS}}',
+      disableErrors: '{{DISABLE_ERRORS}}',
+      disableJobs: '{{DISABLE_JOBS}}',
     },
     acmidm: {
       clientId: '{{ACMIDM_CLIENT_ID}}',
