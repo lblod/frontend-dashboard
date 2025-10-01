@@ -32,6 +32,7 @@ module.exports = function (environment) {
       scope: '{{ACMIDM_SCOPE}}',
     },
     adminRole: '{{ADMIN_ROLE}}',
+    useEnglishAccountsModel: '{{ENGLISH_ACCOUNTS_MODEL}}',
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -45,6 +46,7 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.routes.login = 'mock-login';
+    ENV.useEnglishAccountsModel = 'true';
   }
 
   if (environment === 'test') {

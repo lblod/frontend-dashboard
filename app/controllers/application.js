@@ -3,6 +3,7 @@ import { service } from '@ember/service';
 import { action } from '@ember/object';
 import {
   areMultipleRoutesEnabled,
+  isEnglishAccountsModelEnabled,
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
   isReportsRouteEnabled,
@@ -47,8 +48,14 @@ export default class ApplicationController extends Controller {
       groupInfo += classification.label;
     }
 
-    if (group?.naam) {
-      groupInfo += ` ${group.naam}`;
+    if (isEnglishAccountsModelEnabled()) {
+      if (group?.name) {
+        groupInfo += ` ${group.name}`;
+      }
+    } else {
+      if (group?.naam) {
+        groupInfo += ` ${group.naam}`;
+      }
     }
 
     groupInfo.trim();
