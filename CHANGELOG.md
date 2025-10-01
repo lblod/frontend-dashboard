@@ -1,5 +1,12 @@
 
 
+## 1.10.0 (2025-10-01)
+
+#### :rocket: Enhancement
+* [#59](https://github.com/lblod/frontend-dashboard/pull/59) Add support for "English accounts model" ([@Windvis](https://github.com/Windvis))
+
+
+
 ## 1.9.0 (2025-05-20)
 
 #### :rocket: Enhancement
