@@ -3,6 +3,8 @@ import { tracked } from '@glimmer/tracking';
 import { timeout } from 'ember-concurrency';
 import { task, restartableTask } from 'ember-concurrency';
 import { service } from '@ember/service';
+import { isEnglishAccountsModelEnabled } from '../utils/feature';
+import { loadMockAccounts } from '../utils/mock-login';
 
 export default class MockLoginController extends Controller {
   queryParams = ['gemeente', 'page'];
@@ -10,18 +12,14 @@ export default class MockLoginController extends Controller {
   @tracked gemeente = '';
   @tracked page = 0;
   @tracked size = 10;
+  isEnglishAccountsModelEnabled = isEnglishAccountsModelEnabled();
 
   @task
   *queryStore() {
-    const filter = { provider: 'https://github.com/lblod/mock-login-service' };
-    if (this.gemeente) filter.gebruiker = { achternaam: this.gemeente };
-    const accounts = yield this.store.query('account', {
-      include: 'gebruiker,gebruiker.bestuurseenheden',
-      filter: filter,
-      page: { size: this.size, number: this.page },
-      sort: 'gebruiker.achternaam',
+    return yield loadMockAccounts(this.store, {
+      gemeente: this.gemeente,
+      page: this.page,
     });
-    return accounts;
   }
 
   @restartableTask

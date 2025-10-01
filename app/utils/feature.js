@@ -26,3 +26,11 @@ function enabledRoutes() {
 export function areMultipleRoutesEnabled() {
   return enabledRoutes().length > 1;
 }
+
+export function isEnglishAccountsModelEnabled() {
+  const useEnglishAccountsModel = ENV.useEnglishAccountsModel;
+  return (
+    !useEnglishAccountsModel.startsWith('{{') &&
+    useEnglishAccountsModel === 'true'
+  );
+}
