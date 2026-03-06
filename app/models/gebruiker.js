@@ -1,4 +1,5 @@
 import Model, { attr, hasMany } from '@ember-data/model';
+import { isUseOrganizationsModelEnabled } from '../utils/feature';
 
 export default class Gebruiker extends Model {
   @attr voornaam;
@@ -11,9 +12,17 @@ export default class Gebruiker extends Model {
     polymorphic: true,
   })
   bestuurseenheden;
+  @hasMany('organization', {
+    async: true,
+    inverse: null,
+    polymorphic: true,
+  })
+  organizations;
 
   get group() {
-    return this.hasMany('bestuurseenheden').value().at(0);
+    return isUseOrganizationsModelEnabled()
+      ? this.hasMany('organizations').value().at(0)
+      : this.hasMany('bestuurseenheden').value().at(0);
   }
   get fullName() {
     return `${this.voornaam} ${this.achternaam}`.trim();

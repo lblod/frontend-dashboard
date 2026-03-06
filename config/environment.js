@@ -33,6 +33,7 @@ module.exports = function (environment) {
     },
     adminRole: '{{ADMIN_ROLE}}',
     useEnglishAccountsModel: '{{ENGLISH_ACCOUNTS_MODEL}}',
+    useOrganizationsModel: '{{USE_ORGANIZATIONS_MODEL}}',
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
