@@ -34,3 +34,9 @@ export function isEnglishAccountsModelEnabled() {
     useEnglishAccountsModel === 'true'
   );
 }
+export function isUseOrganizationsModelEnabled() {
+  const useOrganizationsModel = ENV.useOrganizationsModel;
+  return (
+    !useOrganizationsModel.startsWith('{{') && useOrganizationsModel === 'true'
+  );
+}

@@ -42,6 +42,17 @@ dashboard:
     EMBER_ENGLISH_ACCOUNTS_MODEL: "true"
 ```
 
+#### Organizations data model
+
+The dashboard supports both organization and bestuurseenheid versions of the ["gebruiker" data model](https://github.com/lblod/acmidm-login-service/tree/master?tab=readme-ov-file#data-model). It will default to the bestuurseenheid version, and with an opt-in env variable you can switch to the organization model.
+
+```yml
+dashboard:
+  #...
+  environment:
+    EMBER_USE_ORGANIZATIONS_MODEL: "true"
+```
+
 ### Authentication methods
 
 The dashboard supports different methods of authentication. The default login route can be configured by setting the `EMBER_LOGIN_ROUTE` environment variable.

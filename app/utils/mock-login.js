@@ -1,9 +1,11 @@
 import ENV from 'frontend-dashboard/config/environment';
-import { isEnglishAccountsModelEnabled } from '../utils/feature';
+import {
+  isEnglishAccountsModelEnabled,
+  isUseOrganizationsModelEnabled,
+} from '../utils/feature';
 
 export function loadMockAccounts(store, params) {
   const filter = { provider: 'https://github.com/lblod/mock-login-service' };
-
   if (isEnglishAccountsModelEnabled()) {
     if (ENV['mock-login'].gebruikerfilter !== '{{GEBRUIKER_FILTER}}')
       filter.user = ENV['mock-login'].gebruikerfilter;
@@ -23,7 +25,9 @@ export function loadMockAccounts(store, params) {
     if (params.gemeente) filter.gebruiker = { achternaam: params.gemeente };
 
     return store.query('account', {
-      include: 'gebruiker.bestuurseenheden',
+      include: isUseOrganizationsModelEnabled()
+        ? 'gebruiker.organizations'
+        : 'gebruiker.bestuurseenheden',
       filter,
       page: { size: 10, number: params.page },
       sort: 'gebruiker.achternaam',

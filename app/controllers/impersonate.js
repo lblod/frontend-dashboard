@@ -3,6 +3,7 @@ import { service } from '@ember/service';
 import { cached, tracked } from '@glimmer/tracking';
 import { restartableTask, task, timeout } from 'ember-concurrency';
 import ENV from 'frontend-dashboard/config/environment';
+import { isUseOrganizationsModelEnabled } from '../utils/feature';
 
 export default class ImpersonateController extends Controller {
   @service impersonation;
@@ -26,7 +27,9 @@ export default class ImpersonateController extends Controller {
     }
 
     return this.store.query('account', {
-      include: 'gebruiker.bestuurseenheden',
+      include: isUseOrganizationsModelEnabled()
+        ? 'gebruiker.organizations'
+        : 'gebruiker.bestuurseenheden',
       filter,
       page: { size: this.size, number: this.page },
       sort: 'gebruiker.achternaam',
