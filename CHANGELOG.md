@@ -1,4 +1,7 @@
+## 1.10.1 (2026-03-16)
 
+#### :rocket: Enhancement
+* [#65](https://github.com/lblod/frontend-dashboard/pull/65) [DGS-613]: add support for the organizations model ([@wolfderechter](https://github.com/wolfderechter))
 
 ## 1.10.0 (2025-10-01)
 
