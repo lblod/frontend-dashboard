@@ -3,25 +3,34 @@
     {{@status}}
   </AuPill>
 
-{{else if (or (eq @status "failure") (eq @status "failed") (eq @status "canceled"))}}
+{{else if
+  (or (eq @status "failure") (eq @status "failed") (eq @status "canceled"))
+}}
   <AuPill @skin="error">
     {{@status}}
   </AuPill>
 
-{{else if (or (eq @status "ongoing") (eq @status "ready-for-collecting") (eq @status "ready-to-be-cached") (eq @status "ready-for-sameas"))}}
+{{else if
+  (or
+    (eq @status "ongoing")
+    (eq @status "ready-for-collecting")
+    (eq @status "ready-to-be-cached")
+    (eq @status "ready-for-sameas")
+  )
+}}
   <AuPill @skin="action">
     {{@status}}
   </AuPill>
 
-{{else if (eq @status "not-started") }}
+{{else if (or (eq @status "not-started") (eq @status "scheduled"))}}
   <AuPill>
     {{@status}}
   </AuPill>
 
-{{else if (eq @status "busy") }}
+{{else if (eq @status "busy")}}
   <AuPill @skin="warning">
     {{@status}}
-</AuPill>
+  </AuPill>
 
 {{else}}
   {{@status}}
