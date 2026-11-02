@@ -99,5 +99,9 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.15",
+    "markdown-it": "^15.0.2"
   }
 }

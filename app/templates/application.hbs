@@ -44,6 +44,12 @@
               <nav>
                 <ul class="au-c-list-navigation">
                   <li class="au-c-list-navigation__item">
+                    <AuNavigationLink @route="rapportassistent">
+                      <AuIcon @icon="message" @alignment="left" />
+                      {{t "dashboard.nav.rapportassistent"}}
+                    </AuNavigationLink>
+                  </li>
+                  <li class="au-c-list-navigation__item">
                     {{#if (this.isReportsRouteEnabled)}}
                       <AuNavigationLink @route="reports">
                         <AuIcon @icon="documents" @alignment="left" />

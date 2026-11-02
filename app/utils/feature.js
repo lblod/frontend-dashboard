@@ -15,18 +15,6 @@ export function isJobsRouteEnabled() {
   return disableJobs.startsWith('{{') || disableJobs !== 'true';
 }
 
-function enabledRoutes() {
-  return [
-    isReportsRouteEnabled(),
-    isErrorsRouteEnabled(),
-    isJobsRouteEnabled(),
-  ].filter(Boolean);
-}
-
-export function areMultipleRoutesEnabled() {
-  return enabledRoutes().length > 1;
-}
-
 export function isEnglishAccountsModelEnabled() {
   const useEnglishAccountsModel = ENV.useEnglishAccountsModel;
   return (

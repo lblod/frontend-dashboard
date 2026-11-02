@@ -1,0 +1,31 @@
+import Component from '@glimmer/component';
+import { service } from '@ember/service';
+import { task } from 'ember-concurrency';
+
+export default class ChatNewConversation extends Component {
+  @service store;
+  @service router;
+  @service currentSession;
+
+  get creator() {
+    return this.currentSession.account?.gebruiker;
+  }
+
+  create = task(async () => {
+    const now = new Date();
+    const creator = await this.creator;
+    const conversation = this.store.createRecord('chat-conversation', {
+      created: now,
+      lastActivity: now,
+      creator,
+    });
+    await conversation.save();
+    await this.router.transitionTo(
+      'rapportassistent.conversation',
+      conversation.id,
+    );
+    // The sidebar shows the list the rapportassistent route loaded; load it
+    // again so the new conversation is in it.
+    this.router.refresh('rapportassistent');
+  });
+}

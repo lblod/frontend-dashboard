@@ -39,6 +39,10 @@ Router.map(function () {
     });
   }
 
+  this.route('rapportassistent', function () {
+    this.route('conversation', { path: '/:id' });
+  });
+
   this.route('route-not-found', {
     path: '/*wildcard',
   });

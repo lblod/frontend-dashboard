@@ -3,6 +3,7 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 export default class FileModel extends Model {
   @attr uri;
   @attr name;
+  @attr filename;
   @attr format;
   @attr size;
   @attr extension;

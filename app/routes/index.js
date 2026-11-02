@@ -17,7 +17,7 @@ export default class Index extends Route {
     } else if (isJobsRouteEnabled()) {
       return 'jobs';
     } else {
-      throw new Error('At least one dashboard route needs to be enabled');
+      return 'rapportassistent';
     }
   }
 
