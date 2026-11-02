@@ -1,3 +1,13 @@
+
+## 1.10.2 (2026-11-02)
+
+#### :bug: Bug Fix
+* [#66](https://github.com/lblod/frontend-dashboard/pull/66) fix: add word wrapping for the creator and AuPill for scheduled ([@wolfderechter](https://github.com/wolfderechter))
+
+#### Committers: 1
+- [@wolfderechter](https://github.com/wolfderechter)
+
+
 ## 1.10.1 (2026-03-16)
 
 #### :rocket: Enhancement
