@@ -2,9 +2,11 @@ import Controller from '@ember/controller';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
 import {
+  areMultipleRoutesEnabled,
   isEnglishAccountsModelEnabled,
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
+  isRapportassistentRouteEnabled,
   isReportsRouteEnabled,
 } from '../utils/feature';
 
@@ -16,6 +18,7 @@ export default class ApplicationController extends Controller {
   isReportsRouteEnabled = isReportsRouteEnabled;
   isErrorsRouteEnabled = isErrorsRouteEnabled;
   isJobsRouteEnabled = isJobsRouteEnabled;
+  isRapportassistentRouteEnabled = isRapportassistentRouteEnabled;
 
   get userInfo() {
     if (!this.currentSession.isLoaded) {
@@ -67,8 +70,7 @@ export default class ApplicationController extends Controller {
   }
 
   get showSidebar() {
-    // The chat always has a navigation entry, so the sidebar is always shown.
-    return true;
+    return areMultipleRoutesEnabled();
   }
 
   @action

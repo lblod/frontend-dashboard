@@ -3,6 +3,7 @@ import config from 'frontend-dashboard/config/environment';
 import {
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
+  isRapportassistentRouteEnabled,
   isReportsRouteEnabled,
 } from './utils/feature';
 
@@ -39,9 +40,11 @@ Router.map(function () {
     });
   }
 
-  this.route('rapportassistent', function () {
-    this.route('conversation', { path: '/:id' });
-  });
+  if (isRapportassistentRouteEnabled()) {
+    this.route('rapportassistent', function () {
+      this.route('conversation', { path: '/:id' });
+    });
+  }
 
   this.route('route-not-found', {
     path: '/*wildcard',

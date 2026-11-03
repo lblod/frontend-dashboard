@@ -15,6 +15,27 @@ export function isJobsRouteEnabled() {
   return disableJobs.startsWith('{{') || disableJobs !== 'true';
 }
 
+export function isRapportassistentRouteEnabled() {
+  const enableRapportassistent = ENV.routes.enableRapportassistent;
+  return (
+    !enableRapportassistent.startsWith('{{') &&
+    enableRapportassistent === 'true'
+  );
+}
+
+function enabledRoutes() {
+  return [
+    isReportsRouteEnabled(),
+    isErrorsRouteEnabled(),
+    isJobsRouteEnabled(),
+    isRapportassistentRouteEnabled(),
+  ].filter(Boolean);
+}
+
+export function areMultipleRoutesEnabled() {
+  return enabledRoutes().length > 1;
+}
+
 export function isEnglishAccountsModelEnabled() {
   const useEnglishAccountsModel = ENV.useEnglishAccountsModel;
   return (

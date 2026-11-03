@@ -3,6 +3,7 @@ import { service } from '@ember/service';
 import {
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
+  isRapportassistentRouteEnabled,
   isReportsRouteEnabled,
 } from '../utils/feature';
 
@@ -16,8 +17,10 @@ export default class Index extends Route {
       return 'errors';
     } else if (isJobsRouteEnabled()) {
       return 'jobs';
-    } else {
+    } else if (isRapportassistentRouteEnabled()) {
       return 'rapportassistent';
+    } else {
+      throw new Error('At least one dashboard route needs to be enabled');
     }
   }
 
