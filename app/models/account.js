@@ -11,8 +11,6 @@ class EnglishAccountModel extends Model {
   @attr identifier;
   @attr provider;
   @belongsTo('user', { async: false, inverse: 'accounts' }) user;
-  // The chat resources use the Dutch "gebruiker" resource name.
-  @belongsTo('gebruiker', { async: true, inverse: 'accounts' }) gebruiker;
 }
 
 const AccountModel = isEnglishAccountsModelEnabled()

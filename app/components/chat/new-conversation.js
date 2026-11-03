@@ -7,17 +7,12 @@ export default class ChatNewConversation extends Component {
   @service router;
   @service currentSession;
 
-  get creator() {
-    return this.currentSession.account?.gebruiker;
-  }
-
   create = task(async () => {
     const now = new Date();
-    const creator = await this.creator;
     const conversation = this.store.createRecord('chat-conversation', {
       created: now,
       lastActivity: now,
-      creator,
+      creator: this.currentSession.user,
     });
     await conversation.save();
     await this.router.transitionTo(

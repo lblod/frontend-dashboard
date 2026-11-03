@@ -47,7 +47,7 @@ export default class CurrentSessionService extends Service {
       const accountPromises = isEnglishAccountsModelEnabled()
         ? [
             this.store.findRecord('account', accountId, {
-              include: 'user,gebruiker',
+              include: 'user',
             }),
             // We need to do an extra API call here because ACM/IDM users don't seem to have a "bestuurseenheden" relationship in the DB.
             // By fetching the record directly we bypass that issue
