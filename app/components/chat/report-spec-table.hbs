@@ -9,33 +9,43 @@
       <th scope="col">{{t "dashboard.chat.report-spec-title"}}</th>
       <th scope="col">{{t "dashboard.chat.report-spec-description"}}</th>
       <th scope="col">{{t "dashboard.chat.report-spec-created"}}</th>
-      <th scope="col">{{t "dashboard.chat.go-to-conversation"}}</th>
-      <th scope="col">{{t "dashboard.chat.download"}}</th>
+      <th scope="col">{{t "dashboard.chat.action"}}</th>
     </c.header>
     <c.body as |spec|>
       <td>{{spec.title}}</td>
       <td>{{spec.description}}</td>
       <td>{{format-datetime spec.created}}</td>
       <td>
-        {{#if spec.conversation}}
-          <AuLink
-            @route="report-assistant.conversation"
-            @query={{hash conversation=spec.conversation.id}}
+        <div class="chat-table__actions">
+          {{#if spec.conversation}}
+            <AuLink
+              @route="report-assistant.conversation"
+              @query={{hash conversation=spec.conversation.id}}
+              @icon="message"
+            >
+              {{t "dashboard.chat.go-to-conversation"}}
+            </AuLink>
+          {{/if}}
+          {{#if spec.file}}
+            <a
+              href={{this.downloadHref spec.file}}
+              class="au-c-link"
+              download={{spec.file.filename}}
+              title={{t "dashboard.chat.attachment-turtle"}}
+            >
+              <AuIcon @icon="download" @alignment="left" />
+              {{t "dashboard.chat.download-report-spec"}}
+            </a>
+          {{/if}}
+          <AuButton
+            @skin="link"
+            @icon="redo"
+            @disabled={{this.run.isRunning}}
+            {{on "click" (perform this.run spec)}}
           >
-            {{t "dashboard.chat.open-conversation"}}
-          </AuLink>
-        {{/if}}
-      </td>
-      <td>
-        {{#if spec.file}}
-          <a
-            href={{this.downloadHref spec.file}}
-            class="au-c-link"
-            download={{spec.file.filename}}
-          >
-            {{t "dashboard.chat.download"}}
-          </a>
-        {{/if}}
+            {{t "dashboard.chat.run-report-spec"}}
+          </AuButton>
+        </div>
       </td>
     </c.body>
   </table.content>

@@ -1,4 +1,5 @@
 <AuModalContainer />
+<AuToaster />
 
 <AuApp>
   <AuMainHeader
@@ -43,6 +44,14 @@
             <div class="au-c-sidebar__content">
               <nav>
                 <ul class="au-c-list-navigation">
+                  {{#if (this.isReportsRouteEnabled)}}
+                    <li class="au-c-list-navigation__item">
+                      <AuNavigationLink @route="reports">
+                        <AuIcon @icon="documents" @alignment="left" />
+                        {{t "dashboard.nav.reports"}}
+                      </AuNavigationLink>
+                    </li>
+                  {{/if}}
                   {{#if (this.isReportAssistantRouteEnabled)}}
                     <li class="au-c-list-navigation__item">
                       <AuNavigationLink @route="report-assistant">
@@ -52,12 +61,6 @@
                     </li>
                   {{/if}}
                   <li class="au-c-list-navigation__item">
-                    {{#if (this.isReportsRouteEnabled)}}
-                      <AuNavigationLink @route="reports">
-                        <AuIcon @icon="documents" @alignment="left" />
-                        {{t "dashboard.nav.reports"}}
-                      </AuNavigationLink>
-                    {{/if}}
                     {{#if (this.isErrorsRouteEnabled)}}
                       <AuNavigationLink @route="errors">
                         <AuIcon @icon="alert-triangle" @alignment="left" />

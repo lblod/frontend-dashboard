@@ -72,6 +72,14 @@
   padding: $au-unit-tiny $au-unit-small;
 }
 
+/* The actions of one spec in one cell; they wrap when the column is narrow. */
+.chat-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $au-unit-tiny $au-unit-small;
+}
+
 .chat-table__delete {
   display: inline-flex;
   flex-shrink: 0;

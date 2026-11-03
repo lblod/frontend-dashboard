@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default class ReportSpecModel extends Model {
   @attr title;
@@ -7,4 +7,5 @@ export default class ReportSpecModel extends Model {
 
   @belongsTo('file', { async: false, inverse: null }) file;
   @belongsTo('chat-conversation', { async: false, inverse: null }) conversation;
+  @hasMany('report', { async: true, inverse: 'reportSpec' }) reports;
 }
