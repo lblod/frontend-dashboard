@@ -1,0 +1,71 @@
+<AuDataTable
+  @content={{@conversations}}
+  @noDataMessage={{t "dashboard.chat.no-conversations"}}
+  @hidePagination={{true}}
+  as |table|
+>
+  <table.content as |c|>
+    <c.header>
+      <th scope="col">{{t "dashboard.chat.title"}}</th>
+      <th scope="col">{{t "dashboard.chat.last-activity"}}</th>
+      <th scope="col">{{t "dashboard.chat.messages"}}</th>
+      <th scope="col">{{t "dashboard.chat.open"}}</th>
+    </c.header>
+    <c.body as |conversation|>
+      <td>
+        <div class="chat-table__title">
+          <span class="chat-table__title-text">
+            {{if
+              conversation.title
+              conversation.title
+              (t "dashboard.chat.new-conversation")
+            }}
+          </span>
+          <button
+            type="button"
+            class="chat-table__delete"
+            title={{t "dashboard.chat.delete-conversation"}}
+            aria-label={{t "dashboard.chat.delete-conversation"}}
+            {{on "click" (fn this.delete conversation)}}
+          >
+            <AuIcon @icon="trash" @ariaHidden="true" />
+          </button>
+        </div>
+      </td>
+      <td>{{format-datetime conversation.lastActivity}}</td>
+      <td>{{conversation.messages.length}}</td>
+      <td>
+        <AuLink
+          @route="report-assistant.conversation"
+          @query={{hash conversation=conversation.id}}
+        >
+          {{t "dashboard.chat.open"}}
+        </AuLink>
+      </td>
+    </c.body>
+  </table.content>
+</AuDataTable>
+
+{{#if @conversations.meta.pagination.last.number}}
+  <div class="chat-table__paging">
+    {{#if @conversations.meta.pagination.prev}}
+      <AuButton
+        @skin="link"
+        @icon="nav-left"
+        {{on "click" (fn this.showPage @conversations.meta.pagination.prev)}}
+      >
+        {{t "dashboard.chat.newer"}}
+      </AuButton>
+    {{/if}}
+    {{#if @conversations.meta.pagination.next}}
+      <AuButton
+        @skin="link"
+        @icon="nav-right"
+        @iconAlignment="right"
+        {{on "click" (fn this.showPage @conversations.meta.pagination.next)}}
+      >
+        {{t "dashboard.chat.older"}}
+      </AuButton>
+    {{/if}}
+  </div>
+{{/if}}

@@ -1,0 +1,66 @@
+<AuDataTable
+  @content={{@reportSpecs}}
+  @noDataMessage={{t "dashboard.chat.no-report-specs"}}
+  @hidePagination={{true}}
+  as |table|
+>
+  <table.content as |c|>
+    <c.header>
+      <th scope="col">{{t "dashboard.chat.report-spec-title"}}</th>
+      <th scope="col">{{t "dashboard.chat.report-spec-description"}}</th>
+      <th scope="col">{{t "dashboard.chat.report-spec-created"}}</th>
+      <th scope="col">{{t "dashboard.chat.go-to-conversation"}}</th>
+      <th scope="col">{{t "dashboard.chat.download"}}</th>
+    </c.header>
+    <c.body as |spec|>
+      <td>{{spec.title}}</td>
+      <td>{{spec.description}}</td>
+      <td>{{format-datetime spec.created}}</td>
+      <td>
+        {{#if spec.conversation}}
+          <AuLink
+            @route="report-assistant.conversation"
+            @query={{hash conversation=spec.conversation.id}}
+          >
+            {{t "dashboard.chat.open-conversation"}}
+          </AuLink>
+        {{/if}}
+      </td>
+      <td>
+        {{#if spec.file}}
+          <a
+            href={{this.downloadHref spec.file}}
+            class="au-c-link"
+            download={{spec.file.filename}}
+          >
+            {{t "dashboard.chat.download"}}
+          </a>
+        {{/if}}
+      </td>
+    </c.body>
+  </table.content>
+</AuDataTable>
+
+{{#if @reportSpecs.meta.pagination.last.number}}
+  <div class="chat-table__paging">
+    {{#if @reportSpecs.meta.pagination.prev}}
+      <AuButton
+        @skin="link"
+        @icon="nav-left"
+        {{on "click" (fn this.showPage @reportSpecs.meta.pagination.prev)}}
+      >
+        {{t "dashboard.chat.newer"}}
+      </AuButton>
+    {{/if}}
+    {{#if @reportSpecs.meta.pagination.next}}
+      <AuButton
+        @skin="link"
+        @icon="nav-right"
+        @iconAlignment="right"
+        {{on "click" (fn this.showPage @reportSpecs.meta.pagination.next)}}
+      >
+        {{t "dashboard.chat.older"}}
+      </AuButton>
+    {{/if}}
+  </div>
+{{/if}}

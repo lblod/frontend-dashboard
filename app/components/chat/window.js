@@ -20,9 +20,11 @@ export default class ChatWindow extends Component {
   }
 
   get messages() {
-    return this.args.conversation.messages
-      .slice()
-      .sort((a, b) => a.created - b.created);
+    const messages = [];
+    this.args.conversation.messages.forEach((message) =>
+      messages.push(message),
+    );
+    return messages.sort((a, b) => a.created - b.created);
   }
 
   get last() {

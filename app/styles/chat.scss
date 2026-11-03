@@ -1,21 +1,19 @@
 /* ==================================
    # Chat
    The chat sits in the dashboard content area, next to the dashboard
-   navigation. It fills the height under the main header and keeps its own
-   conversation list on the left.
+   navigation. It fills the height under the main header. Tabs switch
+   between the conversation, the past conversations and the report specs.
    ================================== */
 
 .chat-layout {
   display: flex;
+  flex-direction: column;
   height: calc(100vh - 4.2rem);
   min-height: 0;
 }
 
-.chat-layout__sidebar {
-  flex: 0 0 20rem;
-  max-width: 20rem;
-  min-width: 0;
-  height: 100%;
+.chat-tabs {
+  flex-shrink: 0;
 }
 
 .chat-layout__content {
@@ -23,34 +21,59 @@
   flex: 1;
   flex-direction: column;
   min-width: 0;
-  height: 100%;
+  min-height: 0;
 }
 
-/* The conversations are listed as navigation: title on top, date + time in
-   subscript. Titles are truncated when they do not fit. */
-.chat-sidebar__list {
-  display: block;
-}
-
-/* The trash bin of a conversation, on the right of its row. The link gets
-   extra room so a truncated title does not run under the button. */
-.chat-sidebar__item {
-  position: relative;
-}
-
-.chat-sidebar__link {
+/* An overview tab: a table with its own heading and paging. */
+.chat-overview {
+  display: flex;
+  flex: 1;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1rem;
-  padding-right: $au-unit;
+  min-height: 0;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
-.chat-sidebar__delete {
-  position: absolute;
-  top: 50%;
-  right: $au-unit-tiny;
-  transform: translateY(-50%);
+.chat-overview__toolbar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* The data table normally fills the whole page. Here it sits in a scrolling
+   overview, above the paging buttons. */
+.chat-overview .au-c-data-table {
+  height: auto;
+  overflow: visible;
+}
+
+.chat-table__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.chat-table__title-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-table__paging {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  padding: $au-unit-tiny $au-unit-small;
+}
+
+.chat-table__delete {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: $au-unit * 1.2;
@@ -76,30 +99,6 @@
   }
 }
 
-.chat-sidebar__title {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.chat-sidebar__meta {
-  font-size: var(--au-tiny);
-  color: var(--au-gray-600);
-  text-decoration: none;
-}
-
-.chat-sidebar__paging {
-  display: flex;
-  justify-content: space-between;
-  padding: $au-unit-tiny $au-unit-small;
-}
-
-.chat-sidebar__empty {
-  margin: 0;
-  padding: $au-unit-tiny * 1.5 $au-unit-small;
-}
-
 /* Bar above the chat: the conversation title, truncated, and a button to
    start a new conversation. */
 .chat-toolbar {
@@ -120,7 +119,7 @@
   white-space: nowrap;
 }
 
-/* The conversations overview: a big button to start a conversation. */
+/* The new-conversation screen in the first tab. */
 .chat-start {
   display: flex;
   flex: 1;

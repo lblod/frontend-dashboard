@@ -15,12 +15,8 @@ export default class ChatNewConversation extends Component {
       creator: this.currentSession.user,
     });
     await conversation.save();
-    await this.router.transitionTo(
-      'report-assistant.conversation',
-      conversation.id,
-    );
-    // The sidebar shows the list the report-assistant route loaded; load it
-    // again so the new conversation is in it.
-    this.router.refresh('report-assistant');
+    await this.router.transitionTo('report-assistant.conversation', {
+      queryParams: { conversation: conversation.id },
+    });
   });
 }

@@ -13,7 +13,7 @@ export default class ChatConversationModel extends Model {
   })
   creator;
   @hasMany('chat-message', {
-    async: false,
+    async: true,
     inverse: 'conversation',
     polymorphic: true,
   })

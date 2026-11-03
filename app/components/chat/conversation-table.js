@@ -2,12 +2,11 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
 
-export default class ChatSidebar extends Component {
+export default class ChatConversationTable extends Component {
   @service router;
   @service intl;
+  @service reportAssistant;
 
-  // Not a destroyRecord: the service also removes the messages, the attachments
-  // and the reports.
   @action
   async delete(conversation) {
     if (!window.confirm(this.intl.t('dashboard.chat.delete-confirm'))) return;
@@ -18,16 +17,12 @@ export default class ChatSidebar extends Component {
       window.alert(this.intl.t('dashboard.chat.delete-failed'));
       return;
     }
-    // Leave the open conversation before its route 404s.
-    if (
-      this.router.isActive('report-assistant.conversation', conversation.id)
-    ) {
-      await this.router.transitionTo('report-assistant');
+    if (this.reportAssistant.conversation?.id === conversation.id) {
+      this.reportAssistant.conversation = null;
     }
-    this.router.refresh('report-assistant');
+    await this.router.refresh('report-assistant.conversations');
   }
 
-  // mu-cl-resources leaves page[number] out of the link to the first page.
   @action
   showPage(link) {
     this.router.transitionTo({ queryParams: { page: link.number || 0 } });

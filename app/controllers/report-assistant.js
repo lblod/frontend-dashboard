@@ -1,11 +1,14 @@
 import Controller from '@ember/controller';
+import { service } from '@ember/service';
 
 export default class ReportAssistantController extends Controller {
-  queryParams = ['page'];
-  // No default on purpose: a `refreshModel` query param with a default
-  // makes every RouterService transition into this route abort with
-  // `TransitionAborted` (emberjs/ember.js#20512). Without a default the
-  // model hook gets `page === undefined`, and the adapter leaves
-  // `page[number]` out of the request: the first page, same as the API's
-  // own first-page link.
+  @service reportAssistant;
+
+  get conversation() {
+    return this.reportAssistant.conversation;
+  }
+
+  get conversationQuery() {
+    return this.conversation ? { conversation: this.conversation.id } : {};
+  }
 }

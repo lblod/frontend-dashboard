@@ -7,10 +7,10 @@ export default class ChatMessageModel extends Model {
   @attr maker;
 
   @belongsTo('chat-conversation', {
-    async: false,
+    async: true,
     inverse: 'messages',
     as: 'chat-message',
   })
   conversation;
-  @hasMany('file', { async: false, inverse: null }) attachments;
+  @hasMany('file', { async: true, inverse: null }) attachments;
 }

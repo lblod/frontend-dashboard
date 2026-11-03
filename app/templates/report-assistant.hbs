@@ -1,8 +1,26 @@
 <div class="chat-layout">
-  <div class="chat-layout__sidebar">
-    <Chat::Sidebar @conversations={{@model}} />
+  <div class="chat-tabs">
+    <AuTabs as |Tab|>
+      <Tab>
+        <AuLink
+          @route="report-assistant.conversation"
+          @query={{this.conversationQuery}}
+        >
+          {{t "dashboard.chat.title"}}
+        </AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="report-assistant.conversations">
+          {{t "dashboard.chat.conversation-history"}}
+        </AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="report-assistant.specs">
+          {{t "dashboard.chat.report-specs"}}
+        </AuLink>
+      </Tab>
+    </AuTabs>
   </div>
-
   <div class="chat-layout__content">
     {{outlet}}
   </div>

@@ -8,8 +8,15 @@ const ASSISTANT_URI = 'http://data.lblod.info/id/chat-agents/report-assistant';
 
 export default class ReportAssistantConversationRoute extends Route {
   @service store;
+  @service reportAssistant;
 
-  async model({ id }) {
+  queryParams = {
+    conversation: { refreshModel: true },
+  };
+
+  async model({ conversation: id }) {
+    if (!id) return { conversation: null, assistant: null };
+
     const [conversation, agents] = await Promise.all([
       this.store.findRecord('chat-conversation', id, {
         include: 'messages.attachments',
@@ -18,5 +25,9 @@ export default class ReportAssistantConversationRoute extends Route {
       this.store.query('chat-agent', { filter: { ':uri:': ASSISTANT_URI } }),
     ]);
     return { conversation, assistant: agents[0] };
+  }
+
+  afterModel(model) {
+    this.reportAssistant.conversation = model.conversation;
   }
 }

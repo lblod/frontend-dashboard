@@ -1,0 +1,9 @@
+<div class="chat-overview">
+  <div class="chat-overview__toolbar">
+    <AuHeading @level="1" @skin="3">
+      {{t "dashboard.chat.conversations"}}
+    </AuHeading>
+    <Chat::NewConversation />
+  </div>
+  <Chat::ConversationTable @conversations={{@model}} />
+</div>
