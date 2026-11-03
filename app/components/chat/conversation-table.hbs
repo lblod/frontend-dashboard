@@ -9,27 +9,16 @@
       <th scope="col">{{t "dashboard.chat.title"}}</th>
       <th scope="col">{{t "dashboard.chat.last-activity"}}</th>
       <th scope="col">{{t "dashboard.chat.messages"}}</th>
-      <th scope="col">{{t "dashboard.chat.open"}}</th>
+      <th scope="col">{{t "dashboard.chat.action"}}</th>
     </c.header>
     <c.body as |conversation|>
       <td>
-        <div class="chat-table__title">
-          <span class="chat-table__title-text">
-            {{if
-              conversation.title
-              conversation.title
-              (t "dashboard.chat.new-conversation")
-            }}
-          </span>
-          <button
-            type="button"
-            class="chat-table__delete"
-            title={{t "dashboard.chat.delete-conversation"}}
-            aria-label={{t "dashboard.chat.delete-conversation"}}
-            {{on "click" (fn this.delete conversation)}}
-          >
-            <AuIcon @icon="trash" @ariaHidden="true" />
-          </button>
+        <div class="chat-table__title-text">
+          {{if
+            conversation.title
+            conversation.title
+            (t "dashboard.chat.new-conversation")
+          }}
         </div>
       </td>
       <td>{{format-datetime conversation.lastActivity}}</td>
@@ -41,6 +30,15 @@
         >
           {{t "dashboard.chat.open"}}
         </AuLink>
+        <button
+          type="button"
+          class="chat-table__delete"
+          title={{t "dashboard.chat.delete-conversation"}}
+          aria-label={{t "dashboard.chat.delete-conversation"}}
+          {{on "click" (fn this.delete conversation)}}
+        >
+          <AuIcon @icon="trash" @ariaHidden="true" />
+        </button>
       </td>
     </c.body>
   </table.content>

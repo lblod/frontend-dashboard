@@ -57,13 +57,7 @@
   overflow: visible;
 }
 
-.chat-table__title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
+/* Conversation and spec titles in the tables: truncated when long. */
 .chat-table__title-text {
   min-width: 0;
   overflow: hidden;
