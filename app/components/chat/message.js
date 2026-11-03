@@ -5,7 +5,7 @@ import { htmlSafe } from '@ember/template';
 import { renderMarkdown } from 'frontend-dashboard/utils/markdown';
 
 export default class ChatMessage extends Component {
-  @tracked showBijlagen = false;
+  @tracked showAttachments = false;
 
   // renderMarkdown sanitizes; htmlSafe only stops Ember from escaping it.
   get html() {
@@ -13,12 +13,12 @@ export default class ChatMessage extends Component {
   }
 
   @action
-  openBijlagen() {
-    this.showBijlagen = true;
+  openAttachments() {
+    this.showAttachments = true;
   }
 
   @action
   showText() {
-    this.showBijlagen = false;
+    this.showAttachments = false;
   }
 }

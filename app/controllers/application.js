@@ -6,7 +6,7 @@ import {
   isEnglishAccountsModelEnabled,
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
-  isRapportassistentRouteEnabled,
+  isReportAssistantRouteEnabled,
   isReportsRouteEnabled,
 } from '../utils/feature';
 
@@ -18,7 +18,7 @@ export default class ApplicationController extends Controller {
   isReportsRouteEnabled = isReportsRouteEnabled;
   isErrorsRouteEnabled = isErrorsRouteEnabled;
   isJobsRouteEnabled = isJobsRouteEnabled;
-  isRapportassistentRouteEnabled = isRapportassistentRouteEnabled;
+  isReportAssistantRouteEnabled = isReportAssistantRouteEnabled;
 
   get userInfo() {
     if (!this.currentSession.isLoaded) {

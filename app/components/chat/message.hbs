@@ -5,25 +5,25 @@
 >
   {{#if @isAssistant}}
     {{#if @message.attachments.length}}
-      <div class="chat-bijlagen-tabs">
+      <div class="chat-attachment-tabs">
         <button
           type="button"
-          class="chat-bijlagen-tab
-            {{unless this.showBijlagen 'chat-bijlagen-tab--active'}}"
+          class="chat-attachment-tab
+            {{unless this.showAttachments 'chat-attachment-tab--active'}}"
           {{on "click" this.showText}}
         >{{t "dashboard.chat.message"}}</button>
         <button
           type="button"
-          class="chat-bijlagen-tab
-            {{if this.showBijlagen 'chat-bijlagen-tab--active'}}"
-          {{on "click" this.openBijlagen}}
+          class="chat-attachment-tab
+            {{if this.showAttachments 'chat-attachment-tab--active'}}"
+          {{on "click" this.openAttachments}}
         >{{t
             "dashboard.chat.attachments-count"
             count=@message.attachments.length
           }}</button>
       </div>
     {{/if}}
-    {{#if this.showBijlagen}}
+    {{#if this.showAttachments}}
       {{#each @message.attachments as |document|}}
         <Chat::Attachment @document={{document}} />
       {{/each}}
@@ -39,7 +39,7 @@
             "dashboard.chat.attachments-info"
             count=@message.attachments.length
           }}
-          <AuButton @skin="link" {{on "click" this.openBijlagen}}>{{t
+          <AuButton @skin="link" {{on "click" this.openAttachments}}>{{t
               "dashboard.chat.attachments"
             }}</AuButton>
           {{t "dashboard.chat.attachments-info-after"}}

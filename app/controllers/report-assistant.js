@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 
-export default class RapportassistentController extends Controller {
+export default class ReportAssistantController extends Controller {
   queryParams = ['page'];
   // No default on purpose: a `refreshModel` query param with a default
   // makes every RouterService transition into this route abort with

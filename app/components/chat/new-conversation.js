@@ -16,11 +16,11 @@ export default class ChatNewConversation extends Component {
     });
     await conversation.save();
     await this.router.transitionTo(
-      'rapportassistent.conversation',
+      'report-assistant.conversation',
       conversation.id,
     );
-    // The sidebar shows the list the rapportassistent route loaded; load it
+    // The sidebar shows the list the report-assistant route loaded; load it
     // again so the new conversation is in it.
-    this.router.refresh('rapportassistent');
+    this.router.refresh('report-assistant');
   });
 }

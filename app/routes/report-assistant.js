@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class RapportassistentRoute extends Route {
+export default class ReportAssistantRoute extends Route {
   @service session;
   @service store;
 

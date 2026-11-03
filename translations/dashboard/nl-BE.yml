@@ -3,7 +3,7 @@ logout: "Afmelden"
 resetfilters: "Filters verwijderen"
 loading: "Aan het laden"
 nav:
-  rapportassistent: "Rapportassistent"
+  report-assistant: "Rapportassistent"
   reports: "Rapporten"
   errors: "Problemen"
   jobs: "Taken"

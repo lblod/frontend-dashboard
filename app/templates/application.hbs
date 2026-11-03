@@ -43,11 +43,11 @@
             <div class="au-c-sidebar__content">
               <nav>
                 <ul class="au-c-list-navigation">
-                  {{#if (this.isRapportassistentRouteEnabled)}}
+                  {{#if (this.isReportAssistantRouteEnabled)}}
                     <li class="au-c-list-navigation__item">
-                      <AuNavigationLink @route="rapportassistent">
+                      <AuNavigationLink @route="report-assistant">
                         <AuIcon @icon="message" @alignment="left" />
-                        {{t "dashboard.nav.rapportassistent"}}
+                        {{t "dashboard.nav.report-assistant"}}
                       </AuNavigationLink>
                     </li>
                   {{/if}}

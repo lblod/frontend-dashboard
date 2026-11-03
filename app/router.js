@@ -3,7 +3,7 @@ import config from 'frontend-dashboard/config/environment';
 import {
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
-  isRapportassistentRouteEnabled,
+  isReportAssistantRouteEnabled,
   isReportsRouteEnabled,
 } from './utils/feature';
 
@@ -40,8 +40,8 @@ Router.map(function () {
     });
   }
 
-  if (isRapportassistentRouteEnabled()) {
-    this.route('rapportassistent', function () {
+  if (isReportAssistantRouteEnabled()) {
+    this.route('report-assistant', function () {
       this.route('conversation', { path: '/:id' });
     });
   }

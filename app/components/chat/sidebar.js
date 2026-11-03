@@ -6,7 +6,7 @@ export default class ChatSidebar extends Component {
   @service router;
   @service intl;
 
-  // Not a destroyRecord: the service also removes the messages, the bijlagen
+  // Not a destroyRecord: the service also removes the messages, the attachments
   // and the reports.
   @action
   async delete(conversation) {
@@ -20,11 +20,11 @@ export default class ChatSidebar extends Component {
     }
     // Leave the open conversation before its route 404s.
     if (
-      this.router.isActive('rapportassistent.conversation', conversation.id)
+      this.router.isActive('report-assistant.conversation', conversation.id)
     ) {
-      await this.router.transitionTo('rapportassistent');
+      await this.router.transitionTo('report-assistant');
     }
-    this.router.refresh('rapportassistent');
+    this.router.refresh('report-assistant');
   }
 
   // mu-cl-resources leaves page[number] out of the link to the first page.

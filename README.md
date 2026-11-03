@@ -39,10 +39,10 @@ The report assistant is a chat page for the [natural-language-report-service](ht
 dashboard:
   #...
   environment:
-    EMBER_ENABLE_RAPPORTASSISTENT: "true"
+    EMBER_ENABLE_REPORT_ASSISTANT: "true"
 ```
 
-The backend needs the `chat-*` resources, a dispatcher rule that sends `/assistant/*` to the service, and the agent record `http://data.lblod.info/id/chat-agents/rapportassistent`. The `creator` of `chat-conversations` must target the resource the accounts point to: `user` with the English accounts model, `gebruiker` with the Dutch one.
+The backend needs the `chat-*` resources, a dispatcher rule that sends `/assistant/*` to the service, and the agent record `http://data.lblod.info/id/chat-agents/report-assistant`. The `creator` of `chat-conversations` must target the resource the accounts point to: `user` with the English accounts model, `gebruiker` with the Dutch one.
 
 #### Account data model
 

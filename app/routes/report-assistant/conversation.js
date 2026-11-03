@@ -4,9 +4,9 @@ import { service } from '@ember/service';
 // The agent that signs the answers: CHAT_ASSISTANT_URI in the service, seeded
 // by the portal's chat-assistant migration. The public graph holds other
 // prov:SoftwareAgents, so pick it by uri.
-const ASSISTANT_URI = 'http://data.lblod.info/id/chat-agents/rapportassistent';
+const ASSISTANT_URI = 'http://data.lblod.info/id/chat-agents/report-assistant';
 
-export default class RapportassistentConversationRoute extends Route {
+export default class ReportAssistantConversationRoute extends Route {
   @service store;
 
   async model({ id }) {
