@@ -40,7 +40,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chat-overview__description {
+  flex-shrink: 0;
+  max-width: 60rem;
+  margin: 0 0 1rem;
+  color: var(--au-gray-600);
 }
 
 /* The data table normally fills the whole page. Here it sits in a scrolling
@@ -99,16 +106,16 @@
   }
 }
 
-/* Bar above the chat: the conversation title, truncated, and a button to
-   start a new conversation. */
+/* Bar above the chat: heading and button, styled like chat-overview__toolbar
+   so the three tabs start the same way. */
 .chat-toolbar {
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid var(--au-gray-200);
+  margin-bottom: 0.5rem;
+  padding: 1rem 1rem 0;
 }
 
 .chat-toolbar__title {
@@ -117,6 +124,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Conversation title under the toolbar. Lines up with the heading above it
+   and the message area below it; the border separates it from the window,
+   like the composer's border-top does at the other end of the chat. */
+.chat-conversation__description {
+  margin: 0;
+  max-width: none;
+  padding: 0 1rem 0.75rem;
+  border-bottom: 1px solid var(--au-gray-200);
 }
 
 /* The new-conversation screen in the first tab. */

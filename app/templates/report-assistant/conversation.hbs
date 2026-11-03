@@ -1,14 +1,17 @@
 {{#if @model.conversation}}
   <div class="chat-toolbar">
-    <AuHeading @level="1" @skin="3" class="chat-toolbar__title">
-      {{if
-        @model.conversation.title
-        @model.conversation.title
-        (t "dashboard.chat.new-conversation")
-      }}
+    <AuHeading @level="1" @skin="4" class="chat-toolbar__title">
+      {{t "dashboard.chat.conversation-title"}}
     </AuHeading>
     <Chat::NewConversation />
   </div>
+  <p class="chat-overview__description chat-conversation__description">
+    {{if
+      @model.conversation.title
+      @model.conversation.title
+      (t "dashboard.chat.new-conversation")
+    }}
+  </p>
 
   {{! Ember keeps a component when only its arguments change. The key gives
       each conversation its own window, so its poll starts in the constructor. }}
