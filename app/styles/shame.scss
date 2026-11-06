@@ -7,7 +7,7 @@
   margin-right: 20px;
 }
 
-.au-c-toolbar_space-between{
+.au-c-toolbar_space-between {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -57,7 +57,7 @@
 
   select {
     background-color: var(--au-white);
-    border: .1rem solid var(--au-gray-300);
+    border: 0.1rem solid var(--au-gray-300);
     border-radius: $au-radius;
     padding: $au-unit-tiny;
   }
@@ -78,7 +78,7 @@
   }
 }
 
-.au-c-toolbar_space-between{
+.au-c-toolbar_space-between {
   display: flex;
   justify-content: space-between !important;
 }
@@ -92,5 +92,5 @@
   display: block; // AuButtons are inline-flex by default
   line-height: normal;
   height: auto; // override the fixed height of the button height
-  border: .1rem #c6cdd3 solid;
+  border: 0.1rem #c6cdd3 solid;
 }

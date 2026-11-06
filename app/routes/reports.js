@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { isReportAssistantRouteEnabled } from '../utils/feature';
 
 export default class ReportsRoute extends Route {
   @service session;
@@ -28,6 +29,10 @@ export default class ReportsRoute extends Route {
     // TODO: sending an empty filter param to backend returns []
     if (params.filter) {
       query['filter'] = params.filter;
+    }
+
+    if (isReportAssistantRouteEnabled()) {
+      query['include'] = 'creator';
     }
 
     return this.store.query('report', query);

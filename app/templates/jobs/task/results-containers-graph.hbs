@@ -2,13 +2,8 @@
   {{t "jobs.rcg.title"}}
 </AuHeading>
 
-{{#let (t "jobs.rcg.data.nodata")
-       (t "jobs.rcg.data.uri")
-  as | nodata uri |}}
-  <AuDataTable
-    @content={{this.model}}
-    @noDataMessage={{nodata}}
-    as |t|>
+{{#let (t "jobs.rcg.data.nodata") (t "jobs.rcg.data.uri") as |nodata uri|}}
+  <AuDataTable @content={{this.model}} @noDataMessage={{nodata}} as |t|>
     <t.content as |c|>
       <c.header>
         <th class="au-u-visible-small-up">{{uri}}</th>

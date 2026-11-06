@@ -1,0 +1,81 @@
+<AuDataTable
+  @content={{@conversations}}
+  @noDataMessage={{t "dashboard.report-assistant.no-conversations"}}
+  @page={{@page}}
+  @size={{@size}}
+  as |table|
+>
+  <table.content as |c|>
+    <c.header>
+      <th scope="col">{{t "dashboard.report-assistant.title"}}</th>
+      <th scope="col">{{t "dashboard.report-assistant.last-activity"}}</th>
+      <th scope="col">{{t "dashboard.report-assistant.messages"}}</th>
+      <th scope="col">{{t "dashboard.report-assistant.action"}}</th>
+    </c.header>
+    <c.body as |conversation|>
+      <td>
+        <div class="report-assistant-table__title-text">
+          {{if
+            conversation.title
+            conversation.title
+            (t "dashboard.report-assistant.new-conversation")
+          }}
+        </div>
+      </td>
+      <td>{{format-datetime conversation.lastActivity}}</td>
+      <td>{{conversation.messages.length}}</td>
+      <td>
+        <AuLink
+          @route="report-assistant.conversation.show"
+          @model={{conversation.id}}
+        >
+          {{t "dashboard.report-assistant.open"}}
+        </AuLink>
+        <AuButton
+          @skin="naked"
+          @alert={{true}}
+          @icon="trash"
+          @hideText={{true}}
+          title={{t "dashboard.report-assistant.delete-conversation"}}
+          {{on "click" (fn this.askDelete conversation)}}
+        >
+          {{t "dashboard.report-assistant.delete-conversation"}}
+        </AuButton>
+      </td>
+    </c.body>
+  </table.content>
+</AuDataTable>
+
+{{#if this.conversationToDelete}}
+  <AuModal
+    @modalOpen={{true}}
+    @closeModal={{this.cancelDelete}}
+    @title={{t "dashboard.report-assistant.delete-confirm"}}
+    as |Modal|
+  >
+    <Modal.Body>
+      <p>
+        {{if
+          this.conversationToDelete.title
+          this.conversationToDelete.title
+          (t "dashboard.report-assistant.new-conversation")
+        }}
+      </p>
+    </Modal.Body>
+    <Modal.Footer>
+      <AuButtonGroup>
+        <AuButton
+          @alert={{true}}
+          @loading={{this.delete.isRunning}}
+          @loadingMessage={{t "dashboard.loading"}}
+          {{on "click" (perform this.delete)}}
+        >
+          {{t "dashboard.report-assistant.delete"}}
+        </AuButton>
+        <AuButton @skin="secondary" {{on "click" this.cancelDelete}}>
+          {{t "dashboard.report-assistant.cancel"}}
+        </AuButton>
+      </AuButtonGroup>
+    </Modal.Footer>
+  </AuModal>
+{{/if}}

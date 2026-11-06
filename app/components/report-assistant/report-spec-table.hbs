@@ -1,0 +1,57 @@
+<AuDataTable
+  @content={{@reportSpecs}}
+  @noDataMessage={{t "dashboard.report-assistant.no-report-specs"}}
+  @page={{@page}}
+  @size={{@size}}
+  as |table|
+>
+  <table.content as |c|>
+    <c.header>
+      <th scope="col">{{t "dashboard.report-assistant.report-spec-title"}}</th>
+      <th scope="col">{{t
+          "dashboard.report-assistant.report-spec-description"
+        }}</th>
+      <th scope="col">{{t
+          "dashboard.report-assistant.report-spec-created"
+        }}</th>
+      <th scope="col">{{t "dashboard.report-assistant.action"}}</th>
+    </c.header>
+    <c.body as |spec|>
+      <td>{{spec.title}}</td>
+      <td>{{spec.description}}</td>
+      <td>{{format-datetime spec.created}}</td>
+      <td>
+        <div class="report-assistant-table__actions">
+          {{#if spec.conversation}}
+            <AuLink
+              @route="report-assistant.conversation.show"
+              @model={{spec.conversation.id}}
+              @icon="message"
+            >
+              {{t "dashboard.report-assistant.go-to-conversation"}}
+            </AuLink>
+          {{/if}}
+          {{#if spec.file}}
+            <a
+              href={{download-url spec.file.id spec.file.filename}}
+              class="au-c-link"
+              download={{spec.file.filename}}
+              title={{t "dashboard.report-assistant.attachment-turtle"}}
+            >
+              <AuIcon @icon="download" @alignment="left" />
+              {{t "dashboard.report-assistant.download-report-spec"}}
+            </a>
+          {{/if}}
+          <AuButton
+            @skin="link"
+            @icon="redo"
+            @disabled={{this.run.isRunning}}
+            {{on "click" (perform this.run spec)}}
+          >
+            {{t "dashboard.report-assistant.run-report-spec"}}
+          </AuButton>
+        </div>
+      </td>
+    </c.body>
+  </table.content>
+</AuDataTable>

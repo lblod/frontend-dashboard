@@ -15,11 +15,19 @@ export function isJobsRouteEnabled() {
   return disableJobs.startsWith('{{') || disableJobs !== 'true';
 }
 
+export function isReportAssistantRouteEnabled() {
+  const enableReportAssistant = ENV.routes.enableReportAssistant;
+  return (
+    !enableReportAssistant.startsWith('{{') && enableReportAssistant === 'true'
+  );
+}
+
 function enabledRoutes() {
   return [
     isReportsRouteEnabled(),
     isErrorsRouteEnabled(),
     isJobsRouteEnabled(),
+    isReportAssistantRouteEnabled(),
   ].filter(Boolean);
 }
 

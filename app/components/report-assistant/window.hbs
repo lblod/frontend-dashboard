@@ -1,0 +1,48 @@
+<div class="report-assistant-window">
+  <div
+    class="report-assistant-window__messages"
+    {{scroll-bottom @conversation.id @messages.length}}
+  >
+    {{#unless @messages.length}}
+      <p class="au-u-muted">{{@assistant.description}}</p>
+    {{/unless}}
+
+    {{#each @messages key="id" as |message|}}
+      <ReportAssistant::Message
+        @message={{message}}
+        @isAssistant={{@isAssistant message}}
+      />
+    {{/each}}
+
+    {{#if @waitingForAnswer}}
+      <AuLoader @inline={{true}}>{{t
+          "dashboard.report-assistant.thinking"
+          name=@assistant.name
+        }}</AuLoader>
+    {{/if}}
+
+    {{#if @answerTimedOut}}
+      <AuAlert
+        @skin="warning"
+        @title={{t "dashboard.report-assistant.no-answer"}}
+      >
+        {{t "dashboard.report-assistant.no-answer-info"}}
+        <AuButton @skin="link" {{on "click" @refresh}}>{{t
+            "dashboard.report-assistant.refresh"
+          }}</AuButton>
+      </AuAlert>
+    {{/if}}
+
+    {{#if @sendError}}
+      <AuAlert
+        @skin="error"
+        @title={{t "dashboard.report-assistant.error"}}
+      >{{@sendError.message}}</AuAlert>
+    {{/if}}
+  </div>
+
+  <ReportAssistant::Composer
+    @onSend={{perform @send @conversation}}
+    @disabled={{@waitingForAnswer}}
+  />
+</div>

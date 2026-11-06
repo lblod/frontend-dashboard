@@ -1,12 +1,12 @@
 {{#if this.errorMessage}}
-    <AuAlert @size="tiny" @skin="error">
-      <p>{{this.errorMessage}}</p>
-    </AuAlert>
+  <AuAlert @size="tiny" @skin="error">
+    <p>{{this.errorMessage}}</p>
+  </AuAlert>
 {{/if}}
-<form  {{on "submit" this.login}}>
+<form {{on "submit" this.login}}>
   <div>
     <AuLabel for="nickname">
-      {{t 'login.username'}}
+      {{t "login.username"}}
     </AuLabel>
     <AuInput
       type="text"
@@ -17,7 +17,7 @@
   </div>
   <div>
     <AuLabel for="password">
-      {{t 'login.password'}}
+      {{t "login.password"}}
     </AuLabel>
     <AuInput
       type="password"
@@ -26,12 +26,10 @@
       {{on "input" this.handlePasswordInput}}
     />
   </div>
-  <br>
+  <br />
   <div>
-    <AuButton
-      type="submit">
-      {{t 'login.submit'}}
+    <AuButton type="submit">
+      {{t "login.submit"}}
     </AuButton>
   </div>
 </form>
-

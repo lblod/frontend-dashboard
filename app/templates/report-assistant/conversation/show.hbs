@@ -1,0 +1,27 @@
+<div class="report-assistant-toolbar">
+  <AuHeading @level="1" @skin="4" class="report-assistant-toolbar__title">
+    {{t "dashboard.report-assistant.conversation-title"}}
+  </AuHeading>
+  <ReportAssistant::NewConversation />
+</div>
+<p
+  class="report-assistant-overview__description report-assistant-conversation__description"
+>
+  {{if
+    @model.conversation.title
+    @model.conversation.title
+    (t "dashboard.report-assistant.new-conversation")
+  }}
+</p>
+
+<ReportAssistant::Window
+  @conversation={{@model.conversation}}
+  @assistant={{@model.assistant}}
+  @messages={{this.messages}}
+  @isAssistant={{this.isAssistant}}
+  @waitingForAnswer={{this.waitingForAnswer}}
+  @answerTimedOut={{this.answerTimedOut}}
+  @send={{this.send}}
+  @sendError={{this.sendError}}
+  @refresh={{this.refresh}}
+/>

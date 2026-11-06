@@ -1,0 +1,24 @@
+<div class="report-assistant-layout">
+  <div class="report-assistant-tabs">
+    <AuTabs as |Tab|>
+      <Tab>
+        <AuLink @route="report-assistant.conversation">
+          {{t "dashboard.report-assistant.title"}}
+        </AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="report-assistant.conversations">
+          {{t "dashboard.report-assistant.conversation-history"}}
+        </AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="report-assistant.specs">
+          {{t "dashboard.report-assistant.report-specs"}}
+        </AuLink>
+      </Tab>
+    </AuTabs>
+  </div>
+  <div class="report-assistant-layout__content">
+    {{outlet}}
+  </div>
+</div>

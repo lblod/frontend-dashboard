@@ -3,6 +3,7 @@ import config from 'frontend-dashboard/config/environment';
 import {
   isErrorsRouteEnabled,
   isJobsRouteEnabled,
+  isReportAssistantRouteEnabled,
   isReportsRouteEnabled,
 } from './utils/feature';
 
@@ -36,6 +37,17 @@ Router.map(function () {
         this.route('results-containers-graph');
         this.route('input-containers-harvesting-collections');
       });
+    });
+  }
+
+  if (isReportAssistantRouteEnabled()) {
+    this.route('report-assistant', function () {
+      this.route('conversation', function () {
+        this.route('new');
+        this.route('show', { path: '/:id' });
+      });
+      this.route('conversations');
+      this.route('specs');
     });
   }
 
