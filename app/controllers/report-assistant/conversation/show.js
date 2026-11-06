@@ -11,6 +11,7 @@ const ANSWER_CEILING_MS = 10 * 60 * 1000;
 
 export default class ReportAssistantConversationShowController extends Controller {
   @service store;
+  @service intl;
 
   @tracked now = Date.now();
 
@@ -93,7 +94,11 @@ export default class ReportAssistantConversationShowController extends Controlle
       },
     );
     if (!res.ok)
-      throw new Error(`De vraag kon niet verstuurd worden (${res.status}).`);
+      throw new Error(
+        this.intl.t('dashboard.report-assistant.send-failed', {
+          status: res.status,
+        }),
+      );
     // The 202 answers with the message id, but fetching that message alone
     // does not link it into the conversation: the resource sends relationships
     // as links, without data. Reload the conversation instead, so the question
@@ -103,7 +108,7 @@ export default class ReportAssistantConversationShowController extends Controlle
       await this.reload();
     } catch {
       throw new Error(
-        'De vraag is verstuurd, maar het gesprek kon niet geladen worden. Vernieuw de pagina.',
+        this.intl.t('dashboard.report-assistant.send-reload-failed'),
       );
     }
     this.poll.perform();

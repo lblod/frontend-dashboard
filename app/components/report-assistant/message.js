@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { htmlSafe } from '@ember/template';
 import { renderMarkdown } from 'frontend-dashboard/utils/markdown';
 
-export default class ChatMessage extends Component {
+export default class ReportAssistantMessage extends Component {
   @tracked showAttachments = false;
 
   // renderMarkdown sanitizes; htmlSafe only stops Ember from escaping it.

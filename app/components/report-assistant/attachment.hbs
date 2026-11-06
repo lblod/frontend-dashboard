@@ -1,0 +1,13 @@
+<div class="report-assistant-attachment au-u-margin-top-tiny">
+  <div class="report-assistant-attachment__info">
+    <strong>{{@document.filename}}</strong>
+    <span class="report-assistant-attachment__what">{{this.what}}</span>
+  </div>
+  <a
+    href={{download-url @document.id @document.filename}}
+    class="au-c-link"
+    download={{@document.filename}}
+  >
+    {{t "dashboard.report-assistant.download"}}
+  </a>
+</div>

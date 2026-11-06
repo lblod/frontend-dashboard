@@ -4,7 +4,7 @@ import Modifier from 'ember-modifier';
 // conversation is opened, and when the number of messages changes. The same
 // conversation and count (e.g. a poll reload) leaves the scroll position
 // alone, so reading history is not interrupted.
-export default class ChatScrollBottom extends Modifier {
+export default class ReportAssistantScrollBottom extends Modifier {
   lastKey = null;
 
   modify(element, positional) {

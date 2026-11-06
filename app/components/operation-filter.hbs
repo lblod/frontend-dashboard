@@ -1,7 +1,5 @@
-<AuFormRow
-  @alignment="default"
-  ...attributes>
-  {{#let (unique-id) as | operationId |}}
+<AuFormRow @alignment="default" ...attributes>
+  {{#let (unique-id) as |operationId|}}
     <AuLabel for={{operationId}}>
       {{t "jobs.overview.data.operation"}}
     </AuLabel>
@@ -9,6 +7,7 @@
       @width="block"
       id={{operationId}}
       value={{@value}}
-      {{on 'input' this.onChange}}/>
+      {{on "input" this.onChange}}
+    />
   {{/let}}
 </AuFormRow>

@@ -1,14 +1,14 @@
-<div class="chat-window">
+<div class="report-assistant-window">
   <div
-    class="chat-window__messages"
-    {{chat-scroll-bottom @conversation.id @messages.length}}
+    class="report-assistant-window__messages"
+    {{scroll-bottom @conversation.id @messages.length}}
   >
     {{#unless @messages.length}}
       <p class="au-u-muted">{{@assistant.description}}</p>
     {{/unless}}
 
     {{#each @messages key="id" as |message|}}
-      <Chat::Message
+      <ReportAssistant::Message
         @message={{message}}
         @isAssistant={{@isAssistant message}}
       />
@@ -16,16 +16,19 @@
 
     {{#if @waitingForAnswer}}
       <AuLoader @inline={{true}}>{{t
-          "dashboard.chat.thinking"
+          "dashboard.report-assistant.thinking"
           name=@assistant.name
         }}</AuLoader>
     {{/if}}
 
     {{#if @answerTimedOut}}
-      <AuAlert @skin="warning" @title={{t "dashboard.chat.no-answer"}}>
-        {{t "dashboard.chat.no-answer-info"}}
+      <AuAlert
+        @skin="warning"
+        @title={{t "dashboard.report-assistant.no-answer"}}
+      >
+        {{t "dashboard.report-assistant.no-answer-info"}}
         <AuButton @skin="link" {{on "click" @refresh}}>{{t
-            "dashboard.chat.refresh"
+            "dashboard.report-assistant.refresh"
           }}</AuButton>
       </AuAlert>
     {{/if}}
@@ -33,12 +36,12 @@
     {{#if @sendError}}
       <AuAlert
         @skin="error"
-        @title={{t "dashboard.chat.error"}}
+        @title={{t "dashboard.report-assistant.error"}}
       >{{@sendError.message}}</AuAlert>
     {{/if}}
   </div>
 
-  <Chat::Composer
+  <ReportAssistant::Composer
     @onSend={{perform @send @conversation}}
     @disabled={{@waitingForAnswer}}
   />

@@ -1,22 +1,25 @@
 /* ==================================
-   # Chat
-   The chat sits in the dashboard content area, next to the dashboard
+   # Report assistant
+   The report assistant sits in the dashboard content area, next to the dashboard
    navigation. It fills the height under the main header. Tabs switch
    between the conversation, the past conversations and the report specs.
    ================================== */
 
-.chat-layout {
+.report-assistant-layout {
   display: flex;
   flex-direction: column;
+
+  /* The viewport minus the main header: the same figure Appuniversum uses
+     for .au-c-main-container (styles/components/_c-main-container.scss). */
   height: calc(100vh - 4.2rem);
   min-height: 0;
 }
 
-.chat-tabs {
+.report-assistant-tabs {
   flex-shrink: 0;
 }
 
-.chat-layout__content {
+.report-assistant-layout__content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -25,7 +28,7 @@
 }
 
 /* An overview tab: a table with its own heading and paging. */
-.chat-overview {
+.report-assistant-overview {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -34,7 +37,7 @@
   overflow-y: auto;
 }
 
-.chat-overview__toolbar {
+.report-assistant-overview__toolbar {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -43,7 +46,7 @@
   margin-bottom: 0.5rem;
 }
 
-.chat-overview__description {
+.report-assistant-overview__description {
   flex-shrink: 0;
   max-width: 60rem;
   margin: 0 0 1rem;
@@ -52,13 +55,13 @@
 
 /* The data table normally fills the whole page. Here it sits in a scrolling
    overview, above the paging buttons. */
-.chat-overview .au-c-data-table {
+.report-assistant-overview .au-c-data-table {
   height: auto;
   overflow: visible;
 }
 
 /* Conversation and spec titles in the tables: truncated when long. */
-.chat-table__title-text {
+.report-assistant-table__title-text {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -66,44 +69,16 @@
 }
 
 /* The actions of one spec in one cell; they wrap when the column is narrow. */
-.chat-table__actions {
+.report-assistant-table__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: $au-unit-tiny $au-unit-small;
 }
 
-.chat-table__delete {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: $au-unit * 1.2;
-  height: $au-unit * 1.2;
-  padding: 0;
-  border: none;
-  border-radius: 0.2rem;
-  background: none;
-  color: var(--au-gray-600);
-  cursor: pointer;
-  transition:
-    color var(--au-transition),
-    background-color var(--au-transition);
-
-  &:hover,
-  &:focus {
-    color: var(--au-red-600);
-    background-color: var(--au-gray-200);
-  }
-
-  &:focus {
-    outline: var(--au-outline);
-  }
-}
-
-/* Bar above the chat: heading and button, styled like chat-overview__toolbar
+/* Bar above the chat: heading and button, styled like report-assistant-overview__toolbar
    so the three tabs start the same way. */
-.chat-toolbar {
+.report-assistant-toolbar {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -113,7 +88,7 @@
   padding: 1rem 1rem 0;
 }
 
-.chat-toolbar__title {
+.report-assistant-toolbar__title {
   min-width: 0;
   margin: 0;
   overflow: hidden;
@@ -124,7 +99,7 @@
 /* Conversation title under the toolbar. Lines up with the heading above it
    and the message area below it; the border separates it from the window,
    like the composer's border-top does at the other end of the chat. */
-.chat-conversation__description {
+.report-assistant-conversation__description {
   margin: 0;
   max-width: none;
   padding: 0 1rem 0.75rem;
@@ -132,95 +107,95 @@
 }
 
 /* The new-conversation screen in the first tab. */
-.chat-start {
+.report-assistant-start {
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
 }
 
-.chat-start__content {
+.report-assistant-start__content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.chat-start__hint {
+.report-assistant-start__hint {
   margin-top: $au-unit-small;
 }
 
-.chat-window {
+.report-assistant-window {
   display: flex;
   flex: 1;
   flex-direction: column;
   min-height: 0;
 }
 
-.chat-window__messages {
+.report-assistant-window__messages {
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
 }
 
-.chat-message {
+.report-assistant-message {
   max-width: 48rem;
   margin: 0 auto 1rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
 }
 
-.chat-message--user {
+.report-assistant-message--user {
   margin-left: 3rem;
   background: var(--au-blue-100);
 }
 
-.chat-message--assistant {
+.report-assistant-message--assistant {
   margin-right: 3rem;
   background: var(--au-gray-100);
 }
 
 /* Keeps the line breaks of the user's question. Not on the whole message:
    the markdown of an answer already has its breaks as html. */
-.chat-message__text {
+.report-assistant-message__text {
   white-space: pre-wrap;
 }
 
-.chat-composer {
+.report-assistant-composer {
   flex-shrink: 0;
   padding: 1rem;
   border-top: 1px solid var(--au-gray-200);
 }
 
 /* Rendered markdown (assistant messages) */
-.chat-md > :first-child {
+.report-assistant-md > :first-child {
   margin-top: 0;
 }
 
-.chat-md > :last-child {
+.report-assistant-md > :last-child {
   margin-bottom: 0;
 }
 
-.chat-md p,
-.chat-md ul,
-.chat-md ol,
-.chat-md blockquote,
-.chat-md table {
+.report-assistant-md p,
+.report-assistant-md ul,
+.report-assistant-md ol,
+.report-assistant-md blockquote,
+.report-assistant-md table {
   margin: 0 0 0.5rem;
 }
 
-.chat-md ul,
-.chat-md ol {
+.report-assistant-md ul,
+.report-assistant-md ol {
   padding-left: 1.5rem;
 }
 
-.chat-md code {
+.report-assistant-md code {
   padding: 0.1rem 0.3rem;
   border-radius: 0.25rem;
   background: var(--au-gray-200);
   font-size: 0.9em;
 }
 
-.chat-md pre {
+.report-assistant-md pre {
   margin: 0 0 0.5rem;
   padding: 0.5rem 0.75rem;
   overflow-x: auto;
@@ -228,51 +203,29 @@
   background: var(--au-gray-200);
 }
 
-.chat-md pre code {
+.report-assistant-md pre code {
   padding: 0;
   background: none;
 }
 
-.chat-md table {
+.report-assistant-md table {
   border-collapse: collapse;
 }
 
-.chat-md th,
-.chat-md td {
+.report-assistant-md th,
+.report-assistant-md td {
   padding: 0.25rem 0.5rem;
   border: 1px solid var(--au-gray-300);
   text-align: left;
 }
 
-.chat-md blockquote {
+.report-assistant-md blockquote {
   padding-left: 0.75rem;
   border-left: 3px solid var(--au-gray-300);
   color: var(--au-gray-500);
 }
 
-/* The attachment tab inside an assistant message */
-.chat-attachment-tabs {
-  display: flex;
-  gap: 0.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.chat-attachment-tab {
-  padding: 0.15rem 0.6rem;
-  border: 1px solid var(--au-gray-300);
-  border-radius: 0.25rem 0.25rem 0 0;
-  background: transparent;
-  color: var(--au-gray-700);
-  font-size: 0.85em;
-  cursor: pointer;
-}
-
-.chat-attachment-tab--active {
-  background: var(--au-gray-100);
-  font-weight: 600;
-}
-
-.chat-attachment {
+.report-assistant-attachment {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -281,13 +234,13 @@
   border-top: 1px solid var(--au-gray-300);
 }
 
-.chat-attachment__info {
+.report-assistant-attachment__info {
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
 }
 
-.chat-attachment__what {
+.report-assistant-attachment__what {
   color: var(--au-gray-500);
   font-size: 0.85em;
 }

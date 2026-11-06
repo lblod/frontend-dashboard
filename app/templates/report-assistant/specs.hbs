@@ -1,13 +1,13 @@
-<div class="chat-overview">
-  <div class="chat-overview__toolbar">
+<div class="report-assistant-overview">
+  <div class="report-assistant-overview__toolbar">
     <AuHeading @level="1" @skin="4">
-      {{t "dashboard.chat.report-specs"}}
+      {{t "dashboard.report-assistant.report-specs"}}
     </AuHeading>
   </div>
-  <p class="chat-overview__description">
-    {{t "dashboard.chat.report-specs-description"}}
+  <p class="report-assistant-overview__description">
+    {{t "dashboard.report-assistant.report-specs-description"}}
   </p>
-  <Chat::ReportSpecTable
+  <ReportAssistant::ReportSpecTable
     @reportSpecs={{@model}}
     @page={{this.page}}
     @size={{this.size}}

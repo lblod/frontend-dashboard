@@ -2,15 +2,9 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { dropTask } from 'ember-concurrency';
 
-export default class ChatReportSpecTable extends Component {
+export default class ReportAssistantReportSpecTable extends Component {
   @service intl;
   @service toaster;
-
-  downloadHref(file) {
-    return `/files/${file.id}/download?name=${encodeURIComponent(
-      file.filename || '',
-    )}`;
-  }
 
   // Asks the service to run the spec again. The service checks the spec,
   // answers 202 and makes the report in the background, so a toast only
@@ -29,7 +23,7 @@ export default class ChatReportSpecTable extends Component {
     }
     if (res?.ok) {
       this.toaster.success(
-        this.intl.t('dashboard.chat.run-started'),
+        this.intl.t('dashboard.report-assistant.run-started'),
         spec.title,
         { timeOut: 8000 },
       );
@@ -42,8 +36,8 @@ export default class ChatReportSpecTable extends Component {
           ? 'run-invalid'
           : 'run-failed';
     this.toaster.error(
-      this.intl.t(`dashboard.chat.${key}`),
-      this.intl.t('dashboard.chat.error'),
+      this.intl.t(`dashboard.report-assistant.${key}`),
+      this.intl.t('dashboard.report-assistant.error'),
     );
   });
 }

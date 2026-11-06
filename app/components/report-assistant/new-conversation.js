@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
-export default class ChatNewConversation extends Component {
+export default class ReportAssistantNewConversation extends Component {
   @service store;
   @service router;
   @service currentSession;

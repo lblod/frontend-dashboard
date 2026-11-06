@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ChatComposer extends Component {
+export default class ReportAssistantComposer extends Component {
   @tracked draft = '';
 
   @action update(event) {

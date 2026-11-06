@@ -1,18 +1,20 @@
-<div class="chat-toolbar">
-  <AuHeading @level="1" @skin="4" class="chat-toolbar__title">
-    {{t "dashboard.chat.conversation-title"}}
+<div class="report-assistant-toolbar">
+  <AuHeading @level="1" @skin="4" class="report-assistant-toolbar__title">
+    {{t "dashboard.report-assistant.conversation-title"}}
   </AuHeading>
-  <Chat::NewConversation />
+  <ReportAssistant::NewConversation />
 </div>
-<p class="chat-overview__description chat-conversation__description">
+<p
+  class="report-assistant-overview__description report-assistant-conversation__description"
+>
   {{if
     @model.conversation.title
     @model.conversation.title
-    (t "dashboard.chat.new-conversation")
+    (t "dashboard.report-assistant.new-conversation")
   }}
 </p>
 
-<Chat::Window
+<ReportAssistant::Window
   @conversation={{@model.conversation}}
   @assistant={{@model.assistant}}
   @messages={{this.messages}}

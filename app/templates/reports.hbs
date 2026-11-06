@@ -51,8 +51,8 @@
         <td>{{format-datetime row.created}}</td>
         <td>
           <AuLinkExternal
-            href="/files/{{row.file.id}}/download"
-            download="file"
+            href={{download-url row.file.id row.file.filename}}
+            download={{row.file.filename}}
             @icon="download"
             @iconAlignment="left"
           >
@@ -60,7 +60,7 @@
           </AuLinkExternal>
         </td>
         {{#if this.showSource}}
-          <td>{{if row.creator.content row.creator.content.name}}</td>
+          <td>{{row.creator.name}}</td>
         {{/if}}
       </c.body>
     </table.content>
