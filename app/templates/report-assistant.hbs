@@ -2,10 +2,7 @@
   <div class="chat-tabs">
     <AuTabs as |Tab|>
       <Tab>
-        <AuLink
-          @route="report-assistant.conversation"
-          @query={{this.conversationQuery}}
-        >
+        <AuLink @route="report-assistant.conversation">
           {{t "dashboard.chat.title"}}
         </AuLink>
       </Tab>

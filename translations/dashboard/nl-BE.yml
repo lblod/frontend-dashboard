@@ -30,6 +30,8 @@ chat:
   run-invalid: "Deze rapportspecificatie kan niet meer uitgevoerd worden."
   run-failed: "Het rapport kon niet gestart worden."
   new-conversation: "Nieuw gesprek"
+  start-hint: "Wil je een eerder gesprek verderzetten?"
+  start-hint-link: "Ga naar de gespreksgeschiedenis"
   no-conversations: "Nog geen gesprekken."
   delete-conversation: "Gesprek verwijderen"
   delete-confirm: "Dit gesprek verwijderen?"

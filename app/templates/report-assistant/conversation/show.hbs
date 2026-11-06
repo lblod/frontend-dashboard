@@ -1,0 +1,25 @@
+<div class="chat-toolbar">
+  <AuHeading @level="1" @skin="4" class="chat-toolbar__title">
+    {{t "dashboard.chat.conversation-title"}}
+  </AuHeading>
+  <Chat::NewConversation />
+</div>
+<p class="chat-overview__description chat-conversation__description">
+  {{if
+    @model.conversation.title
+    @model.conversation.title
+    (t "dashboard.chat.new-conversation")
+  }}
+</p>
+
+<Chat::Window
+  @conversation={{@model.conversation}}
+  @assistant={{@model.assistant}}
+  @messages={{this.messages}}
+  @isAssistant={{this.isAssistant}}
+  @waitingForAnswer={{this.waitingForAnswer}}
+  @answerTimedOut={{this.answerTimedOut}}
+  @send={{this.send}}
+  @sendError={{this.sendError}}
+  @refresh={{this.refresh}}
+/>

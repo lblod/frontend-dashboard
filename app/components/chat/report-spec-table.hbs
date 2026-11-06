@@ -20,8 +20,8 @@
         <div class="chat-table__actions">
           {{#if spec.conversation}}
             <AuLink
-              @route="report-assistant.conversation"
-              @query={{hash conversation=spec.conversation.id}}
+              @route="report-assistant.conversation.show"
+              @model={{spec.conversation.id}}
               @icon="message"
             >
               {{t "dashboard.chat.go-to-conversation"}}

@@ -15,8 +15,9 @@ export default class ChatNewConversation extends Component {
       creator: this.currentSession.user,
     });
     await conversation.save();
-    await this.router.transitionTo('report-assistant.conversation', {
-      queryParams: { conversation: conversation.id },
-    });
+    await this.router.transitionTo(
+      'report-assistant.conversation.show',
+      conversation.id,
+    );
   });
 }

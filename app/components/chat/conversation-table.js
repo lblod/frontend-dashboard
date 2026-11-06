@@ -5,7 +5,6 @@ import { action } from '@ember/object';
 export default class ChatConversationTable extends Component {
   @service router;
   @service intl;
-  @service reportAssistant;
 
   @action
   async delete(conversation) {
@@ -16,9 +15,6 @@ export default class ChatConversationTable extends Component {
     if (!res.ok) {
       window.alert(this.intl.t('dashboard.chat.delete-failed'));
       return;
-    }
-    if (this.reportAssistant.conversation?.id === conversation.id) {
-      this.reportAssistant.conversation = null;
     }
     await this.router.refresh('report-assistant.conversations');
   }

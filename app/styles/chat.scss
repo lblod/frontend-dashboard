@@ -139,6 +139,16 @@
   justify-content: center;
 }
 
+.chat-start__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-start__hint {
+  margin-top: $au-unit-small;
+}
+
 .chat-window {
   display: flex;
   flex: 1;

@@ -26,8 +26,8 @@
       <td>{{conversation.messages.length}}</td>
       <td>
         <AuLink
-          @route="report-assistant.conversation"
-          @query={{hash conversation=conversation.id}}
+          @route="report-assistant.conversation.show"
+          @model={{conversation.id}}
         >
           {{t "dashboard.chat.open"}}
         </AuLink>

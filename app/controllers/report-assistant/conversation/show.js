@@ -9,21 +9,14 @@ const POLL_MS = 3000;
 // and say so.
 const ANSWER_CEILING_MS = 10 * 60 * 1000;
 
-export default class ReportAssistantConversationController extends Controller {
+export default class ReportAssistantConversationShowController extends Controller {
   @service store;
 
   @tracked now = Date.now();
 
-  queryParams = ['conversation'];
-  // No default on purpose: a `refreshModel` query param with a default
-  // makes every RouterService transition into this route abort with
-  // `TransitionAborted` (emberjs/ember.js#20512). Without a default the
-  // model hook gets `conversation === undefined`, and the route shows the
-  // new-conversation screen.
-
   get messages() {
     const messages = [];
-    this.model.conversation?.messages.forEach((message) =>
+    this.model.conversation.messages.forEach((message) =>
       messages.push(message),
     );
     return messages.sort((a, b) => a.created - b.created);

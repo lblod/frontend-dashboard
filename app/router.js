@@ -42,7 +42,10 @@ Router.map(function () {
 
   if (isReportAssistantRouteEnabled()) {
     this.route('report-assistant', function () {
-      this.route('conversation');
+      this.route('conversation', function () {
+        this.route('new');
+        this.route('show', { path: '/:id' });
+      });
       this.route('conversations');
       this.route('specs');
     });

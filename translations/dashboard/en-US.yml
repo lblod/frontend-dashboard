@@ -30,6 +30,8 @@ chat:
   run-invalid: "This report specification can no longer be run."
   run-failed: "The report could not be started."
   new-conversation: "New conversation"
+  start-hint: "Want to continue an earlier conversation?"
+  start-hint-link: "Go to the conversation history"
   no-conversations: "No conversations yet."
   delete-conversation: "Delete conversation"
   delete-confirm: "Delete this conversation?"
