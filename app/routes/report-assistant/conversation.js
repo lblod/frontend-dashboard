@@ -30,4 +30,15 @@ export default class ReportAssistantConversationRoute extends Route {
   afterModel(model) {
     this.reportAssistant.conversation = model.conversation;
   }
+
+  setupController(controller, model) {
+    super.setupController(controller, model);
+    controller.poll.perform();
+  }
+
+  resetController(controller, isExiting, transition) {
+    controller.poll.cancelAll();
+    controller.send.cancelAll();
+    super.resetController(controller, isExiting, transition);
+  }
 }

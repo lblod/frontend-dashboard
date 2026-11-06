@@ -1,10 +1,124 @@
 import Controller from '@ember/controller';
+import { service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { restartableTask, task, timeout } from 'ember-concurrency';
+
+const POLL_MS = 3000;
+// Past this, the service is not coming back with an answer: stop polling
+// and say so.
+const ANSWER_CEILING_MS = 10 * 60 * 1000;
 
 export default class ReportAssistantConversationController extends Controller {
+  @service store;
+
+  @tracked now = Date.now();
+
   queryParams = ['conversation'];
   // No default on purpose: a `refreshModel` query param with a default
   // makes every RouterService transition into this route abort with
   // `TransitionAborted` (emberjs/ember.js#20512). Without a default the
   // model hook gets `conversation === undefined`, and the route shows the
   // new-conversation screen.
+
+  get messages() {
+    const messages = [];
+    this.model.conversation?.messages.forEach((message) =>
+      messages.push(message),
+    );
+    return messages.sort((a, b) => a.created - b.created);
+  }
+
+  get last() {
+    return this.messages.at(-1);
+  }
+
+  isAssistant = (message) => message.maker === this.model.assistant?.uri;
+
+  age(date) {
+    return this.now - date.getTime();
+  }
+
+  // The service answers after the 202: the newest message is the user's
+  // until the answer is written.
+  get waitingForAnswer() {
+    return (
+      !!this.last &&
+      !this.isAssistant(this.last) &&
+      this.age(this.last.created) < ANSWER_CEILING_MS
+    );
+  }
+
+  get answerTimedOut() {
+    return (
+      !!this.last &&
+      !this.isAssistant(this.last) &&
+      this.age(this.last.created) >= ANSWER_CEILING_MS
+    );
+  }
+
+  poll = restartableTask(async () => {
+    this.now = Date.now();
+    while (this.waitingForAnswer) {
+      await timeout(POLL_MS);
+      await this.reload();
+    }
+  });
+
+  async reload() {
+    await this.store.findRecord(
+      'chat-conversation',
+      this.model.conversation.id,
+      {
+        reload: true,
+        include: 'messages.attachments',
+      },
+    );
+    this.now = Date.now();
+  }
+
+  // The task outlives a switch to another conversation, so the error only
+  // shows in the conversation the question was sent in.
+  get sendError() {
+    const last = this.send.last;
+    if (last?.isError && last.args[0] === this.model.conversation) {
+      return last.error;
+    }
+    return null;
+  }
+
+  send = task(async (conversation, content) => {
+    const res = await fetch(
+      `/assistant/conversations/${conversation.id}/turns`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ content }),
+      },
+    );
+    if (!res.ok)
+      throw new Error(`De vraag kon niet verstuurd worden (${res.status}).`);
+    // The 202 answers with the message id, but fetching that message alone
+    // does not link it into the conversation: the resource sends relationships
+    // as links, without data. Reload the conversation instead, so the question
+    // shows now and the poll loop sees it waits for an answer. Without that
+    // reload nothing polls, so a failed one is an error too.
+    try {
+      await this.reload();
+    } catch {
+      throw new Error(
+        'De vraag is verstuurd, maar het gesprek kon niet geladen worden. Vernieuw de pagina.',
+      );
+    }
+    this.poll.perform();
+  });
+
+  @action
+  async refresh() {
+    await this.reload();
+    this.poll.perform();
+  }
 }
