@@ -33,7 +33,7 @@ dashboard:
 
 #### Report assistant
 
-The report assistant is a chat page for the [natural-language-report-service](https://github.com/lblod/natural-language-report-service). It is off by default. Enable it with:
+The report assistant is a chat page for the [report-assistant-service](https://github.com/lblod/report-assistant-service). It is off by default. Enable it with:
 
 ```yml
 dashboard:
