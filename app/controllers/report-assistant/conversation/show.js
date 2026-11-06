@@ -51,11 +51,18 @@ export default class ReportAssistantConversationShowController extends Controlle
     );
   }
 
+  // A failed reload (service restart, 502) must not end the loop: the next
+  // round may succeed. `now` moves every round, so the ceiling still fires.
   poll = restartableTask(async () => {
     this.now = Date.now();
     while (this.waitingForAnswer) {
       await timeout(POLL_MS);
-      await this.reload();
+      try {
+        await this.reload();
+      } catch {
+        // retried on the next round
+      }
+      this.now = Date.now();
     }
   });
 
