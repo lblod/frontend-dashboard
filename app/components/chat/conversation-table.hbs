@@ -1,7 +1,8 @@
 <AuDataTable
   @content={{@conversations}}
   @noDataMessage={{t "dashboard.chat.no-conversations"}}
-  @hidePagination={{true}}
+  @page={{@page}}
+  @size={{@size}}
   as |table|
 >
   <table.content as |c|>
@@ -43,27 +44,3 @@
     </c.body>
   </table.content>
 </AuDataTable>
-
-{{#if @conversations.meta.pagination.last.number}}
-  <div class="chat-table__paging">
-    {{#if @conversations.meta.pagination.prev}}
-      <AuButton
-        @skin="link"
-        @icon="nav-left"
-        {{on "click" (fn this.showPage @conversations.meta.pagination.prev)}}
-      >
-        {{t "dashboard.chat.newer"}}
-      </AuButton>
-    {{/if}}
-    {{#if @conversations.meta.pagination.next}}
-      <AuButton
-        @skin="link"
-        @icon="nav-right"
-        @iconAlignment="right"
-        {{on "click" (fn this.showPage @conversations.meta.pagination.next)}}
-      >
-        {{t "dashboard.chat.older"}}
-      </AuButton>
-    {{/if}}
-  </div>
-{{/if}}

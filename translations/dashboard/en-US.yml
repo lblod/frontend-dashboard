@@ -34,8 +34,6 @@ chat:
   delete-conversation: "Delete conversation"
   delete-confirm: "Delete this conversation?"
   delete-failed: "The conversation could not be deleted."
-  newer: "Newer"
-  older: "Older"
   placeholder: "Ask a question"
   send: "Send"
   message: "Message"

@@ -22,9 +22,4 @@ export default class ChatConversationTable extends Component {
     }
     await this.router.refresh('report-assistant.conversations');
   }
-
-  @action
-  showPage(link) {
-    this.router.transitionTo({ queryParams: { page: link.number || 0 } });
-  }
 }

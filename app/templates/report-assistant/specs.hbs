@@ -7,5 +7,9 @@
   <p class="chat-overview__description">
     {{t "dashboard.chat.report-specs-description"}}
   </p>
-  <Chat::ReportSpecTable @reportSpecs={{@model}} />
+  <Chat::ReportSpecTable
+    @reportSpecs={{@model}}
+    @page={{this.page}}
+    @size={{this.size}}
+  />
 </div>

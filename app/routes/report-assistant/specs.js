@@ -6,13 +6,13 @@ export default class ReportAssistantSpecsRoute extends Route {
 
   queryParams = {
     page: { refreshModel: true },
+    size: { refreshModel: true },
   };
 
-  model({ page }) {
+  model({ page, size }) {
     return this.store.query('report-spec', {
       sort: '-created',
-      'page[size]': 50,
-      'page[number]': page,
+      page: { number: page, size },
       include: 'file,conversation',
     });
   }

@@ -8,5 +8,9 @@
   <p class="chat-overview__description">
     {{t "dashboard.chat.conversation-history-description"}}
   </p>
-  <Chat::ConversationTable @conversations={{@model}} />
+  <Chat::ConversationTable
+    @conversations={{@model}}
+    @page={{this.page}}
+    @size={{this.size}}
+  />
 </div>

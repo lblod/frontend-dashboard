@@ -1,10 +1,8 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
 import { dropTask } from 'ember-concurrency';
 
 export default class ChatReportSpecTable extends Component {
-  @service router;
   @service intl;
   @service toaster;
 
@@ -48,9 +46,4 @@ export default class ChatReportSpecTable extends Component {
       this.intl.t('dashboard.chat.error'),
     );
   });
-
-  @action
-  showPage(link) {
-    this.router.transitionTo({ queryParams: { page: link.number || 0 } });
-  }
 }

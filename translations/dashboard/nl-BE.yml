@@ -34,8 +34,6 @@ chat:
   delete-conversation: "Gesprek verwijderen"
   delete-confirm: "Dit gesprek verwijderen?"
   delete-failed: "Het gesprek kon niet verwijderd worden."
-  newer: "Nieuwere"
-  older: "Oudere"
   placeholder: "Stel een vraag"
   send: "Verstuur"
   message: "Bericht"

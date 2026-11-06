@@ -65,13 +65,6 @@
   white-space: nowrap;
 }
 
-.chat-table__paging {
-  display: flex;
-  flex-shrink: 0;
-  justify-content: space-between;
-  padding: $au-unit-tiny $au-unit-small;
-}
-
 /* The actions of one spec in one cell; they wrap when the column is narrow. */
 .chat-table__actions {
   display: flex;
