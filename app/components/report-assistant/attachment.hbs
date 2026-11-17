@@ -8,29 +8,43 @@
           <p class="report-assistant-attachment__hint">{{t
               "dashboard.report-assistant.saved-info"
             }}</p>
-          <AuButton
-            @loading={{this.run.isRunning}}
-            @disabled={{this.run.isRunning}}
-            {{on "click" (perform this.run)}}
-          >{{t "dashboard.report-assistant.run-report-spec"}}</AuButton>
         {{else}}
           <p class="report-assistant-attachment__hint">{{t
               "dashboard.report-assistant.save-info"
             }}</p>
-          <AuButton
-            @loading={{this.save.isRunning}}
-            @disabled={{this.save.isRunning}}
-            {{on "click" (perform this.save)}}
-          >{{t "dashboard.report-assistant.save-report-spec"}}</AuButton>
         {{/if}}
       {{/unless}}
     {{/if}}
+    <div class="report-assistant-table__actions">
+      <a
+        href={{download-url @document.id @document.filename}}
+        class="au-c-link"
+        download={{@document.filename}}
+      >
+        <AuIcon @icon="download" @alignment="left" />
+        {{t "dashboard.report-assistant.download"}}
+      </a>
+      {{#if this.isSpec}}
+        {{#unless this.findReportSpec.isRunning}}
+          {{#if this.reportSpecId}}
+            <AuButton
+              @skin="link"
+              @icon="redo"
+              @loading={{this.run.isRunning}}
+              @disabled={{this.run.isRunning}}
+              {{on "click" (perform this.run)}}
+            >{{t "dashboard.report-assistant.run-report-spec"}}</AuButton>
+          {{else}}
+            <AuButton
+              @skin="link"
+              @icon="add"
+              @loading={{this.save.isRunning}}
+              @disabled={{this.save.isRunning}}
+              {{on "click" (perform this.save)}}
+            >{{t "dashboard.report-assistant.save-report-spec"}}</AuButton>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+    </div>
   </div>
-  <a
-    href={{download-url @document.id @document.filename}}
-    class="au-c-link"
-    download={{@document.filename}}
-  >
-    {{t "dashboard.report-assistant.download"}}
-  </a>
 </div>
