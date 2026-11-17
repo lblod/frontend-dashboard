@@ -8,37 +8,10 @@
     }}"
 >
   {{#if @isAssistant}}
-    {{#if this.showAttachments}}
-      {{#each @message.attachments as |document|}}
-        <ReportAssistant::Attachment @document={{document}} />
-      {{/each}}
-      <AuButton
-        @skin="link"
-        @icon="chevron-left"
-        class="au-u-margin-top-tiny"
-        {{on "click" this.showText}}
-      >
-        {{t "dashboard.report-assistant.back-to-message"}}
-      </AuButton>
-    {{else}}
-      <div class="report-assistant-md">{{this.html}}</div>
-      {{#if @message.attachments.length}}
-        <AuAlert
-          @skin="info"
-          @size="small"
-          @title={{t "dashboard.report-assistant.attachments-available"}}
-        >
-          {{t
-            "dashboard.report-assistant.attachments-info"
-            count=@message.attachments.length
-          }}
-          <AuButton @skin="link" {{on "click" this.openAttachments}}>{{t
-              "dashboard.report-assistant.attachments"
-            }}</AuButton>
-          {{t "dashboard.report-assistant.attachments-info-after"}}
-        </AuAlert>
-      {{/if}}
-    {{/if}}
+    <div class="report-assistant-md">{{this.html}}</div>
+    {{#each @message.attachments as |document|}}
+      <ReportAssistant::Attachment @document={{document}} />
+    {{/each}}
   {{else}}
     <div class="report-assistant-message__text">{{@message.content}}</div>
   {{/if}}
