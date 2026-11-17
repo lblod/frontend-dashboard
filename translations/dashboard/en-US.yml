@@ -29,6 +29,11 @@ report-assistant:
   run-not-found: "This report specification no longer exists."
   run-invalid: "This report specification can no longer be run."
   run-failed: "The report could not be started."
+  save-report-spec: "Save report specification"
+  save-info: 'Save this report specification to run it. It is then also listed in "Report specifications".'
+  saved-info: 'This report specification is saved. You also find it in "Report specifications".'
+  saved: "Report specification saved"
+  save-failed: "The report specification could not be saved."
   new-conversation: "New conversation"
   start-hint: "Want to continue an earlier conversation?"
   start-hint-link: "Go to the conversation history"

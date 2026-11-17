@@ -10,7 +10,10 @@
   {{#if @isAssistant}}
     <div class="report-assistant-md">{{this.html}}</div>
     {{#each @message.attachments as |document|}}
-      <ReportAssistant::Attachment @document={{document}} />
+      <ReportAssistant::Attachment
+        @document={{document}}
+        @conversation={{@conversation}}
+      />
     {{/each}}
   {{else}}
     <div class="report-assistant-message__text">{{@message.content}}</div>

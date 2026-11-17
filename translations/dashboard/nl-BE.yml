@@ -29,6 +29,11 @@ report-assistant:
   run-not-found: "Deze rapportspecificatie bestaat niet meer."
   run-invalid: "Deze rapportspecificatie kan niet meer uitgevoerd worden."
   run-failed: "Het rapport kon niet gestart worden."
+  save-report-spec: "Rapportspecificatie bewaren"
+  save-info: 'Bewaar deze rapportspecificatie om ze uit te voeren. Ze staat dan ook in "Rapportspecificaties".'
+  saved-info: 'Deze rapportspecificatie is bewaard. Je vindt ze ook in "Rapportspecificaties".'
+  saved: "Rapportspecificatie bewaard"
+  save-failed: "De rapportspecificatie kon niet bewaard worden."
   new-conversation: "Nieuw gesprek"
   start-hint: "Wil je een eerder gesprek verderzetten?"
   start-hint-link: "Ga naar de gespreksgeschiedenis"
