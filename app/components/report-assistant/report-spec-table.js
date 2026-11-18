@@ -1,26 +1,11 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
 import { dropTask } from 'ember-concurrency';
 
 export default class ReportAssistantReportSpecTable extends Component {
   @service router;
   @service intl;
   @service toaster;
-
-  // The report spec the confirm modal asks about; null closes the modal.
-  @tracked specToDelete = null;
-
-  @action
-  askDelete(spec) {
-    this.specToDelete = spec;
-  }
-
-  @action
-  cancelDelete() {
-    this.specToDelete = null;
-  }
 
   // Asks the service to run the spec again. The service checks the spec,
   // answers 202 and makes the report in the background, so a toast only
@@ -57,32 +42,25 @@ export default class ReportAssistantReportSpecTable extends Component {
     );
   });
 
-  // A drop task: a second click while the request is open is ignored. No
-  // answer at all (network down) counts as a failed delete.
-  delete = dropTask(async () => {
-    const spec = this.specToDelete;
-    let res = null;
+  // Takes the bookmark off, so the spec leaves this list. The spec itself
+  // stays, with its file, in its conversation. A drop task: a second click
+  // while the request is open is ignored.
+  removeBookmark = dropTask(async (spec) => {
+    spec.bookmarked = false;
     try {
-      res = await fetch(`/assistant/report-specs/${spec.id}`, {
-        method: 'DELETE',
-      });
+      await spec.save();
     } catch {
-      // handled below as delete-report-spec-failed
-    }
-    this.specToDelete = null;
-    if (!res?.ok) {
+      spec.rollbackAttributes();
       this.toaster.error(
-        this.intl.t('dashboard.report-assistant.delete-report-spec-failed'),
+        this.intl.t('dashboard.report-assistant.bookmark-failed'),
         this.intl.t('dashboard.report-assistant.error'),
       );
       return;
     }
     this.toaster.success(
       undefined,
-      this.intl.t('dashboard.report-assistant.report-spec-deleted'),
-      {
-        timeOut: 3000,
-      },
+      this.intl.t('dashboard.report-assistant.bookmark-removed'),
+      { timeOut: 3000 },
     );
     await this.router.refresh('report-assistant.specs');
   });

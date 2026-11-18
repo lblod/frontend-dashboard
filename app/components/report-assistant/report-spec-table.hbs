@@ -51,46 +51,15 @@
             {{t "dashboard.report-assistant.run-report-spec"}}
           </AuButton>
           <AuButton
-            @skin="naked"
-            @alert={{true}}
-            @icon="trash"
-            @hideText={{true}}
-            title={{t "dashboard.report-assistant.delete-report-spec"}}
-            {{on "click" (fn this.askDelete spec)}}
+            @skin="link"
+            @icon="bookmark"
+            @disabled={{this.removeBookmark.isRunning}}
+            {{on "click" (perform this.removeBookmark spec)}}
           >
-            {{t "dashboard.report-assistant.delete-report-spec"}}
+            {{t "dashboard.report-assistant.remove-bookmark"}}
           </AuButton>
         </div>
       </td>
     </c.body>
   </table.content>
 </AuDataTable>
-
-{{#if this.specToDelete}}
-  <AuModal
-    @modalOpen={{true}}
-    @closeModal={{this.cancelDelete}}
-    @title={{t "dashboard.report-assistant.delete-report-spec-confirm"}}
-    as |Modal|
-  >
-    <Modal.Body>
-      <p>{{this.specToDelete.title}}</p>
-      <p>{{t "dashboard.report-assistant.delete-report-spec-info"}}</p>
-    </Modal.Body>
-    <Modal.Footer>
-      <AuButtonGroup>
-        <AuButton
-          @alert={{true}}
-          @loading={{this.delete.isRunning}}
-          @loadingMessage={{t "dashboard.loading"}}
-          {{on "click" (perform this.delete)}}
-        >
-          {{t "dashboard.report-assistant.delete"}}
-        </AuButton>
-        <AuButton @skin="secondary" {{on "click" this.cancelDelete}}>
-          {{t "dashboard.report-assistant.cancel"}}
-        </AuButton>
-      </AuButtonGroup>
-    </Modal.Footer>
-  </AuModal>
-{{/if}}

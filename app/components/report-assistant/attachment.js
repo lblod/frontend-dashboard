@@ -8,8 +8,9 @@ export default class ReportAssistantAttachment extends Component {
   @service store;
   @service toaster;
 
-  // The id of the ReportSpec saved for this spec file; null when not saved.
-  @tracked reportSpecId = null;
+  // The ReportSpec of this spec file. The service writes it together with
+  // the file; null for a spec file from before that.
+  @tracked reportSpec = null;
 
   constructor(owner, args) {
     super(owner, args);
@@ -29,57 +30,51 @@ export default class ReportAssistantAttachment extends Component {
     return this.intl.t('dashboard.report-assistant.attachment-file');
   }
 
-  // Is this spec saved? Asks for the ReportSpec of this file. A failed
-  // lookup leaves it as not saved: the save route answers with the id of a
-  // spec that is already saved, so a second save does no harm.
+  // Asks for the ReportSpec of this file. A failed lookup leaves it null:
+  // the spec then cannot be bookmarked or run from here. The include is
+  // needed for the bookmark: without it ember-data holds both links as
+  // empty, and a save would send them as null and remove them.
   findReportSpec = task(async () => {
     try {
       const specs = await this.store.query('report-spec', {
         'filter[file][:id:]': this.args.document.id,
         page: { size: 1 },
+        include: 'file,conversation',
       });
-      this.reportSpecId = specs[0]?.id ?? null;
+      this.reportSpec = specs[0] ?? null;
     } catch {
-      this.reportSpecId = null;
+      this.reportSpec = null;
     }
   });
 
-  // Saves the spec as a report spec. From then on it is listed in the spec
-  // tab and can run. A drop task: a second click while the request is open
-  // is ignored. No answer at all (network down) counts as a failed save.
-  save = dropTask(async () => {
-    let res = null;
+  // Bookmarks the report spec of this attachment, or takes the bookmark off.
+  // A bookmarked spec is listed in the spec tab. A drop task: a second click
+  // while the request is open is ignored.
+  toggleBookmark = dropTask(async () => {
+    const spec = this.reportSpec;
+    spec.bookmarked = !spec.bookmarked;
     try {
-      res = await fetch('/assistant/report-specs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          conversation: this.args.conversation.id,
-          spec: this.args.document.uri,
-        }),
-      });
+      await spec.save();
     } catch {
-      // handled below as save-failed
-    }
-    if (!res?.ok) {
+      spec.rollbackAttributes();
       this.toaster.error(
-        this.intl.t('dashboard.report-assistant.save-failed'),
+        this.intl.t('dashboard.report-assistant.bookmark-failed'),
         this.intl.t('dashboard.report-assistant.error'),
       );
       return;
     }
-    this.reportSpecId = (await res.json()).id;
     this.toaster.success(
       undefined,
-      this.intl.t('dashboard.report-assistant.saved'),
+      this.intl.t(
+        spec.bookmarked
+          ? 'dashboard.report-assistant.bookmarked'
+          : 'dashboard.report-assistant.bookmark-removed',
+      ),
       { timeOut: 3000 },
     );
   });
 
-  // Runs the saved spec of this attachment. The service checks the spec,
+  // Runs the report spec of this attachment. The service checks the spec,
   // answers 202 and makes the report in the background, so a toast only
   // says the run started and where the report will show up. A drop task: a
   // second click while the request is open is ignored. No answer at all
@@ -87,7 +82,7 @@ export default class ReportAssistantAttachment extends Component {
   run = dropTask(async () => {
     let res = null;
     try {
-      res = await fetch(`/assistant/report-specs/${this.reportSpecId}/run`, {
+      res = await fetch(`/assistant/report-specs/${this.reportSpec.id}/run`, {
         method: 'POST',
         headers: { Accept: 'application/json' },
       });

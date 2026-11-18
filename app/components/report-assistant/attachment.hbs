@@ -4,13 +4,13 @@
     <span class="report-assistant-attachment__what">{{this.what}}</span>
     {{#if this.isSpec}}
       {{#unless this.findReportSpec.isRunning}}
-        {{#if this.reportSpecId}}
+        {{#if this.reportSpec.bookmarked}}
           <p class="report-assistant-attachment__hint">{{t
-              "dashboard.report-assistant.saved-info"
+              "dashboard.report-assistant.bookmarked-info"
             }}</p>
-        {{else}}
+        {{else if this.reportSpec}}
           <p class="report-assistant-attachment__hint">{{t
-              "dashboard.report-assistant.save-info"
+              "dashboard.report-assistant.bookmark-info"
             }}</p>
         {{/if}}
       {{/unless}}
@@ -26,7 +26,7 @@
       </a>
       {{#if this.isSpec}}
         {{#unless this.findReportSpec.isRunning}}
-          {{#if this.reportSpecId}}
+          {{#if this.reportSpec}}
             <AuButton
               @skin="link"
               @icon="redo"
@@ -34,14 +34,19 @@
               @disabled={{this.run.isRunning}}
               {{on "click" (perform this.run)}}
             >{{t "dashboard.report-assistant.run-report-spec"}}</AuButton>
-          {{else}}
             <AuButton
               @skin="link"
-              @icon="add"
-              @loading={{this.save.isRunning}}
-              @disabled={{this.save.isRunning}}
-              {{on "click" (perform this.save)}}
-            >{{t "dashboard.report-assistant.save-report-spec"}}</AuButton>
+              @icon="bookmark"
+              @loading={{this.toggleBookmark.isRunning}}
+              @disabled={{this.toggleBookmark.isRunning}}
+              {{on "click" (perform this.toggleBookmark)}}
+            >{{t
+                (if
+                  this.reportSpec.bookmarked
+                  "dashboard.report-assistant.remove-bookmark"
+                  "dashboard.report-assistant.bookmark-report-spec"
+                )
+              }}</AuButton>
           {{/if}}
         {{/unless}}
       {{/if}}
