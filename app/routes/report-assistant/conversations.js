@@ -13,7 +13,6 @@ export default class ReportAssistantConversationsRoute extends Route {
     return this.store.query('chat-conversation', {
       sort: '-last-activity',
       page: { number: page, size },
-      include: 'messages',
     });
   }
 }

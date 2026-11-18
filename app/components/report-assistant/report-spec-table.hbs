@@ -50,6 +50,14 @@
           >
             {{t "dashboard.report-assistant.run-report-spec"}}
           </AuButton>
+          <AuButton
+            @skin="link"
+            @icon="bookmark"
+            @disabled={{this.removeBookmark.isRunning}}
+            {{on "click" (perform this.removeBookmark spec)}}
+          >
+            {{t "dashboard.report-assistant.remove-bookmark"}}
+          </AuButton>
         </div>
       </td>
     </c.body>

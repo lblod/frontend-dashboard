@@ -9,7 +9,6 @@
     <c.header>
       <th scope="col">{{t "dashboard.report-assistant.title"}}</th>
       <th scope="col">{{t "dashboard.report-assistant.last-activity"}}</th>
-      <th scope="col">{{t "dashboard.report-assistant.messages"}}</th>
       <th scope="col">{{t "dashboard.report-assistant.action"}}</th>
     </c.header>
     <c.body as |conversation|>
@@ -23,7 +22,6 @@
         </div>
       </td>
       <td>{{format-datetime conversation.lastActivity}}</td>
-      <td>{{conversation.messages.length}}</td>
       <td>
         <AuLink
           @route="report-assistant.conversation.show"

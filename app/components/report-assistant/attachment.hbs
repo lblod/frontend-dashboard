@@ -2,12 +2,54 @@
   <div class="report-assistant-attachment__info">
     <strong>{{@document.filename}}</strong>
     <span class="report-assistant-attachment__what">{{this.what}}</span>
+    {{#if this.isSpec}}
+      {{#unless this.findReportSpec.isRunning}}
+        {{#if this.reportSpec.bookmarked}}
+          <p class="report-assistant-attachment__hint">{{t
+              "dashboard.report-assistant.bookmarked-info"
+            }}</p>
+        {{else if this.reportSpec}}
+          <p class="report-assistant-attachment__hint">{{t
+              "dashboard.report-assistant.bookmark-info"
+            }}</p>
+        {{/if}}
+      {{/unless}}
+    {{/if}}
+    <div class="report-assistant-table__actions">
+      <a
+        href={{download-url @document.id @document.filename}}
+        class="au-c-link"
+        download={{@document.filename}}
+      >
+        <AuIcon @icon="download" @alignment="left" />
+        {{t "dashboard.report-assistant.download"}}
+      </a>
+      {{#if this.isSpec}}
+        {{#unless this.findReportSpec.isRunning}}
+          {{#if this.reportSpec}}
+            <AuButton
+              @skin="link"
+              @icon="redo"
+              @loading={{this.run.isRunning}}
+              @disabled={{this.run.isRunning}}
+              {{on "click" (perform this.run)}}
+            >{{t "dashboard.report-assistant.run-report-spec"}}</AuButton>
+            <AuButton
+              @skin="link"
+              @icon="bookmark"
+              @loading={{this.toggleBookmark.isRunning}}
+              @disabled={{this.toggleBookmark.isRunning}}
+              {{on "click" (perform this.toggleBookmark)}}
+            >{{t
+                (if
+                  this.reportSpec.bookmarked
+                  "dashboard.report-assistant.remove-bookmark"
+                  "dashboard.report-assistant.bookmark-report-spec"
+                )
+              }}</AuButton>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+    </div>
   </div>
-  <a
-    href={{download-url @document.id @document.filename}}
-    class="au-c-link"
-    download={{@document.filename}}
-  >
-    {{t "dashboard.report-assistant.download"}}
-  </a>
 </div>

@@ -11,6 +11,7 @@ export default class ReportAssistantSpecsRoute extends Route {
 
   model({ page, size }) {
     return this.store.query('report-spec', {
+      'filter[:exact:bookmarked]': true,
       sort: '-created',
       page: { number: page, size },
       include: 'file,conversation',
