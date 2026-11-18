@@ -7,6 +7,13 @@ import {
   runReportSpec,
 } from 'frontend-dashboard/utils/report-spec';
 
+// The attachment types the service writes as dct:type on a file: the
+// codelist of the portal's add-chat-attachment-types-codelist migration.
+const SPEC_TYPE =
+  'http://lblod.data.gift/concepts/6693014e-7b7d-448c-bb24-80c9758521f3';
+const RESULT_TYPE =
+  'http://lblod.data.gift/concepts/28d97698-e219-4a92-bdbd-7ab367a7524e';
+
 export default class ReportAssistantAttachment extends Component {
   @service intl;
   @service store;
@@ -22,14 +29,13 @@ export default class ReportAssistantAttachment extends Component {
   }
 
   get isSpec() {
-    return (this.args.document.format || '').includes('turtle');
+    return this.args.document.type === SPEC_TYPE;
   }
 
   get what() {
-    const format = this.args.document.format || '';
     if (this.isSpec)
       return this.intl.t('dashboard.report-assistant.attachment-turtle');
-    if (format.includes('csv'))
+    if (this.args.document.type === RESULT_TYPE)
       return this.intl.t('dashboard.report-assistant.attachment-csv');
     return this.intl.t('dashboard.report-assistant.attachment-file');
   }
