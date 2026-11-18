@@ -81,14 +81,14 @@ export default class ReportAssistantConversationShowController extends Controlle
   // The task outlives a switch to another conversation, so the error only
   // shows in the conversation the question was sent in.
   get sendError() {
-    const last = this.send.last;
+    const last = this.sendMessage.last;
     if (last?.isError && last.args[0] === this.model.conversation) {
       return last.error;
     }
     return null;
   }
 
-  send = task(async (conversation, content) => {
+  sendMessage = task(async (conversation, content) => {
     const res = await fetch(
       `/assistant/conversations/${conversation.id}/turns`,
       {

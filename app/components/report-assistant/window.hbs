@@ -11,7 +11,6 @@
       <ReportAssistant::Message
         @message={{message}}
         @isAssistant={{@isAssistant message}}
-        @conversation={{@conversation}}
       />
     {{/each}}
 
@@ -43,7 +42,7 @@
   </div>
 
   <ReportAssistant::Composer
-    @onSend={{perform @send @conversation}}
+    @onSend={{perform @sendMessage @conversation}}
     @disabled={{@waitingForAnswer}}
   />
 </div>

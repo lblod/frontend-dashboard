@@ -27,7 +27,7 @@ export default class ReportAssistantConversationShowRoute extends Route {
 
   resetController(controller, isExiting, transition) {
     controller.poll.cancelAll();
-    controller.send.cancelAll();
+    controller.sendMessage.cancelAll();
     super.resetController(controller, isExiting, transition);
   }
 }

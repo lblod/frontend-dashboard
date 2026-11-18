@@ -13,7 +13,6 @@ report-assistant:
   title: "Conversation"
   conversation-title: "Conversation title"
   last-activity: "Last activity"
-  messages: "Messages"
   action: "Action"
   open: "Continue conversation"
   report-specs: "Bookmarked report specifications"

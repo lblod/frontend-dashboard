@@ -13,7 +13,6 @@ report-assistant:
   title: "Gesprek"
   conversation-title: "Gesprekstitel"
   last-activity: "Laatste activiteit"
-  messages: "Berichten"
   action: "Actie"
   open: "Ga verder met gesprek"
   report-specs: "Bewaarde rapportspecificaties"

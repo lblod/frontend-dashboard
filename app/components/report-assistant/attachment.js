@@ -2,6 +2,10 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
 import { task, dropTask } from 'ember-concurrency';
+import {
+  findRunErrorKey,
+  runReportSpec,
+} from 'frontend-dashboard/utils/report-spec';
 
 export default class ReportAssistantAttachment extends Component {
   @service intl;
@@ -74,38 +78,23 @@ export default class ReportAssistantAttachment extends Component {
     );
   });
 
-  // Runs the report spec of this attachment. The service checks the spec,
-  // answers 202 and makes the report in the background, so a toast only
-  // says the run started and where the report will show up. A drop task: a
-  // second click while the request is open is ignored. No answer at all
-  // (network down) counts as a failed start.
+  // Runs the report spec of this attachment. A toast only says the run
+  // started and where the report will show up. A drop task: a second click
+  // while the request is open is ignored.
   run = dropTask(async () => {
-    let res = null;
     try {
-      res = await fetch(`/assistant/report-specs/${this.reportSpec.id}/run`, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-      });
-    } catch {
-      // handled below as run-failed
-    }
-    if (res?.ok) {
-      this.toaster.success(
-        this.intl.t('dashboard.report-assistant.run-started'),
-        this.args.document.filename,
-        { timeOut: 8000 },
+      await runReportSpec(this.reportSpec.id);
+    } catch (error) {
+      this.toaster.error(
+        this.intl.t(findRunErrorKey(error)),
+        this.intl.t('dashboard.report-assistant.error'),
       );
       return;
     }
-    const key =
-      res?.status === 404
-        ? 'run-not-found'
-        : res?.status === 422
-          ? 'run-invalid'
-          : 'run-failed';
-    this.toaster.error(
-      this.intl.t(`dashboard.report-assistant.${key}`),
-      this.intl.t('dashboard.report-assistant.error'),
+    this.toaster.success(
+      this.intl.t('dashboard.report-assistant.run-started'),
+      this.args.document.filename,
+      { timeOut: 8000 },
     );
   });
 }
