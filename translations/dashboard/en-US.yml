@@ -56,8 +56,6 @@ report-assistant:
   send-reload-failed: "The question was sent, but the conversation could not be loaded. Refresh the page."
   download: "Download"
   attachment-turtle: "The report specification as a Turtle file"
-  attachment-csv: "The report results as a CSV file"
-  attachment-file: "File"
 errors:
   title: "Job details"
   no-data: "No logs found"
