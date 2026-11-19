@@ -1,0 +1,12 @@
+<AuDropdown @title={{this.currentLabel}} @alignment="right" role="menu">
+  {{#each this.options as |option|}}
+    <AuButton
+      @skin="link"
+      @icon={{if (eq option.id this.activeLocale) "check"}}
+      role="menuitem"
+      {{on "click" (fn this.select option.id)}}
+    >
+      {{option.label}}
+    </AuButton>
+  {{/each}}
+</AuDropdown>

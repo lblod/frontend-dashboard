@@ -2,6 +2,7 @@ title: "Dashboard"
 logout: "Log out"
 resetfilters: "Reset all filters"
 loading: "Loading"
+navigation-label: "Information and settings"
 nav:
   report-assistant: "Report assistant"
   reports: "Reports"
