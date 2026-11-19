@@ -24,7 +24,7 @@ report-assistant:
   no-report-specs: "Nog geen bewaarde rapportspecificaties"
   download-report-spec: "Download rapportspecificatie"
   run-report-spec: "Rapportspecificatie uitvoeren"
-  run-started: 'Het rapport wordt gemaakt en is straks beschikbaar in "Rapporten".'
+  run-started: 'Het rapport wordt gemaakt. Bij grotere rapporten kan het even duren voor het in "Rapporten" verschijnt.'
   run-not-found: "Deze rapportspecificatie bestaat niet meer."
   run-invalid: "Deze rapportspecificatie kan niet meer uitgevoerd worden."
   run-failed: "Het rapport kon niet gestart worden."
@@ -56,6 +56,35 @@ report-assistant:
   send-reload-failed: "De vraag is verstuurd, maar het gesprek kon niet geladen worden. Vernieuw de pagina."
   download: "Download"
   attachment-turtle: "De specificatie van het rapport als Turtle-bestand"
+  help-tab: "Help"
+  help-title: "Hoe de rapportassistent werkt"
+  help-intro: "Stel een vraag in het gesprek. De assistent schrijft een rapportspecificatie, legt ze uit, en jij beslist of ze uitgevoerd wordt. Het resultaat verschijnt onder Rapporten als een CSV-bestand."
+  help-steps-title: "Stap voor stap"
+  help-step-1: 'Stel je vraag in het gesprek. Bijvoorbeeld: "Geef alle gemeenten met hun naam."'
+  help-step-2: "De assistent legt uit wat het rapport zal oplijsten en welke filters het gebruikt. De specificatie komt als bijlage bij het antwoord. Er wordt nog niets uitgevoerd."
+  help-step-3: "Niet wat je nodig hebt? Vraag om aanpassingen. De assistent past dezelfde specificatie aan tot ze klopt."
+  help-step-4: "Voer de specificatie uit met de knop onder de bijlage of onder Bewaarde rapportspecificaties. Het rapport wordt op de achtergrond gemaakt en verschijnt onder Rapporten. Bij een groot rapport kan dat even duren."
+  help-step-5: "Bewaar een specificatie om ze terug te vinden onder Bewaarde rapportspecificaties. Daar kan je ze opnieuw uitvoeren."
+  help-not-title: "Wat de assistent niet doet"
+  help-not-1: "De assistent voert zelf geen rapport uit. Jij beslist wanneer een specificatie uitgevoerd wordt."
+  help-not-2: "De assistent ziet het resultaat van een rapport niet: geen rijen, geen aantallen, geen fouten."
+  help-not-3: "De assistent kan niet tellen hoeveel, de rijen sorteren, de eerste N rijen nemen of twee subjecten vergelijken. Vraag dan een lijst."
+  help-privacy-title: "Privacy"
+  help-privacy-alert: "Het resultaat van je rapport blijft in de applicatie. De assistent ziet de rijen, aantallen en fouten nooit."
+  help-privacy-intro: "De assistent werkt als een zoekvak: je vraag en het gesprek gaan naar het taalmodel. Behandel het zoals je Google behandelt. Je zou de naam van een persoon of een vertrouwelijk dossier daar ook niet intypen. De assistent heeft het soort rapport nodig, niet de private details."
+  help-do-title: "Wel doen"
+  help-do-1: 'Vraag een lijst op soort, periode, regio of openbare code. Bijvoorbeeld: "Alle mandaten in Gent in 2025."'
+  help-do-2: "Laat het rapport de namen tonen. Het resultaat blijft in de applicatie en de assistent ziet het nooit."
+  help-do-3: 'Gebruik een openbare naam of code als filter. Bijvoorbeeld: "Alle organisaties van de categorie gemeente."'
+  help-dont-title: "Niet doen"
+  help-dont-1: 'Een naam, rijksregisternummer, adres of andere persoonlijke gegevens in het gesprek typen. Bijvoorbeeld: "Toon alles over Jan Peeters."'
+  help-dont-2: 'Vragen om een dossier of zaak te zoeken op een naam of dossiernummer. Bijvoorbeeld: "Zoek het dossier van zaak 2025/123."'
+  help-dont-3: "Een lijst met persoonlijke gegevens plakken om op te filteren."
+  help-privacy-note: "De assistent leest alleen het openbare deel van de database om filters voor te stellen. Het rapport zelf loopt met jouw rechten, op de gegevens die jij mag lezen. De assistent stelt alleen de specificatie voor. De applicatie controleert ze en jij voert ze uit."
+  help-good-title: "Goed om te weten"
+  help-good-1: "De assistent ziet alleen het openbare deel van de database. Een waarde die niet in zijn voorstellen staat, kan toch bestaan in de gegevens waarop het rapport loopt. Filter dan op de naamtekst en controleer het resultaat."
+  help-good-2: "Een rapportspecificatie is een Turtle-bestand. Je kan ze downloaden en bewaren."
+  help-good-3: "Rapporten zijn CSV-bestanden. Open ze in een rekenblad."
 errors:
   title: "Taken details"
   no-data: "Geen logboeken gevonden"

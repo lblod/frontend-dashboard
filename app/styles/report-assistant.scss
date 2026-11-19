@@ -248,3 +248,51 @@
 .report-assistant-attachment__hint {
   margin: 0.25rem 0 0;
 }
+
+/* The help tab: prose with a readable line length. */
+.report-assistant-help__section {
+  max-width: 48rem;
+  margin-top: 1.5rem;
+}
+
+.report-assistant-help__list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.5rem;
+}
+
+.report-assistant-help__list li + li {
+  margin-top: 0.25rem;
+}
+
+.report-assistant-help__text {
+  max-width: 48rem;
+  margin: 0.75rem 0 0;
+}
+
+.report-assistant-help__do-dont {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  max-width: 48rem;
+  margin-top: 1rem;
+}
+
+.report-assistant-help__do,
+.report-assistant-help__dont {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  background: var(--au-gray-100);
+}
+
+.report-assistant-help__do {
+  border-left: 3px solid var(--au-green-500);
+}
+
+.report-assistant-help__dont {
+  border-left: 3px solid var(--au-gray-400);
+}
+
+.report-assistant-help__do .au-c-heading,
+.report-assistant-help__dont .au-c-heading {
+  margin: 0;
+}

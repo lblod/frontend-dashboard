@@ -24,7 +24,7 @@ report-assistant:
   no-report-specs: "No bookmarked report specifications"
   download-report-spec: "Download report specification"
   run-report-spec: "Run report specification"
-  run-started: 'The report is being made and will be available in "Reports".'
+  run-started: 'The report is being made. For bigger reports it can take a while before it appears in "Reports".'
   run-not-found: "This report specification no longer exists."
   run-invalid: "This report specification can no longer be run."
   run-failed: "The report could not be started."
@@ -56,6 +56,35 @@ report-assistant:
   send-reload-failed: "The question was sent, but the conversation could not be loaded. Refresh the page."
   download: "Download"
   attachment-turtle: "The report specification as a Turtle file"
+  help-tab: "Help"
+  help-title: "How the report assistant works"
+  help-intro: "Ask a question in the chat. The assistant writes a report specification, explains it, and you decide whether to run it. The result appears under Reports as a CSV file."
+  help-steps-title: "Step by step"
+  help-step-1: 'Ask your question in the chat. For example: "Give all municipalities with their name."'
+  help-step-2: "The assistant explains what the report will list and which filters it uses. It adds the specification as an attachment. Nothing runs yet."
+  help-step-3: "Not what you need? Ask for changes. The assistant changes the same specification until it is right."
+  help-step-4: "Run the specification with the run button under the attachment or under Bookmarked report specifications. The report is made in the background and appears under Reports. A big report can take a while."
+  help-step-5: "Bookmark a specification to find it again under Bookmarked report specifications. You can run it again there."
+  help-not-title: "What the assistant does not do"
+  help-not-1: "It does not run a report by itself. You decide when a specification runs."
+  help-not-2: "It does not see the result of a report: no rows, no counts, no errors."
+  help-not-3: "It cannot count how many, sort the rows, take the first N rows, or compare two subjects. Ask for a list instead."
+  help-privacy-title: "Privacy"
+  help-privacy-alert: "Your report result stays in the application. The assistant never sees the rows, counts or errors."
+  help-privacy-intro: "The assistant works like a search box: your question and the conversation go to the language model. Treat it like you would treat Google. You would not type a person's name or a confidential case into a search box either. The assistant needs the kind of report, not the private details."
+  help-do-title: "Do"
+  help-do-1: 'Ask for a list by type, period, region or public code. For example: "All mandates in Ghent in 2025."'
+  help-do-2: "Let the report show the names. The result stays in the application and the assistant never sees it."
+  help-do-3: 'Use a public name or code as a filter. For example: "All organisations of the category municipality."'
+  help-dont-title: "Don't"
+  help-dont-1: 'Type a person''s name, national register number, address or other personal data in the chat. For example: "Show everything about Jan Peeters."'
+  help-dont-2: 'Ask to find a file or case by a name or case number. For example: "Find the file for case 2025/123."'
+  help-dont-3: "Paste a list of personal data to filter on."
+  help-privacy-note: "The assistant reads only the public part of the database to suggest filters. The report itself runs with your rights, on the data you may read. The assistant only proposes the specification. The application checks it and you run it."
+  help-good-title: "Good to know"
+  help-good-1: "The assistant only sees the public part of the database. A value that is not in its suggestions can still exist in the data the report runs on. Then filter on the name text and check the result."
+  help-good-2: "A report specification is a Turtle file. You can download it and keep it."
+  help-good-3: "Reports are CSV files. Open them in a spreadsheet."
 errors:
   title: "Job details"
   no-data: "No logs found"

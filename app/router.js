@@ -48,6 +48,7 @@ Router.map(function () {
       });
       this.route('conversations');
       this.route('specs');
+      this.route('help');
     });
   }
 
