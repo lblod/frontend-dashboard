@@ -12,10 +12,5 @@ export default class ChatConversationModel extends Model {
     inverse: null,
   })
   creator;
-  @hasMany('chat-message', {
-    async: true,
-    inverse: 'conversation',
-    polymorphic: true,
-  })
-  messages;
+  @hasMany('chat-message', { async: true, inverse: 'conversation' }) messages;
 }
