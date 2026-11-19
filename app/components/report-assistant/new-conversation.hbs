@@ -1,0 +1,10 @@
+<AuButton
+  @icon="add"
+  @size={{if @large "large"}}
+  @loading={{this.create.isRunning}}
+  @loadingMessage={{t "dashboard.loading"}}
+  ...attributes
+  {{on "click" (perform this.create)}}
+>
+  {{t "dashboard.report-assistant.new-conversation"}}
+</AuButton>

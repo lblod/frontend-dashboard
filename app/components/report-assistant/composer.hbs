@@ -1,0 +1,18 @@
+<div class="report-assistant-composer au-u-flex au-u-flex--between">
+  <AuTextarea
+    @width="block"
+    @disabled={{@disabled}}
+    rows="2"
+    placeholder={{t "dashboard.report-assistant.placeholder"}}
+    value={{this.draft}}
+    {{on "input" this.update}}
+    {{on "keydown" this.keydown}}
+  />
+  <AuButton
+    @disabled={{@disabled}}
+    class="au-u-margin-left-small"
+    {{on "click" this.submit}}
+  >
+    {{t "dashboard.report-assistant.send"}}
+  </AuButton>
+</div>

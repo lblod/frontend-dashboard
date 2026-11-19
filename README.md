@@ -31,6 +31,19 @@ dashboard:
 
 > Note: At least one feature needs to stay enabled, otherwise an error will be thrown
 
+#### Report assistant
+
+The report assistant is a chat page for the [report-assistant-service](https://github.com/lblod/report-assistant-service). It is off by default. Enable it with:
+
+```yml
+dashboard:
+  #...
+  environment:
+    EMBER_ENABLE_REPORT_ASSISTANT: "true"
+```
+
+The backend needs the `chat-*` and `report-specs` resources, a dispatcher rule that sends `/assistant/*` to the service, and the agent record `http://data.lblod.info/id/chat-agents/report-assistant`. The `creator` of `chat-conversations` must target the resource the accounts point to: `user` with the English accounts model, `gebruiker` with the Dutch one.
+
 #### Account data model
 
 The dashboard supports both Dutch and English versions of the ["accounts" data model](https://github.com/lblod/acmidm-login-service/tree/master?tab=readme-ov-file#data-model). However, it defaults to Dutch. If your application uses the English version you can configure the dashboard to use that as well.

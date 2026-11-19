@@ -1,7 +1,6 @@
 <AuFormRow @alignment="default" ...attributes>
-  {{#let (unique-id) as  | logSelect |}}
-    <AuLabel
-      for={{logSelect}}>
+  {{#let (unique-id) as |logSelect|}}
+    <AuLabel for={{logSelect}}>
       {{t "dashboard.errors.filter.loglevel"}}
     </AuLabel>
     <PowerSelect
@@ -13,7 +12,8 @@
       @selected={{this.selected}}
       @onChange={{this.changeSelected}}
       @allowClear={{true}}
-      as |logLevel|>
+      as |logLevel|
+    >
       {{logLevel.label}}
     </PowerSelect>
   {{/let}}

@@ -1,0 +1,15 @@
+<div class="report-assistant-overview">
+  <div class="report-assistant-overview__toolbar">
+    <AuHeading @level="1" @skin="4">
+      {{t "dashboard.report-assistant.report-specs"}}
+    </AuHeading>
+  </div>
+  <p class="report-assistant-overview__description">
+    {{t "dashboard.report-assistant.report-specs-description"}}
+  </p>
+  <ReportAssistant::ReportSpecTable
+    @reportSpecs={{@model}}
+    @page={{this.page}}
+    @size={{this.size}}
+  />
+</div>

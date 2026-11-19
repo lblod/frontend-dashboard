@@ -1,17 +1,17 @@
-<AuToolbar
-  @size="large"
-  as | Group |>
+<AuToolbar @size="large" as |Group|>
   <Group>
     <AuHeading @skin="2">{{t "dashboard.reports.title"}}</AuHeading>
   </Group>
 </AuToolbar>
 
-
-{{#let (t "dashboard.reports.fields.title")
-       (t "dashboard.reports.fields.description")
-       (t "dashboard.reports.fields.created")
-       (t "dashboard.reports.fields.file")
-  as |ti de cr fi|}}
+{{#let
+  (t "dashboard.reports.fields.title")
+  (t "dashboard.reports.fields.description")
+  (t "dashboard.reports.fields.created")
+  (t "dashboard.reports.fields.file")
+  (t "dashboard.reports.fields.source")
+  as |ti de cr fi so|
+}}
   <AuDataTable
     @content={{this.model}}
     @isLoading={{this.isLoading}}
@@ -19,13 +19,31 @@
     @sort={{this.sort}}
     @page={{this.page}}
     @size={{this.size}}
-    as |table|>
+    as |table|
+  >
     <table.content as |c|>
       <c.header>
-        <AuDataTableThSortable @label={{ti}} @field='title' @currentSorting={{this.sort}}/>
-        <AuDataTableThSortable @label={{de}} @field='description' @currentSorting={{this.sort}}/>
-        <AuDataTableThSortable @label={{cr}} @field='created' @currentSorting={{this.sort}}/>
-        <AuDataTableThSortable @label={{fi}} @field='file' @currentSorting={{this.sort}}/>
+        <AuDataTableThSortable
+          @label={{ti}}
+          @field="title"
+          @currentSorting={{this.sort}}
+        />
+        <AuDataTableThSortable
+          @label={{de}}
+          @field="description"
+          @currentSorting={{this.sort}}
+        />
+        <AuDataTableThSortable
+          @label={{cr}}
+          @field="created"
+          @currentSorting={{this.sort}}
+        />
+        <AuDataTableThSortable
+          @label={{fi}}
+          @field="file"
+          @currentSorting={{this.sort}}
+        />
+        {{#if this.showSource}}<th scope="col">{{so}}</th>{{/if}}
       </c.header>
       <c.body as |row|>
         <td>{{row.title}}</td>
@@ -33,13 +51,17 @@
         <td>{{format-datetime row.created}}</td>
         <td>
           <AuLinkExternal
-            href='/files/{{row.file.id}}/download'
-            download="file"
+            href={{download-url row.file.id row.file.filename}}
+            download={{row.file.filename}}
             @icon="download"
-            @iconAlignment="left">
+            @iconAlignment="left"
+          >
             {{t "dashboard.reports.download"}}
           </AuLinkExternal>
         </td>
+        {{#if this.showSource}}
+          <td>{{row.creator.name}}</td>
+        {{/if}}
       </c.body>
     </table.content>
   </AuDataTable>
