@@ -7,12 +7,10 @@ import {
   runReportSpec,
 } from 'frontend-dashboard/utils/report-spec';
 
-// The attachment types the service writes as dct:type on a file: the
-// codelist of the portal's add-chat-attachment-types-codelist migration.
+// The type the service writes as dct:type on a spec file: a concept of the
+// portal's add-chat-attachment-types-codelist migration.
 const SPEC_TYPE =
   'http://lblod.data.gift/concepts/6693014e-7b7d-448c-bb24-80c9758521f3';
-const RESULT_TYPE =
-  'http://lblod.data.gift/concepts/28d97698-e219-4a92-bdbd-7ab367a7524e';
 
 export default class ReportAssistantAttachment extends Component {
   @service intl;
@@ -20,7 +18,7 @@ export default class ReportAssistantAttachment extends Component {
   @service toaster;
 
   // The ReportSpec of this spec file. The service writes it together with
-  // the file; null for a spec file from before that.
+  // the file; null until the lookup answers, or when it fails.
   @tracked reportSpec = null;
 
   constructor(owner, args) {
@@ -30,14 +28,6 @@ export default class ReportAssistantAttachment extends Component {
 
   get isSpec() {
     return this.args.document.type === SPEC_TYPE;
-  }
-
-  get what() {
-    if (this.isSpec)
-      return this.intl.t('dashboard.report-assistant.attachment-turtle');
-    if (this.args.document.type === RESULT_TYPE)
-      return this.intl.t('dashboard.report-assistant.attachment-csv');
-    return this.intl.t('dashboard.report-assistant.attachment-file');
   }
 
   // Asks for the ReportSpec of this file. A failed lookup leaves it null:
