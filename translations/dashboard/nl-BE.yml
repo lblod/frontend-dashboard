@@ -2,6 +2,7 @@ title: "Dashboard"
 logout: "Afmelden"
 resetfilters: "Filters verwijderen"
 loading: "Aan het laden"
+navigation-label: "Informatie en instellingen"
 nav:
   report-assistant: "Rapportassistent"
   reports: "Rapporten"

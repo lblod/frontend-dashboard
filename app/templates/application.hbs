@@ -9,12 +9,16 @@
     }}
     @homeRoute="index"
     @appTitle={{t "dashboard.title"}}
+    @navigationAriaLabel={{t "dashboard.navigation-label"}}
   >
     {{#if this.currentSession.isAdmin}}
       <li class="au-c-list-horizontal__item">
         <ImpersonationMenu />
       </li>
     {{/if}}
+    <li class="au-c-list-horizontal__item">
+      <LanguageSwitcher />
+    </li>
     <li class="au-c-list-horizontal__item">
       {{#if this.session.isAuthenticated}}
         <AuDropdown

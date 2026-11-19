@@ -31,6 +31,10 @@ dashboard:
 
 > Note: At least one feature needs to stay enabled, otherwise an error will be thrown
 
+#### Language
+
+The dashboard follows the browser's preferred language: Dutch for a Dutch browser, English otherwise. Override it with `?lang=nl-be` or `?lang=en-us`, or with the language menu in the header. An override is remembered in the browser. A key that is missing in Dutch falls back to English.
+
 #### Report assistant
 
 The report assistant is a chat page for the [report-assistant-service](https://github.com/lblod/report-assistant-service). It is off by default. Enable it with:
